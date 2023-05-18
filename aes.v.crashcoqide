@@ -1,0 +1,363 @@
+(*
+  Experimental implementation of Chapter 3 of Cryptal Reference.
+*)
+
+Require Import natbool. (* nat_to_bool *)
+Require Import Bool.
+Require Import List.
+Require Import lib.
+Require Import prim.
+Require Import shuffle. (* permuation of expanded key   扩展key的排列 *)
+Require Import galois.
+Require Import wiki_sbox.
+
+Section Para.
+Definition Nb := 4. (* 128/32 表示列数 *)
+Definition Nk := 4. (* key-block个数，即密钥中32位的字的个数。AES128为4个，AES192为6个，AES256为8个 *)
+Definition Nr := (max Nb Nk) + 6. (* Nr:回合数，根据标准，Nr总是6 + Nk。因此，10表示AES128, 12表示AES192, 14表示AES256 *)
+Definition byte := list bool.    (* Poly *)
+Definition byte_vec := list byte.  (* Vec *)
+Implicit Type state : list byte_vec.  (* 初始矩阵，2-dimensional array of bytes  *)   (* Matrix *)
+
+(** Key Schedule. *)
+(* 秘钥扩展时使用的常数矩阵，对于每一个i，Rcon[i]包含四个字节，最后三个是0，第一个字节为x^(i-1)
+秘钥扩展中当i是4的倍数时，需要进行字循环，字节代换和轮常量异或，轮常量异或就用的这里的常数矩阵 *)
+Definition Rcon (i : nat) : list Poly :=
+  (gpower (n2p 2) (i-1))::rij_0::rij_0::rij_0::nil.
+End Para.
+
+
+
+(* subByte transformation *)
+Section SubByte.
+(* select the ith element from sbox *)
+Definition sbox_ith (i:nat) := nth i sbox rij_0.
+(* Sbox -- select ith element corresponds to the input poly p from sbox. *)
+Definition sbox_sel (p:Poly) : Poly := sbox_ith (p2n p).
+(* apply sbox to a sequence of bytes. *)
+Definition subByte (block : list Poly) := map sbox_sel block.
+End SubByte.
+
+
+(* inversed subByte transformation *)
+Section InvSubByte.
+Definition inv_sbox_ith (i : nat) := nth i inv_sbox rij_0.
+Definition inv_sbox_sel (p:Poly) : Poly := inv_sbox_ith (p2n p).
+Definition inv_subByte (block : list Poly) := map inv_sbox_sel block.
+End InvSubByte.
+
+
+Arguments rotate_left [A].
+Arguments back_cons [A].
+Arguments split [A].
+Arguments lth [A].
+
+
+Section KeySchedule.
+
+(* prev:w[i-1], old:w[i-Nk]，用w[i-1]和w[i-Nk]计算w[i] *) 
+Definition nextWord (i:Poly) (old:Vec) (prev:Vec) : Vec :=
+  let n := p2n i in
+  let prev' := if is_zero (mod n Nk)
+               then vec_add (subByte (rotate_left prev)) (Rcon (div n Nk)) (* 是4的倍数，先左移，再字节代换，最后轮常量异或*)
+               else if andb (less 6 Nk) (nateq (mod n Nk) 4) (* Nk之前定义为4，所以该分支不会成立 *)
+                    then subByte prev
+                    else prev   (* 不是4的倍数，直接就是prev和old异或 *)
+  in vec_add old prev'.
+
+Arguments tail [A].
+
+
+(* Computation of the variable W in keyExpansion.   递归计算w[i] *)
+(* prev通过删除前Nk-1个元素来跟踪扩展键的前32位，而old跟踪keyWS的第i-Nk次递归。
+   一旦有了无限扩展，就很容易通过使用回合数(Nr)来提取所需要的数量 *)
+Fixpoint kEw (k:nat) (total:nat) (w:Matrix) (wa:Matrix) {struct k} : Matrix :=
+  match k,w,drop (Nk-1) w with
+  | S k', hd::_, hd'::_ =>
+    let n    := total - k in
+    let i    := Nk + n in
+    let old  := hd in
+    let prev := hd' in
+    let next := nextWord (n2p i) old prev in
+    let w'   := back_cons (tail w) next in
+    let wa'  := back_cons wa next in
+      kEw k' total w' wa'
+  | _,_,_ => wa
+  end.
+
+(* 一次产生十轮循环的秘钥 *)
+Definition keyExpansion (key:Vec) : Matrix :=
+  let keyCols := split key 4 in    (* 以列为单位 *)
+  let total := ((Nr+1)*Nb-1) - Nk + 1 in   (* total=40,128位的秘钥需要计算40列，一共11组，每组4列，第一组已知 *)
+  let expkey := kEw total total keyCols keyCols in (* 递归40次，每次算一列 *)
+    expkey.
+
+(* 将秘钥分成三份，初始秘钥、中间九轮的秘钥和第十轮的秘钥 *)
+Definition keySchedule (key:Vec) : Matrix * (list Matrix) * Matrix :=
+  let w : Matrix := perm (keyExpansion key) in
+  let rKeys : list Matrix := map (transpose Poly) (split w (Nr+1)) in
+    (lth 0 rKeys, range 1 (Nr-1) rKeys, lth Nr rKeys).
+
+End KeySchedule.
+
+
+Arguments rotate_right [A].
+Arguments width [A].
+Arguments transpose [A].
+Arguments split [A].
+Arguments join [A].
+Arguments map2 [A B].
+
+
+
+Section Round.
+
+(* calculate the cols in polyMat, n = length woeff *)
+Fixpoint mk_cols' (n:nat) (coeff:Vec) (r:Matrix) : Matrix :=
+  match n with
+  | 0 => rev r
+  | S n' => mk_cols' n' (rotate_right coeff) (coeff::r)
+  end.
+
+Definition mk_cols (coeff:Vec) : Matrix :=
+  mk_cols' (width coeff) coeff nil.
+(* Compute width ((true::false::nil)::(false::true::nil)::nil).     = 2 *)
+
+Compute mk_cols ((true::false::false::nil)::(false::true::true::nil)::(false::true::false::nil)::nil).
+(* = ((true :: false :: false :: nil) :: (false :: true :: true :: nil) :: (false :: true :: false :: nil) :: nil)
+       :: ((false :: true :: false :: nil) :: (true :: false :: false :: nil) :: (false :: true :: true :: nil) :: nil)
+          :: ((false :: true :: true :: nil) :: (false :: true :: false :: nil) :: (true :: false :: false :: nil) :: nil) :: nil 
+4 3 2
+2 4 3
+3 2 4
+*)
+
+
+Definition polyMat (coeff:Vec) : Matrix :=
+  transpose (mk_cols coeff).
+Definition cryptol_mat_start := map n2p (2::1::1::3::nil).
+(* http://en.wikipedia.org/wiki/Rijndael_mix_columns *)
+Definition wiki_mat_start    := map n2p (2::3::1::1::nil).
+Definition wiki_invmat_start := map n2p (14::11::13::9::nil).
+Definition mat_start := wiki_mat_start.
+Definition invmat_start := wiki_invmat_start.
+Compute polyMat invmat_start.
+(*
+ 14 9 13 11
+ 11 14 9 13
+ 13 11 14 9
+ 9 13 11 14
+*)
+Compute polyMat mat_start.
+(*
+ 2 1 1 3
+ 3 2 1 1
+ 1 3 2 1
+ 1 1 3 2
+*)
+Definition cx : Matrix := transpose (polyMat mat_start).
+(*
+  The result is a transposed matrix of the following:
+ 2  3  1  1 
+ 1  2  3  1 
+ 1  1  2  3 
+ 3  1  1  2 
+*)
+Definition icx : Matrix := transpose (polyMat invmat_start).
+(*
+  The result is a transposed matrix of the following:
+  14  11  13  9
+  9  14  11  13
+  13  9  14  11
+  11  13  9  14
+*)
+
+
+(* col has 4 bytes *)
+Definition multCol (cx:Matrix) (col:Vec) : Vec :=
+  join (mmult cx (split col 4)).
+Definition mixColumn (state:Matrix) : Matrix :=
+  transpose (map (fun col => multCol cx col) (transpose state)).
+Definition invMixColumn (state:Matrix) : Matrix :=
+  transpose (map (fun col => multCol icx col) (transpose state)). 
+
+
+Arguments rotate_righti [A].
+Arguments rotate_lefti [A].
+
+Definition rol (l:list Poly) (i:nat) := rotate_lefti l i.
+Definition ror (l:list Poly) (i:nat) := rotate_righti l i.
+
+(* 第一行不变，第二行左移一位，以此类推 *)
+Definition shiftRow (state:Matrix) : Matrix :=
+  map2 rol state (0::1::2::3::nil).
+
+Definition invShiftRow (state:Matrix) : Matrix :=
+  map2 ror state (0::1::2::3::nil).
+
+(* [4][Nb][8] -> [4][Nb][8].   字节代换 *)
+Definition byteSub (state:Matrix) : Matrix :=
+  map
+    (fun (row:Vec) => 
+      map (fun (x:Poly) => sbox_sel x) row)
+    state.
+
+Definition invByteSub (state:Matrix) : Matrix :=
+  map
+    (fun (row:Vec) =>
+      map (fun (x:Poly) => inv_sbox_sel x) row)
+    state.
+
+
+(* AES rounds *)
+
+Definition round (state:Matrix) (roundKey:Matrix) : Matrix :=
+  let state1 := byteSub state in
+  let state2 := shiftRow state1 in
+  let state3 := mixColumn state2 in
+  let state4 := matrix_add state3 roundKey in
+    state4.
+
+(* 少了列混合 *)
+Definition finalRound (state:Matrix) (roundKey:Matrix) : Matrix :=
+  let state1 := byteSub state in
+  let state2 := shiftRow state1 in
+  let state3 := matrix_add state2 roundKey in
+    state3.
+
+(* 执行九轮循环后的state矩阵 *)
+Fixpoint mk_rnds (state:Matrix) (rndKeys:list Matrix) {struct rndKeys} : Matrix :=
+  match rndKeys with
+  | nil => state
+  | key::tl => mk_rnds (round state key) tl
+  end.
+
+(* 整个加密循环过程，不包含生成秘钥 *)
+Definition rounds (state:Matrix) (keys : Matrix*(list Matrix)*Matrix) : Matrix :=
+  match keys with
+  (initialKey,rndKeys,finalKey) => (* 初始秘钥 * 九轮的秘钥 * 最后一轮的秘钥 *)
+    let istate := matrix_add state initialKey in  (* istate：初始矩阵和初始秘钥异或后的矩阵 *)
+    let last_rnd := mk_rnds istate rndKeys in     (* last_rnd: 经过九轮循环后的state矩阵 *)
+    let finalRound := finalRound last_rnd finalKey in        (* 再和最后一个秘钥进行处理 *)
+      finalRound
+  end.
+
+
+(* inversed rounds *)
+(* 每一轮的执行顺序和加密不同，加密是字节代换、行移位、列混合和秘钥加，
+   解密是逆行移位、逆字节代换、秘钥加和逆列混合 *)
+Definition inv_Round (state:Matrix) (roundKey:Matrix) : Matrix :=
+  let state1 := invShiftRow state in
+  let state2 := invByteSub state1 in
+	let state3 := matrix_add state2 roundKey in
+  let state4 := invMixColumn state3 in
+	    state4.
+
+Definition invFinalRound (state:Matrix) (roundKey:Matrix) : Matrix :=
+  let state1 := invShiftRow state in
+  let state2 := invByteSub state1 in
+	let state3 :=  matrix_add state2 roundKey in
+	  state3.
+
+(* 只针对中间九轮 *)
+Fixpoint mk_inv_rnds (state:Matrix) (rndKeys:list Matrix) {struct rndKeys} : Matrix :=
+  match rndKeys with
+  | nil => state
+  | key::tl => mk_inv_rnds (inv_Round state key) tl
+  end.
+
+(* 解密时用的秘钥顺序和加密的相反 *)
+Definition inv_rounds (state:Matrix) (keys:Matrix*(list Matrix)*Matrix) : Matrix :=
+  match keys with
+  (initialKey,rndKeys,finalKey) =>
+    let istate := matrix_add state finalKey in
+    let last_rnd := mk_inv_rnds istate (rev rndKeys) in
+    let invFinalRound := invFinalRound last_rnd initialKey in
+      invFinalRound 
+  end.
+
+
+(* 初始排列的向量<-->矩阵 *)
+Definition stripe (block:Vec) : Matrix :=
+  transpose (split block 4).
+
+Definition unstripe (state:Matrix) : Vec :=
+  join (transpose state).
+
+(* key:初始秘钥  pt:明文 *)
+(* 9.7 修改后 *)
+Definition encrypt (key pt:Vec) := 
+  let state := stripe pt in
+  let keys := keySchedule key in  (* 生成秘钥列表 *)
+    unstripe (rounds state keys).
+
+Definition decrypt (key pt:Vec) :=
+  let state := stripe pt in
+  let keys := keySchedule key in
+    unstripe (inv_rounds state keys).
+
+Definition aes_main (key:Vec) (pt:Vec) : Vec :=
+    decrypt key (encrypt key pt).
+
+(* 原始的
+Definition encrypt xk (pt:Vec) := 
+  let state := stripe pt in
+    unstripe (rounds state xk).
+
+Definition decrypt xk (pt:Vec) :=
+  let state := stripe pt in
+    unstripe (inv_rounds state xk).
+
+Definition aes_main (key:Vec) (pt:Vec) : Vec :=
+  let xkey := keySchedule key in
+  let pt' := encrypt xkey pt in
+    decrypt xkey pt'. 
+*)
+End Round.
+
+
+
+(* 
+Require Import Extraction.
+Extraction Language OCaml.
+
+Extract Inductive nat => int [ "0" "succ" ] "(fun fO fS n -> if n=0 then fO () else fS (n-1))".
+Extract Inductive bool => "bool" [ "true" "false" ].
+Extract Inductive list => "list" [ "[]" "(::)" ].
+Extract Inductive prod => "(*)" [ "(,)" ].
+
+Recursive Extraction aes_main.
+Extraction "aes.ml" aes_main.
+
+ *)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

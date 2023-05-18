@@ -1,0 +1,71 @@
+(*
+  Shuffle the expanded key sequence.
+*)
+
+Require Import natbool. (* nat_to_bool *)
+Require Import Bool.
+Require Import List.
+Require Import lib.
+Require Import prim.
+
+Section Swap.
+
+Variable A : Set.
+Arguments decompose [A].
+
+(* exchange element i with i+j in list  i+j和i交换 
+   错误，这个函数定义的是把i+j+1和i交换    *)
+Definition swap (r : list A) (i j : nat) : list A :=
+  let (r1,r2) := decompose r i in
+  let (r21,r22) := decompose r2 1 in  (* r21=r[i] *)
+  let (r221,r222) := decompose r22 j in
+  let (r2221,r2222) := decompose r222 1 in    (* r2221=r[i+j] *)
+    r1 ++ r2221 ++ r221 ++ r21 ++ r2222.
+(*长度为i    1        j      1     剩下的*)
+(* 原来的排序:r1  r21  r221  r2221  r2222 *)
+
+End Swap.
+
+
+
+
+
+Section Perm.
+(*
+Variable A : Set.
+
+Implicit Arguments join  [Poly].
+Implicit Arguments split [Poly].
+Implicit Arguments swap  [Poly].
+*)
+
+(* make a copy of expended key  *)
+Definition perm0 (expkey : list Poly) : list Poly := expkey.
+
+(* make a specific permutation of expanded key. *)
+(* expkey contains 44 sublists of 4 byte reprensenting list.   *)
+(* the result is a 44*4=176 'byte's *)
+Definition perm1 (expkey : list (list Poly)) : list (list Poly) :=
+  let r := join Poly expkey in (* r has 176 elements *)
+  let k := div (length r) 4 in (* k=44 *)
+
+    (* shuffle begin *)
+    (* r[1] <-> r[1+2], r[3]<->r[3+18] *) 
+    let r1 := swap Poly r  1 2 in
+    let r2 := swap Poly r1 3 18 in
+    let r3 := swap Poly r2 3 3 in
+    let r4 := swap Poly r3 56 74 in
+    let r5 := swap Poly r4 40 41 in
+    let r6 := swap Poly r5 12 120 in
+    let r7 := swap Poly r6 1  176 in
+    let re := swap Poly r7 6 12 in
+    (* shuffle end  *)
+	split Poly re k.
+
+Definition perm := perm1.
+
+End Perm.
+
+
+
+

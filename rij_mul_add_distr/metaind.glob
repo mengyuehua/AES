@@ -1,0 +1,1460 @@
+DIGEST e3a35a394913aa4f1be49225a1c89429
+Fmetaind
+R3088:3091 Coq.Lists.List <> <> lib
+R3109:3110 Coq.Arith.Le <> <> lib
+R3128:3129 Coq.Arith.Lt <> <> lib
+R3147:3152 simple <> <> lib
+R3170:3172 Coq.micromega.Lia <> <> lib
+R3280:3282 Coq.Init.Logic <> and ind
+R3321:3324 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R3318:3320 Coq.Init.Datatypes <> nil constr
+R3325:3327 Coq.Init.Datatypes <> nil constr
+R3321:3324 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R3318:3320 Coq.Init.Datatypes <> nil constr
+R3325:3327 Coq.Init.Datatypes <> nil constr
+R3349:3357 Coq.Init.Logic <> False_ind scheme
+sec 3453:3462 <> FalseImply
+var 3475:3475 FalseImply A
+var 3494:3494 FalseImply P
+prf 3511:3522 <> notTrueImply
+R3532:3535 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3526:3527 Coq.Init.Logic <> ::type_scope:'~'_x not
+R3528:3531 Coq.Init.Logic <> True ind
+R3536:3536 metaind <> FalseImply.P var
+prf 3570:3577 <> nilImply
+R3603:3606 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3590:3593 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R3581:3583 Coq.Init.Datatypes <> nil constr
+R3588:3588 metaind <> FalseImply.A var
+R3594:3596 Coq.Init.Datatypes <> nil constr
+R3601:3601 metaind <> FalseImply.A var
+R3607:3607 metaind <> FalseImply.P var
+R3639:3648 metaind FalseImply <> sec
+sec 3665:3674 <> Convertion
+var 3687:3687 Convertion P
+R3694:3697 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3691:3693 Coq.Init.Datatypes <> nat ind
+prf 3746:3754 <> lg0_imply
+R3760:3760 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3785:3790 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3819:3819 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3773:3775 Coq.Init.Datatypes <> nat ind
+binder 3769:3769 <> n:4
+R3779:3779 metaind <> Convertion.P var
+R3781:3781 Coq.Init.Datatypes <> S constr
+R3783:3783 metaind <> n:4 var
+R3803:3805 Coq.Init.Datatypes <> nat ind
+binder 3799:3799 <> n:5
+R3812:3815 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3810:3810 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R3811:3811 metaind <> n:5 var
+R3816:3816 metaind <> Convertion.P var
+R3818:3818 metaind <> n:5 var
+R3869:3869 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R3869:3869 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R3882:3890 Coq.Arith.Lt <> lt_irrefl syndef
+R3882:3890 Coq.Arith.Lt <> lt_irrefl syndef
+R3936:3945 metaind Convertion <> sec
+sec 3962:3968 <> DepList
+var 3981:3981 DepList A
+var 4000:4000 DepList P
+R4010:4013 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4004:4007 Coq.Init.Datatypes <> list ind
+R4009:4009 metaind <> DepList.A var
+R4020:4023 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4014:4017 Coq.Init.Datatypes <> list ind
+R4019:4019 metaind <> DepList.A var
+R4053:4056 Coq.Init.Datatypes <> list ind
+R4058:4058 metaind <> DepList.A var
+R4082:4082 metaind <> DepList.A var
+R4095:4101 simple <> len_Seq def
+R4095:4101 simple <> len_Seq def
+R4145:4150 simple <> len_eq def
+R4145:4150 simple <> len_eq def
+def 4197:4210 <> doubleListRect
+R4219:4219 metaind <> DepList.P var
+R4221:4223 Coq.Init.Datatypes <> nil constr
+R4225:4227 Coq.Init.Datatypes <> nil constr
+binder 4215:4215 <> f:8
+binder 4246:4247 <> la:9
+R4250:4250 metaind <> DepList.P var
+R4252:4253 metaind <> la:9 var
+R4255:4257 Coq.Init.Datatypes <> nil constr
+binder 4233:4234 <> fa:10
+binder 4277:4278 <> lb:11
+R4281:4281 metaind <> DepList.P var
+R4283:4285 Coq.Init.Datatypes <> nil constr
+R4287:4288 metaind <> lb:11 var
+binder 4264:4265 <> fb:12
+binder 4309:4309 <> a:13
+binder 4311:4311 <> b:14
+binder 4313:4314 <> la:15
+binder 4316:4317 <> lb:16
+R4327:4330 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4320:4320 metaind <> DepList.P var
+R4322:4323 metaind <> la:15 var
+R4325:4326 metaind <> lb:16 var
+R4331:4331 metaind <> DepList.P var
+R4335:4336 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4334:4334 metaind <> a:13 var
+R4337:4338 metaind <> la:15 var
+R4343:4344 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4342:4342 metaind <> b:14 var
+R4345:4346 metaind <> lb:16 var
+binder 4295:4297 <> fab:17
+R4371:4374 Coq.Init.Datatypes <> list ind
+R4376:4376 metaind <> DepList.A var
+binder 4363:4364 <> l1:18
+binder 4366:4367 <> l2:19
+R4393:4393 metaind <> DepList.P var
+R4395:4396 metaind <> l1:18 var
+R4398:4399 metaind <> l2:19 var
+R4414:4415 metaind <> l1:18 var
+R4431:4431 metaind <> DepList.P var
+R4433:4434 metaind <> l0:21 var
+R4436:4437 metaind <> l2:19 var
+R4453:4455 Coq.Init.Datatypes <> nil constr
+R4467:4468 metaind <> l2:19 var
+R4485:4485 metaind <> DepList.P var
+R4487:4489 Coq.Init.Datatypes <> nil constr
+R4491:4493 metaind <> l0':22 var
+R4518:4520 Coq.Init.Datatypes <> nil constr
+R4525:4525 metaind <> f:8 var
+R4547:4550 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4558:4559 metaind <> fb:12 var
+R4563:4564 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4600:4603 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4617:4618 metaind <> l2:19 var
+R4635:4635 metaind <> DepList.P var
+R4639:4640 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4645:4647 metaind <> l0':23 var
+R4675:4677 Coq.Init.Datatypes <> nil constr
+R4682:4683 metaind <> fa:10 var
+R4687:4688 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4716:4719 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4726:4728 metaind <> fab:17 var
+R4741:4741 metaind <> F:20 var
+prf 4826:4838 <> doubleListInd
+R4853:4859 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4844:4844 metaind <> DepList.P var
+R4846:4848 Coq.Init.Datatypes <> nil constr
+R4850:4852 Coq.Init.Datatypes <> nil constr
+R4860:4860 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4880:4886 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 4868:4869 <> la:24
+R4872:4872 metaind <> DepList.P var
+R4874:4875 metaind <> la:24 var
+R4877:4879 Coq.Init.Datatypes <> nil constr
+R4887:4887 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4907:4913 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 4895:4896 <> lb:25
+R4899:4899 metaind <> DepList.P var
+R4901:4903 Coq.Init.Datatypes <> nil constr
+R4905:4906 metaind <> lb:25 var
+R4914:4914 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4961:4968 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4990:4990 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 4922:4922 <> a:26
+binder 4924:4924 <> b:27
+binder 4926:4927 <> la:28
+binder 4929:4930 <> lb:29
+R4940:4943 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R4933:4933 metaind <> DepList.P var
+R4935:4936 metaind <> la:28 var
+R4938:4939 metaind <> lb:29 var
+R4944:4944 metaind <> DepList.P var
+R4948:4949 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4947:4947 metaind <> a:26 var
+R4950:4951 metaind <> la:28 var
+R4956:4957 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4955:4955 metaind <> b:27 var
+R4958:4959 metaind <> lb:29 var
+binder 4976:4977 <> la:30
+binder 4979:4980 <> lb:31
+R4983:4983 metaind <> DepList.P var
+R4985:4986 metaind <> la:30 var
+R4988:4989 metaind <> lb:31 var
+R5006:5019 metaind <> doubleListRect def
+R5006:5019 metaind <> doubleListRect def
+prf 5124:5133 <> SeqListInd
+R5139:5139 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5164:5170 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 5147:5147 <> a:32
+R5150:5150 metaind <> DepList.P var
+R5154:5155 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R5153:5153 metaind <> a:32 var
+R5156:5158 Coq.Init.Datatypes <> nil constr
+R5161:5163 Coq.Init.Datatypes <> nil constr
+R5171:5171 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5218:5225 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5264:5264 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 5179:5179 <> a:33
+binder 5181:5181 <> b:34
+binder 5183:5184 <> la:35
+binder 5186:5187 <> lb:36
+R5197:5200 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5190:5190 metaind <> DepList.P var
+R5192:5193 metaind <> la:35 var
+R5195:5196 metaind <> lb:36 var
+R5201:5201 metaind <> DepList.P var
+R5205:5206 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R5204:5204 metaind <> a:33 var
+R5207:5208 metaind <> la:35 var
+R5213:5214 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R5212:5212 metaind <> b:34 var
+R5215:5216 metaind <> lb:36 var
+binder 5233:5234 <> la:37
+binder 5236:5237 <> lb:38
+R5253:5256 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R5240:5246 simple <> len_Seq def
+R5251:5252 metaind <> lb:38 var
+R5248:5249 metaind <> la:37 var
+R5257:5257 metaind <> DepList.P var
+R5259:5260 metaind <> la:37 var
+R5262:5263 metaind <> lb:38 var
+R5325:5331 simple <> len_Seq def
+R5485:5491 simple <> len_Seq def
+R5594:5596 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R5597:5599 Coq.Init.Datatypes <> nil constr
+R5594:5596 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R5597:5599 Coq.Init.Datatypes <> nil constr
+R5612:5623 simple <> length_S_nil thm
+R5625:5625 metaind <> DepList.A var
+R5612:5623 simple <> length_S_nil thm
+R5625:5625 metaind <> DepList.A var
+R5747:5753 simple <> len_Seq def
+R5807:5809 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R5798:5803 Coq.Init.Datatypes <> length def
+R5810:5810 Coq.Init.Datatypes <> S constr
+R5813:5818 Coq.Init.Datatypes <> length def
+R5807:5809 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R5798:5803 Coq.Init.Datatypes <> length def
+R5810:5810 Coq.Init.Datatypes <> S constr
+R5813:5818 Coq.Init.Datatypes <> length def
+R5834:5841 Coq.Init.Peano <> eq_add_S def
+R5834:5841 Coq.Init.Peano <> eq_add_S def
+R5976:5982 simple <> len_Seq def
+prf 6067:6075 <> eqListInd
+R6092:6099 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6083:6083 metaind <> DepList.P var
+R6085:6087 Coq.Init.Datatypes <> nil constr
+R6089:6091 Coq.Init.Datatypes <> nil constr
+R6100:6100 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6147:6155 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6193:6193 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 6108:6108 <> a:39
+binder 6110:6110 <> b:40
+binder 6112:6113 <> la:41
+binder 6115:6116 <> lb:42
+R6126:6129 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6119:6119 metaind <> DepList.P var
+R6121:6122 metaind <> la:41 var
+R6124:6125 metaind <> lb:42 var
+R6130:6130 metaind <> DepList.P var
+R6134:6135 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6133:6133 metaind <> a:39 var
+R6136:6137 metaind <> la:41 var
+R6142:6143 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R6141:6141 metaind <> b:40 var
+R6144:6145 metaind <> lb:42 var
+binder 6163:6164 <> la:43
+binder 6166:6167 <> lb:44
+R6182:6185 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6170:6175 simple <> len_eq def
+R6180:6181 metaind <> lb:44 var
+R6177:6178 metaind <> la:43 var
+R6186:6186 metaind <> DepList.P var
+R6188:6189 metaind <> la:43 var
+R6191:6192 metaind <> lb:44 var
+R6360:6365 simple <> len_eq def
+R6558:6563 simple <> len_eq def
+R6593:6600 Coq.Init.Peano <> eq_add_S def
+R6593:6600 Coq.Init.Peano <> eq_add_S def
+R6650:6656 metaind DepList <> sec
+sec 6672:6680 <> NatIndExt
+R6693:6698 simple <> len_eq def
+R6693:6698 simple <> len_eq def
+prf 6750:6757 <> nat_ind2
+R6776:6779 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6773:6775 Coq.Init.Datatypes <> nat ind
+binder 6769:6769 <> P:45
+R6789:6789 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6793:6797 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6790:6790 metaind <> P:45 var
+R6798:6798 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6802:6806 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6799:6799 metaind <> P:45 var
+R6807:6807 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6846:6853 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6869:6869 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6818:6820 Coq.Init.Datatypes <> nat ind
+binder 6816:6816 <> n:46
+R6824:6824 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6828:6833 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6845:6845 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R6825:6825 metaind <> P:45 var
+R6827:6827 metaind <> n:46 var
+R6834:6834 metaind <> P:45 var
+R6837:6837 Coq.Init.Datatypes <> S constr
+R6840:6840 Coq.Init.Datatypes <> S constr
+R6842:6842 metaind <> n:46 var
+binder 6861:6861 <> n:47
+R6865:6865 metaind <> P:45 var
+R6867:6867 metaind <> n:47 var
+R6895:6903 simple <> nat_split thm
+R6895:6903 simple <> nat_split thm
+R7176:7184 simple <> even_succ thm
+R7176:7184 simple <> even_succ thm
+R7176:7184 simple <> even_succ thm
+R7288:7296 simple <> even_succ thm
+R7288:7296 simple <> even_succ thm
+R7288:7296 simple <> even_succ thm
+R7320:7328 simple <> succ_add1 thm
+R7320:7328 simple <> succ_add1 thm
+R7320:7328 simple <> succ_add1 thm
+R7353:7361 metaind NatIndExt <> sec
+R7387:7390 Coq.Lists.List <> <> lib
+sec 7401:7410 <> ListIndExt
+var 7423:7423 ListIndExt A
+var 7442:7442 ListIndExt P
+R7452:7455 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R7446:7449 Coq.Init.Datatypes <> list ind
+R7451:7451 metaind <> ListIndExt.A var
+R7480:7483 Coq.Init.Datatypes <> list ind
+R7485:7485 metaind <> ListIndExt.A var
+R7506:7508 Coq.Init.Datatypes <> nat ind
+R7533:7533 metaind <> ListIndExt.A var
+prf 7602:7608 <> natlist
+R7614:7614 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R7650:7655 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R7671:7671 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 7622:7622 <> n:50
+binder 7624:7624 <> l:51
+R7640:7644 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R7648:7648 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R7636:7638 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R7628:7633 Coq.Init.Datatypes <> length def
+R7635:7635 metaind <> l:51 var
+R7639:7639 metaind <> n:50 var
+R7645:7645 metaind <> ListIndExt.P var
+R7647:7647 metaind <> l:51 var
+binder 7663:7663 <> l:52
+R7667:7667 metaind <> ListIndExt.P var
+R7669:7669 metaind <> l:52 var
+R7705:7710 Coq.Init.Datatypes <> length def
+R7705:7710 Coq.Init.Datatypes <> length def
+R7836:7842 metaind <> natlist thm
+R7912:7912 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R7913:7915 Coq.Init.Datatypes <> nil constr
+R7926:7935 simple <> length_nil thm
+prf 8025:8031 <> listind
+R8037:8037 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8043:8047 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8038:8038 metaind <> ListIndExt.P var
+R8040:8042 Coq.Init.Datatypes <> nil constr
+R8048:8048 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8076:8081 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8095:8095 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 8056:8056 <> a:53
+binder 8058:8058 <> l:54
+R8064:8067 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8061:8061 metaind <> ListIndExt.P var
+R8063:8063 metaind <> l:54 var
+R8068:8068 metaind <> ListIndExt.P var
+R8072:8073 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8071:8071 metaind <> a:53 var
+R8074:8074 metaind <> l:54 var
+binder 8089:8089 <> l:55
+R8092:8092 metaind <> ListIndExt.P var
+R8094:8094 metaind <> l:55 var
+R8126:8132 metaind <> natlist thm
+R8126:8132 metaind <> natlist thm
+R8169:8169 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8170:8172 Coq.Init.Datatypes <> nil constr
+R8169:8169 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8170:8172 Coq.Init.Datatypes <> nil constr
+R8182:8191 simple <> length_nil thm
+R8182:8191 simple <> length_nil thm
+R8324:8331 Coq.Init.Peano <> eq_add_S def
+R8324:8331 Coq.Init.Peano <> eq_add_S def
+R8362:8369 simple <> length_S thm
+R8362:8369 simple <> length_S thm
+R8386:8397 simple <> length_S_nil thm
+R8386:8397 simple <> length_S_nil thm
+prf 8444:8451 <> listInd2
+R8458:8458 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8464:8468 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8459:8459 metaind <> ListIndExt.P var
+R8461:8463 Coq.Init.Datatypes <> nil constr
+R8469:8469 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8490:8496 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 8477:8477 <> a:56
+R8480:8480 metaind <> ListIndExt.P var
+R8484:8485 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8483:8483 metaind <> a:56 var
+R8486:8488 Coq.Init.Datatypes <> nil constr
+R8497:8497 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8534:8542 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8558:8558 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 8505:8505 <> l:57
+binder 8507:8507 <> b:58
+binder 8509:8509 <> c:59
+R8512:8512 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8516:8521 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8533:8533 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8513:8513 metaind <> ListIndExt.P var
+R8515:8515 metaind <> l:57 var
+R8522:8522 metaind <> ListIndExt.P var
+R8526:8527 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8525:8525 metaind <> b:58 var
+R8529:8530 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8528:8528 metaind <> c:59 var
+R8531:8531 metaind <> l:57 var
+binder 8550:8550 <> l:60
+R8554:8554 metaind <> ListIndExt.P var
+R8556:8556 metaind <> l:60 var
+R8584:8590 metaind <> natlist thm
+R8584:8590 metaind <> natlist thm
+R8602:8609 metaind <> nat_ind2 thm
+binder 8616:8616 <> n:61
+binder 8628:8629 <> l0:62
+R8645:8648 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8641:8643 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8632:8637 Coq.Init.Datatypes <> length def
+R8639:8640 metaind <> l0:62 var
+R8644:8644 metaind <> n:61 var
+R8649:8649 metaind <> ListIndExt.P var
+R8651:8652 metaind <> l0:62 var
+R8602:8609 metaind <> nat_ind2 thm
+binder 8616:8616 <> n:63
+binder 8628:8629 <> l0:64
+R8645:8648 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R8641:8643 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8632:8637 Coq.Init.Datatypes <> length def
+R8639:8640 metaind <> l0:64 var
+R8644:8644 metaind <> n:63 var
+R8649:8649 metaind <> ListIndExt.P var
+R8651:8652 metaind <> l0:64 var
+R8716:8716 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8717:8719 Coq.Init.Datatypes <> nil constr
+R8716:8716 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8717:8719 Coq.Init.Datatypes <> nil constr
+R8729:8738 simple <> length_nil thm
+R8729:8738 simple <> length_nil thm
+R8797:8803 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R8807:8808 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 8804:8804 <> a:65
+R8809:8815 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R8820:8821 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 8816:8817 <> tl:66
+R8824:8824 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8826:8827 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8825:8825 metaind <> a:65 var
+R8828:8829 metaind <> tl:66 var
+R8797:8803 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R8807:8808 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 8804:8804 <> a:67
+R8809:8815 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R8820:8821 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 8816:8817 <> tl:68
+R8824:8824 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8826:8827 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8825:8825 metaind <> a:67 var
+R8828:8829 metaind <> tl:68 var
+R8840:8847 simple <> length_S thm
+R8840:8847 simple <> length_S thm
+R8938:8938 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8939:8941 Coq.Init.Datatypes <> nil constr
+R8938:8938 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R8939:8941 Coq.Init.Datatypes <> nil constr
+R8952:8963 simple <> length_S_nil thm
+R8952:8963 simple <> length_S_nil thm
+R9174:9181 Coq.Init.Peano <> eq_add_S def
+R9174:9181 Coq.Init.Peano <> eq_add_S def
+R9190:9197 Coq.Init.Peano <> eq_add_S def
+R9190:9197 Coq.Init.Peano <> eq_add_S def
+def 9259:9268 <> list_rect1
+R9275:9275 metaind <> ListIndExt.P var
+R9277:9279 Coq.Init.Datatypes <> nil constr
+binder 9271:9271 <> f:69
+R9300:9300 metaind <> ListIndExt.A var
+binder 9298:9298 <> a:70
+R9306:9309 Coq.Init.Datatypes <> list ind
+R9311:9311 metaind <> ListIndExt.A var
+binder 9304:9304 <> l:71
+R9318:9321 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9315:9315 metaind <> ListIndExt.P var
+R9317:9317 metaind <> l:71 var
+R9322:9322 metaind <> ListIndExt.P var
+R9326:9327 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9325:9325 metaind <> a:70 var
+R9328:9328 metaind <> l:71 var
+binder 9285:9286 <> f0:72
+R9346:9349 Coq.Init.Datatypes <> list ind
+R9351:9351 metaind <> ListIndExt.A var
+binder 9344:9344 <> l:73
+R9356:9356 metaind <> ListIndExt.P var
+R9358:9358 metaind <> l:73 var
+R9373:9373 metaind <> l:73 var
+R9389:9389 metaind <> ListIndExt.P var
+R9391:9392 metaind <> l0:75 var
+R9408:9410 Coq.Init.Datatypes <> nil constr
+R9415:9415 metaind <> f:69 var
+R9426:9427 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9434:9435 metaind <> f0:72 var
+R9443:9443 metaind <> F:74 var
+def 9499:9507 <> list_ind1
+R9512:9521 metaind <> list_rect1 def
+prf 9562:9580 <> listind_exact_proof
+R9586:9586 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9592:9596 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9587:9587 metaind <> ListIndExt.P var
+R9589:9591 Coq.Init.Datatypes <> nil constr
+R9597:9597 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9625:9630 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9644:9644 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 9605:9605 <> a:76
+binder 9607:9607 <> l:77
+R9613:9616 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9610:9610 metaind <> ListIndExt.P var
+R9612:9612 metaind <> l:77 var
+R9617:9617 metaind <> ListIndExt.P var
+R9621:9622 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9620:9620 metaind <> a:76 var
+R9623:9623 metaind <> l:77 var
+binder 9638:9638 <> l:78
+R9641:9641 metaind <> ListIndExt.P var
+R9643:9643 metaind <> l:78 var
+R9660:9668 metaind <> list_ind1 def
+R9660:9668 metaind <> list_ind1 def
+def 9689:9698 <> list_rect2
+R9705:9705 metaind <> ListIndExt.P var
+R9707:9709 Coq.Init.Datatypes <> nil constr
+binder 9701:9701 <> f:79
+binder 9724:9724 <> a:80
+R9727:9727 metaind <> ListIndExt.P var
+R9730:9731 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9729:9729 metaind <> a:80 var
+R9732:9734 Coq.Init.Datatypes <> nil constr
+binder 9713:9713 <> g:81
+binder 9753:9753 <> a:82
+binder 9755:9755 <> b:83
+binder 9757:9757 <> l:84
+R9763:9766 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R9760:9760 metaind <> ListIndExt.P var
+R9762:9762 metaind <> l:84 var
+R9767:9767 metaind <> ListIndExt.P var
+R9771:9772 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9770:9770 metaind <> a:82 var
+R9774:9775 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9773:9773 metaind <> b:83 var
+R9776:9776 metaind <> l:84 var
+binder 9741:9742 <> f0:85
+R9796:9799 Coq.Init.Datatypes <> list ind
+R9801:9801 metaind <> ListIndExt.A var
+binder 9792:9792 <> l:86
+R9806:9806 metaind <> ListIndExt.P var
+R9808:9808 metaind <> l:86 var
+R9822:9822 metaind <> l:86 var
+R9838:9838 metaind <> ListIndExt.P var
+R9840:9841 metaind <> l0:88 var
+R9856:9858 Coq.Init.Datatypes <> nil constr
+R9863:9863 metaind <> f:79 var
+R9873:9876 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9877:9879 Coq.Init.Datatypes <> nil constr
+R9884:9884 metaind <> g:81 var
+R9897:9900 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9902:9905 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9912:9913 metaind <> f0:85 var
+R9923:9923 metaind <> F:87 var
+def 9978:9986 <> list_ind2
+R9991:10000 metaind <> list_rect2 def
+prf 10010:10024 <> listInd2_proof2
+R10030:10030 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10036:10040 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10031:10031 metaind <> ListIndExt.P var
+R10033:10035 Coq.Init.Datatypes <> nil constr
+R10041:10041 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10062:10068 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 10049:10049 <> a:89
+R10052:10052 metaind <> ListIndExt.P var
+R10056:10057 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R10055:10055 metaind <> a:89 var
+R10058:10060 Coq.Init.Datatypes <> nil constr
+R10069:10069 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10106:10114 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10130:10130 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 10077:10077 <> b:90
+binder 10079:10079 <> c:91
+binder 10081:10081 <> l:92
+R10084:10084 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10088:10093 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10105:10105 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10085:10085 metaind <> ListIndExt.P var
+R10087:10087 metaind <> l:92 var
+R10094:10094 metaind <> ListIndExt.P var
+R10098:10099 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R10097:10097 metaind <> b:90 var
+R10101:10102 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R10100:10100 metaind <> c:91 var
+R10103:10103 metaind <> l:92 var
+binder 10122:10122 <> l:93
+R10126:10126 metaind <> ListIndExt.P var
+R10128:10128 metaind <> l:93 var
+R10146:10155 metaind <> list_rect2 def
+R10146:10155 metaind <> list_rect2 def
+R10168:10177 metaind ListIndExt <> sec
+sec 10195:10201 <> RevList
+R10260:10263 Coq.Init.Datatypes <> ::list_scope:x_'++'_x not
+R10265:10268 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R10269:10271 Coq.Init.Datatypes <> nil constr
+not 10246:10246 RevList ::list_scope:x_':+'_x
+var 10332:10332 RevList A
+R10361:10364 Coq.Init.Datatypes <> list ind
+R10366:10366 metaind <> RevList.A var
+R10390:10390 metaind <> RevList.A var
+R10418:10421 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10412:10415 Coq.Init.Datatypes <> list ind
+R10417:10417 metaind <> RevList.A var
+prf 10435:10438 <> revP
+binder 10449:10449 <> P:95
+R10452:10452 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10466:10471 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10491:10491 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 10460:10460 <> l:96
+R10463:10463 metaind <> P:95 var
+R10465:10465 metaind <> l:96 var
+binder 10479:10479 <> l:97
+R10482:10482 metaind <> P:95 var
+R10485:10487 Coq.Lists.List <> rev def
+R10489:10489 metaind <> l:97 var
+prf 10530:10534 <> revPP
+binder 10545:10545 <> P:98
+R10548:10548 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10568:10573 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10589:10589 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 10556:10556 <> l:99
+R10559:10559 metaind <> P:98 var
+R10562:10564 Coq.Lists.List <> rev def
+R10566:10566 metaind <> l:99 var
+binder 10581:10581 <> l:100
+R10585:10585 metaind <> P:98 var
+R10587:10587 metaind <> l:100 var
+R10618:10631 Coq.Lists.List <> rev_involutive thm
+R10618:10631 Coq.Lists.List <> rev_involutive thm
+R10618:10631 Coq.Lists.List <> rev_involutive thm
+prf 10697:10702 <> revInd
+binder 10713:10713 <> P:101
+R10721:10727 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10716:10716 metaind <> P:101 var
+R10718:10720 Coq.Init.Datatypes <> nil constr
+R10728:10728 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10756:10761 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10775:10775 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 10736:10736 <> a:102
+binder 10738:10738 <> l:103
+R10744:10747 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10741:10741 metaind <> P:101 var
+R10743:10743 metaind <> l:103 var
+R10748:10748 metaind <> P:101 var
+R10752:10753 metaind RevList ::list_scope:x_':+'_x not
+R10751:10751 metaind <> l:103 var
+R10754:10754 metaind <> a:102 var
+binder 10769:10769 <> l:104
+R10772:10772 metaind <> P:101 var
+R10774:10774 metaind <> l:104 var
+R10801:10805 metaind <> revPP thm
+R10801:10805 metaind <> revPP thm
+prf 10914:10920 <> revInd2
+binder 10931:10931 <> P:105
+R10939:10942 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10934:10934 metaind <> P:105 var
+R10936:10938 Coq.Init.Datatypes <> nil constr
+R10943:10943 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10964:10970 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 10951:10951 <> a:106
+R10954:10954 metaind <> P:105 var
+R10958:10959 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R10957:10957 metaind <> a:106 var
+R10960:10962 Coq.Init.Datatypes <> nil constr
+R10971:10971 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11006:11011 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11025:11025 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 10979:10979 <> a:107
+binder 10981:10981 <> b:108
+binder 10983:10983 <> l:109
+R10989:10992 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R10986:10986 metaind <> P:105 var
+R10988:10988 metaind <> l:109 var
+R10993:10993 metaind <> P:105 var
+R10996:10996 metaind RevList ::list_scope:x_':+'_x not
+R11001:11003 metaind RevList ::list_scope:x_':+'_x not
+R10998:10999 metaind RevList ::list_scope:x_':+'_x not
+R10997:10997 metaind <> l:109 var
+R11000:11000 metaind <> a:107 var
+R11004:11004 metaind <> b:108 var
+binder 11019:11019 <> l:110
+R11022:11022 metaind <> P:105 var
+R11024:11024 metaind <> l:110 var
+R11051:11055 metaind <> revPP thm
+R11051:11055 metaind <> revPP thm
+R11077:11084 metaind <> listInd2 thm
+R11077:11084 metaind <> listInd2 thm
+R11154:11160 metaind RevList <> sec
+sec 11179:11185 <> EqList2
+var 11197:11197 EqList2 A
+var 11216:11216 EqList2 P
+R11226:11227 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11220:11223 Coq.Init.Datatypes <> list ind
+R11225:11225 metaind <> EqList2.A var
+R11234:11235 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11228:11231 Coq.Init.Datatypes <> list ind
+R11233:11233 metaind <> EqList2.A var
+R11265:11268 Coq.Init.Datatypes <> list ind
+R11270:11270 metaind <> EqList2.A var
+R11294:11294 metaind <> EqList2.A var
+prf 11360:11369 <> eqListInd2
+R11384:11387 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11375:11375 metaind <> EqList2.P var
+R11377:11379 Coq.Init.Datatypes <> nil constr
+R11381:11383 Coq.Init.Datatypes <> nil constr
+R11388:11388 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11420:11426 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 11396:11396 <> a:113
+binder 11398:11398 <> b:114
+R11401:11401 metaind <> EqList2.P var
+R11405:11406 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R11404:11404 metaind <> a:113 var
+R11407:11409 Coq.Init.Datatypes <> nil constr
+R11414:11415 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R11413:11413 metaind <> b:114 var
+R11416:11418 Coq.Init.Datatypes <> nil constr
+R11427:11427 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11502:11509 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11549:11549 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11450:11450 metaind <> EqList2.A var
+binder 11436:11437 <> a1:115
+binder 11439:11440 <> a2:116
+binder 11442:11443 <> b1:117
+binder 11445:11446 <> b2:118
+binder 11453:11454 <> la:119
+binder 11456:11457 <> lb:120
+R11467:11474 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11460:11460 metaind <> EqList2.P var
+R11462:11463 metaind <> la:119 var
+R11465:11466 metaind <> lb:120 var
+R11475:11475 metaind <> EqList2.P var
+R11480:11481 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R11478:11479 metaind <> a1:115 var
+R11484:11485 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R11482:11483 metaind <> a2:116 var
+R11486:11487 metaind <> la:119 var
+R11493:11494 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R11491:11492 metaind <> b1:117 var
+R11497:11498 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R11495:11496 metaind <> b2:118 var
+R11499:11500 metaind <> lb:120 var
+binder 11517:11518 <> la:121
+binder 11520:11521 <> lb:122
+R11538:11541 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R11524:11529 simple <> len_eq def
+R11533:11534 metaind <> la:121 var
+R11536:11537 metaind <> lb:122 var
+R11531:11531 metaind <> EqList2.A var
+R11542:11542 metaind <> EqList2.P var
+R11544:11545 metaind <> la:121 var
+R11547:11548 metaind <> lb:122 var
+R11597:11604 metaind <> listInd2 thm
+R11597:11604 metaind <> listInd2 thm
+R11824:11831 metaind <> listInd2 thm
+R11824:11831 metaind <> listInd2 thm
+R11930:11935 simple <> len_eq def
+R11951:11958 Coq.Init.Peano <> eq_add_S def
+R11951:11958 Coq.Init.Peano <> eq_add_S def
+R11967:11974 Coq.Init.Peano <> eq_add_S def
+R11967:11974 Coq.Init.Peano <> eq_add_S def
+R11999:12005 metaind EqList2 <> sec
+sec 12023:12047 <> NonStructualListInduction
+var 12060:12060 NonStructualListInduction A
+var 12078:12078 NonStructualListInduction f
+R12088:12091 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12082:12085 Coq.Init.Datatypes <> list ind
+R12087:12087 metaind <> NonStructualListInduction.A var
+R12092:12095 Coq.Init.Datatypes <> list ind
+R12097:12097 metaind <> NonStructualListInduction.A var
+var 12109:12109 NonStructualListInduction P
+R12116:12119 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12113:12115 Coq.Init.Datatypes <> nat ind
+R12126:12129 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12120:12123 Coq.Init.Datatypes <> list ind
+R12125:12125 metaind <> NonStructualListInduction.A var
+R12155:12157 Coq.Init.Datatypes <> nat ind
+R12179:12182 Coq.Init.Datatypes <> list ind
+R12184:12184 metaind <> NonStructualListInduction.A var
+def 12199:12222 <> non_struct_list_ind_rect
+binder 12240:12240 <> l:126
+R12243:12243 metaind <> NonStructualListInduction.P var
+R12247:12247 metaind <> l:126 var
+binder 12227:12228 <> g0:127
+binder 12267:12267 <> n:128
+R12270:12270 metaind <> NonStructualListInduction.P var
+R12272:12272 metaind <> n:128 var
+R12274:12276 Coq.Init.Datatypes <> nil constr
+binder 12254:12255 <> gn:129
+binder 12296:12296 <> n:130
+binder 12298:12298 <> l:131
+R12310:12313 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12301:12301 metaind <> NonStructualListInduction.P var
+R12303:12303 metaind <> n:130 var
+R12306:12306 metaind <> NonStructualListInduction.f var
+R12308:12308 metaind <> l:131 var
+R12314:12314 metaind <> NonStructualListInduction.P var
+R12317:12317 Coq.Init.Datatypes <> S constr
+R12319:12319 metaind <> n:130 var
+R12322:12322 metaind <> l:131 var
+binder 12283:12284 <> gs:132
+binder 12338:12338 <> n:133
+binder 12340:12340 <> l:134
+R12355:12355 metaind <> NonStructualListInduction.P var
+R12357:12357 metaind <> n:133 var
+R12359:12359 metaind <> l:134 var
+R12374:12374 metaind <> n:133 var
+R12389:12389 metaind <> NonStructualListInduction.P var
+R12391:12392 metaind <> n0:136 var
+R12394:12394 metaind <> l:134 var
+R12414:12415 metaind <> g0:127 var
+R12417:12417 metaind <> l:134 var
+R12427:12427 Coq.Init.Datatypes <> S constr
+R12442:12442 metaind <> l:134 var
+R12457:12457 metaind <> NonStructualListInduction.P var
+R12460:12460 Coq.Init.Datatypes <> S constr
+R12466:12467 metaind <> l0:137 var
+R12490:12492 Coq.Init.Datatypes <> nil constr
+R12497:12498 metaind <> gn:129 var
+R12501:12501 Coq.Init.Datatypes <> S constr
+R12526:12527 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R12534:12535 metaind <> gs:132 var
+R12549:12549 metaind <> F:135 var
+R12555:12555 metaind <> NonStructualListInduction.f var
+R12559:12560 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R12542:12543 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+prf 12606:12624 <> non_struct_list_ind
+R12630:12630 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12646:12650 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 12638:12638 <> l:138
+R12641:12641 metaind <> NonStructualListInduction.P var
+R12645:12645 metaind <> l:138 var
+R12651:12651 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12669:12675 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 12659:12659 <> n:139
+R12662:12662 metaind <> NonStructualListInduction.P var
+R12664:12664 metaind <> n:139 var
+R12666:12668 Coq.Init.Datatypes <> nil constr
+R12676:12676 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12711:12718 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12736:12736 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 12684:12684 <> n:140
+binder 12686:12686 <> l:141
+R12698:12701 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12689:12689 metaind <> NonStructualListInduction.P var
+R12691:12691 metaind <> n:140 var
+R12694:12694 metaind <> NonStructualListInduction.f var
+R12696:12696 metaind <> l:141 var
+R12702:12702 metaind <> NonStructualListInduction.P var
+R12705:12705 Coq.Init.Datatypes <> S constr
+R12707:12707 metaind <> n:140 var
+R12710:12710 metaind <> l:141 var
+binder 12726:12726 <> n:142
+binder 12728:12728 <> l:143
+R12731:12731 metaind <> NonStructualListInduction.P var
+R12733:12733 metaind <> n:142 var
+R12735:12735 metaind <> l:143 var
+R12752:12775 metaind <> non_struct_list_ind_rect def
+R12752:12775 metaind <> non_struct_list_ind_rect def
+R12788:12812 metaind NonStructualListInduction <> sec
+sec 12831:12856 <> NonStructualListInduction2
+var 12869:12869 NonStructualListInduction2 A
+var 12887:12889 NonStructualListInduction2 dot
+R12894:12897 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12893:12893 metaind <> NonStructualListInduction2.A var
+R12899:12902 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12898:12898 metaind <> NonStructualListInduction2.A var
+R12903:12903 metaind <> NonStructualListInduction2.A var
+var 12915:12915 NonStructualListInduction2 f
+R12920:12923 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12919:12919 metaind <> NonStructualListInduction2.A var
+R12930:12933 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12924:12927 Coq.Init.Datatypes <> list ind
+R12929:12929 metaind <> NonStructualListInduction2.A var
+R12934:12937 Coq.Init.Datatypes <> list ind
+R12939:12939 metaind <> NonStructualListInduction2.A var
+var 12951:12951 NonStructualListInduction2 P
+R12958:12961 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12955:12957 Coq.Init.Datatypes <> nat ind
+R12968:12971 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R12962:12965 Coq.Init.Datatypes <> list ind
+R12967:12967 metaind <> NonStructualListInduction2.A var
+R12997:12999 Coq.Init.Datatypes <> nat ind
+R13021:13024 Coq.Init.Datatypes <> list ind
+R13026:13026 metaind <> NonStructualListInduction2.A var
+R13050:13050 metaind <> NonStructualListInduction2.A var
+def 13110:13130 <> non_struct_list2_rect
+binder 13148:13148 <> l:148
+R13151:13151 metaind <> NonStructualListInduction2.P var
+R13155:13155 metaind <> l:148 var
+binder 13135:13136 <> g0:149
+binder 13175:13175 <> n:150
+R13179:13179 metaind <> NonStructualListInduction2.P var
+R13181:13181 metaind <> n:150 var
+R13183:13185 Coq.Init.Datatypes <> nil constr
+binder 13162:13163 <> gn:151
+binder 13206:13206 <> n:152
+binder 13208:13208 <> a:153
+R13211:13211 metaind <> NonStructualListInduction2.P var
+R13213:13213 metaind <> n:152 var
+R13217:13218 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13216:13216 metaind <> a:153 var
+R13219:13221 Coq.Init.Datatypes <> nil constr
+binder 13193:13194 <> g1:154
+binder 13242:13242 <> n:155
+binder 13244:13244 <> b:156
+binder 13246:13246 <> c:157
+binder 13248:13248 <> l:158
+R13289:13292 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13262:13262 metaind <> NonStructualListInduction2.P var
+R13264:13264 metaind <> n:155 var
+R13267:13267 metaind <> NonStructualListInduction2.f var
+R13270:13272 metaind <> NonStructualListInduction2.dot var
+R13274:13274 metaind <> b:156 var
+R13276:13276 metaind <> c:157 var
+R13281:13282 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13280:13280 metaind <> b:156 var
+R13284:13285 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13283:13283 metaind <> c:157 var
+R13286:13286 metaind <> l:158 var
+R13293:13293 metaind <> NonStructualListInduction2.P var
+R13296:13296 Coq.Init.Datatypes <> S constr
+R13298:13298 metaind <> n:155 var
+R13303:13304 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13302:13302 metaind <> b:156 var
+R13306:13307 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13305:13305 metaind <> c:157 var
+R13308:13308 metaind <> l:158 var
+binder 13229:13230 <> gs:159
+binder 13324:13324 <> n:160
+binder 13326:13326 <> l:161
+R13341:13341 metaind <> NonStructualListInduction2.P var
+R13343:13343 metaind <> n:160 var
+R13345:13345 metaind <> l:161 var
+R13360:13360 metaind <> n:160 var
+R13375:13375 metaind <> NonStructualListInduction2.P var
+R13377:13378 metaind <> n0:163 var
+R13380:13380 metaind <> l:161 var
+R13400:13401 metaind <> g0:149 var
+R13403:13403 metaind <> l:161 var
+R13413:13413 Coq.Init.Datatypes <> S constr
+R13428:13428 metaind <> l:161 var
+R13443:13443 metaind <> NonStructualListInduction2.P var
+R13446:13446 Coq.Init.Datatypes <> S constr
+R13452:13453 metaind <> l0:164 var
+R13477:13479 Coq.Init.Datatypes <> nil constr
+R13484:13485 metaind <> gn:151 var
+R13488:13488 Coq.Init.Datatypes <> S constr
+R13514:13517 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13518:13520 Coq.Init.Datatypes <> nil constr
+R13525:13526 metaind <> g1:154 var
+R13529:13529 Coq.Init.Datatypes <> S constr
+R13557:13558 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13560:13561 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13568:13569 metaind <> gs:159 var
+R13613:13613 metaind <> F:162 var
+R13619:13619 metaind <> NonStructualListInduction2.f var
+R13622:13624 metaind <> NonStructualListInduction2.dot var
+R13633:13634 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13636:13637 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+prf 13681:13700 <> non_struct_list2_ind
+R13707:13707 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13723:13730 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 13715:13715 <> l:165
+R13718:13718 metaind <> NonStructualListInduction2.P var
+R13722:13722 metaind <> l:165 var
+R13731:13731 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13749:13755 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 13739:13739 <> n:166
+R13742:13742 metaind <> NonStructualListInduction2.P var
+R13744:13744 metaind <> n:166 var
+R13746:13748 Coq.Init.Datatypes <> nil constr
+R13756:13756 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13781:13787 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 13764:13764 <> n:167
+binder 13766:13766 <> a:168
+R13769:13769 metaind <> NonStructualListInduction2.P var
+R13771:13771 metaind <> n:167 var
+R13775:13776 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13774:13774 metaind <> a:168 var
+R13777:13779 Coq.Init.Datatypes <> nil constr
+R13788:13788 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13864:13871 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13889:13889 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 13796:13796 <> n:169
+binder 13798:13798 <> b:170
+binder 13800:13800 <> c:171
+binder 13802:13802 <> l:172
+R13843:13846 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R13816:13816 metaind <> NonStructualListInduction2.P var
+R13818:13818 metaind <> n:169 var
+R13821:13821 metaind <> NonStructualListInduction2.f var
+R13824:13826 metaind <> NonStructualListInduction2.dot var
+R13828:13828 metaind <> b:170 var
+R13830:13830 metaind <> c:171 var
+R13835:13836 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13834:13834 metaind <> b:170 var
+R13838:13839 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13837:13837 metaind <> c:171 var
+R13840:13840 metaind <> l:172 var
+R13847:13847 metaind <> NonStructualListInduction2.P var
+R13850:13850 Coq.Init.Datatypes <> S constr
+R13852:13852 metaind <> n:169 var
+R13857:13858 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13856:13856 metaind <> b:170 var
+R13860:13861 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R13859:13859 metaind <> c:171 var
+R13862:13862 metaind <> l:172 var
+binder 13879:13879 <> n:173
+binder 13881:13881 <> l:174
+R13884:13884 metaind <> NonStructualListInduction2.P var
+R13886:13886 metaind <> n:173 var
+R13888:13888 metaind <> l:174 var
+R13905:13925 metaind <> non_struct_list2_rect def
+R13905:13925 metaind <> non_struct_list2_rect def
+R13938:13963 metaind NonStructualListInduction2 <> sec
+sec 14014:14022 <> GenNatInd
+var 14034:14034 GenNatInd f
+R14041:14044 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14038:14040 Coq.Init.Datatypes <> nat ind
+R14045:14047 Coq.Init.Datatypes <> nat ind
+var 14059:14059 GenNatInd P
+R14066:14069 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14063:14065 Coq.Init.Datatypes <> nat ind
+prf 14083:14095 <> natGenInd_aux
+R14102:14102 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14127:14134 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 14110:14110 <> n:177
+R14116:14119 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14114:14114 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R14115:14115 metaind <> n:177 var
+R14123:14125 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R14120:14120 metaind <> GenNatInd.f var
+R14122:14122 metaind <> n:177 var
+R14126:14126 metaind <> n:177 var
+R14138:14144 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14135:14135 metaind <> GenNatInd.P var
+R14145:14145 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14178:14185 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14220:14220 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 14153:14153 <> n:178
+R14160:14163 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14158:14158 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R14159:14159 metaind <> n:178 var
+R14171:14174 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14164:14164 metaind <> GenNatInd.P var
+R14167:14167 metaind <> GenNatInd.f var
+R14169:14169 metaind <> n:178 var
+R14175:14175 metaind <> GenNatInd.P var
+R14177:14177 metaind <> n:178 var
+R14200:14202 Coq.Init.Datatypes <> nat ind
+binder 14194:14194 <> m:179
+binder 14196:14196 <> n:180
+R14211:14212 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R14210:14210 metaind <> n:180 var
+R14213:14213 metaind <> m:179 var
+binder 14206:14206 <> g:181
+R14217:14217 metaind <> GenNatInd.P var
+R14219:14219 metaind <> n:180 var
+R14283:14283 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R14283:14283 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R14294:14302 Coq.Arith.Le <> le_n_O_eq syndef
+R14294:14302 Coq.Arith.Le <> le_n_O_eq syndef
+R14417:14418 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R14417:14418 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R14429:14434 Coq.Arith.Le <> le_S_n thm
+R14429:14434 Coq.Arith.Le <> le_S_n thm
+R14471:14477 Coq.Arith.Lt <> lt_O_Sn syndef
+R14471:14477 Coq.Arith.Lt <> lt_O_Sn syndef
+R14497:14506 Coq.Arith.Lt <> lt_n_Sm_le thm
+R14497:14506 Coq.Arith.Lt <> lt_n_Sm_le thm
+R14522:14532 Coq.Arith.Lt <> lt_le_trans syndef
+R14535:14535 metaind <> GenNatInd.f var
+R14538:14538 Coq.Init.Datatypes <> S constr
+R14546:14546 Coq.Init.Datatypes <> S constr
+R14553:14553 Coq.Init.Datatypes <> S constr
+R14522:14532 Coq.Arith.Lt <> lt_le_trans syndef
+R14535:14535 metaind <> GenNatInd.f var
+R14538:14538 Coq.Init.Datatypes <> S constr
+R14546:14546 Coq.Init.Datatypes <> S constr
+R14553:14553 Coq.Init.Datatypes <> S constr
+R14582:14588 Coq.Arith.Lt <> lt_O_Sn syndef
+R14582:14588 Coq.Arith.Lt <> lt_O_Sn syndef
+prf 14617:14625 <> natGenInd
+R14631:14631 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14656:14662 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 14639:14639 <> n:182
+R14645:14648 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14643:14643 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R14644:14644 metaind <> n:182 var
+R14652:14654 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R14649:14649 metaind <> GenNatInd.f var
+R14651:14651 metaind <> n:182 var
+R14655:14655 metaind <> n:182 var
+R14666:14671 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14663:14663 metaind <> GenNatInd.P var
+R14672:14672 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14704:14711 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14731:14731 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 14680:14680 <> n:183
+R14686:14689 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14684:14684 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R14685:14685 metaind <> n:183 var
+R14697:14700 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14690:14690 metaind <> GenNatInd.P var
+R14693:14693 metaind <> GenNatInd.f var
+R14695:14695 metaind <> n:183 var
+R14701:14701 metaind <> GenNatInd.P var
+R14703:14703 metaind <> n:183 var
+R14722:14724 Coq.Init.Datatypes <> nat ind
+binder 14720:14720 <> n:184
+R14728:14728 metaind <> GenNatInd.P var
+R14730:14730 metaind <> n:184 var
+R14760:14772 metaind <> natGenInd_aux thm
+R14787:14793 Coq.Arith.Le <> le_refl syndef
+R14760:14772 metaind <> natGenInd_aux thm
+R14787:14793 Coq.Arith.Le <> le_refl syndef
+R14826:14834 metaind GenNatInd <> sec
+R14862:14866 Coq.omega.Omega <> <> lib
+sec 14878:14888 <> ListLessInd
+var 14901:14901 ListLessInd A
+var 14919:14919 ListLessInd f
+R14929:14932 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14923:14926 Coq.Init.Datatypes <> list ind
+R14928:14928 metaind <> ListLessInd.A var
+R14933:14936 Coq.Init.Datatypes <> list ind
+R14938:14938 metaind <> ListLessInd.A var
+var 14950:14950 ListLessInd P
+R14960:14963 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R14954:14957 Coq.Init.Datatypes <> list ind
+R14959:14959 metaind <> ListLessInd.A var
+R14989:14992 Coq.Init.Datatypes <> list ind
+R14994:14994 metaind <> ListLessInd.A var
+prf 15004:15007 <> le_O
+R15021:15023 Coq.Init.Datatypes <> nat ind
+binder 15019:15019 <> n:188
+R15031:15034 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15028:15029 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R15027:15027 metaind <> n:188 var
+R15036:15036 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15035:15035 metaind <> n:188 var
+R15080:15085 Coq.Init.Datatypes <> length def
+R15080:15085 Coq.Init.Datatypes <> length def
+prf 15099:15109 <> length_le_O
+binder 15120:15120 <> l:189
+R15136:15139 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15131:15134 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R15123:15128 Coq.Init.Datatypes <> length def
+R15130:15130 metaind <> l:189 var
+R15141:15143 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15140:15140 metaind <> l:189 var
+R15144:15146 Coq.Init.Datatypes <> nil constr
+R15172:15181 simple <> length_nil thm
+R15172:15181 simple <> length_nil thm
+R15190:15193 metaind <> le_O thm
+R15190:15193 metaind <> le_O thm
+prf 15220:15234 <> listLessInd_aux
+R15241:15241 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15285:15291 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 15249:15249 <> l:190
+R15258:15261 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15253:15254 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R15252:15252 metaind <> l:190 var
+R15255:15257 Coq.Init.Datatypes <> nil constr
+R15274:15276 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R15262:15267 Coq.Init.Datatypes <> length def
+R15270:15270 metaind <> ListLessInd.f var
+R15272:15272 metaind <> l:190 var
+R15277:15282 Coq.Init.Datatypes <> length def
+R15284:15284 metaind <> l:190 var
+R15297:15303 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15292:15292 metaind <> ListLessInd.P var
+R15294:15296 Coq.Init.Datatypes <> nil constr
+R15304:15304 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15329:15336 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15379:15379 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 15312:15312 <> l:191
+R15322:15325 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15315:15315 metaind <> ListLessInd.P var
+R15318:15318 metaind <> ListLessInd.f var
+R15320:15320 metaind <> l:191 var
+R15326:15326 metaind <> ListLessInd.P var
+R15328:15328 metaind <> l:191 var
+R15349:15351 Coq.Init.Datatypes <> nat ind
+binder 15345:15345 <> m:192
+binder 15354:15354 <> l:193
+R15360:15360 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R15369:15371 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R15361:15366 Coq.Init.Datatypes <> length def
+R15368:15368 metaind <> l:193 var
+R15372:15372 metaind <> m:192 var
+binder 15357:15357 <> g:194
+R15376:15376 metaind <> ListLessInd.P var
+R15378:15378 metaind <> l:193 var
+R15442:15442 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15443:15445 Coq.Init.Datatypes <> nil constr
+R15442:15442 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15443:15445 Coq.Init.Datatypes <> nil constr
+R15455:15465 metaind <> length_le_O thm
+R15455:15465 metaind <> length_le_O thm
+R15593:15602 Coq.Arith.Lt <> lt_n_Sm_le thm
+R15593:15602 Coq.Arith.Lt <> lt_n_Sm_le thm
+R15619:15629 Coq.Arith.Lt <> lt_le_trans syndef
+R15632:15637 Coq.Init.Datatypes <> length def
+R15640:15640 metaind <> ListLessInd.f var
+R15644:15647 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R15655:15660 Coq.Init.Datatypes <> length def
+R15664:15667 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R15674:15674 Coq.Init.Datatypes <> S constr
+R15619:15629 Coq.Arith.Lt <> lt_le_trans syndef
+R15632:15637 Coq.Init.Datatypes <> length def
+R15640:15640 metaind <> ListLessInd.f var
+R15644:15647 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R15655:15660 Coq.Init.Datatypes <> length def
+R15664:15667 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R15674:15674 Coq.Init.Datatypes <> S constr
+prf 15744:15754 <> listLessInd
+R15760:15760 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15804:15810 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 15768:15768 <> l:195
+R15777:15780 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15772:15773 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R15771:15771 metaind <> l:195 var
+R15774:15776 Coq.Init.Datatypes <> nil constr
+R15793:15795 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R15781:15786 Coq.Init.Datatypes <> length def
+R15789:15789 metaind <> ListLessInd.f var
+R15791:15791 metaind <> l:195 var
+R15796:15801 Coq.Init.Datatypes <> length def
+R15803:15803 metaind <> l:195 var
+R15816:15822 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15811:15811 metaind <> ListLessInd.P var
+R15813:15815 Coq.Init.Datatypes <> nil constr
+R15823:15823 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15848:15855 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15869:15869 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 15831:15831 <> l:196
+R15841:15844 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R15834:15834 metaind <> ListLessInd.P var
+R15837:15837 metaind <> ListLessInd.f var
+R15839:15839 metaind <> l:196 var
+R15845:15845 metaind <> ListLessInd.P var
+R15847:15847 metaind <> l:196 var
+binder 15863:15863 <> l:197
+R15866:15866 metaind <> ListLessInd.P var
+R15868:15868 metaind <> l:197 var
+R15910:15924 metaind <> listLessInd_aux thm
+R15942:15947 Coq.Init.Datatypes <> length def
+R15955:15961 Coq.Arith.Le <> le_refl syndef
+R15964:15969 Coq.Init.Datatypes <> length def
+R15910:15924 metaind <> listLessInd_aux thm
+R15942:15947 Coq.Init.Datatypes <> length def
+R15955:15961 Coq.Arith.Le <> le_refl syndef
+R15964:15969 Coq.Init.Datatypes <> length def
+prf 16028:16039 <> listLessIndn
+binder 16053:16053 <> n:198
+R16058:16058 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16092:16098 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 16066:16066 <> l:199
+R16081:16083 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R16069:16074 Coq.Init.Datatypes <> length def
+R16077:16077 metaind <> ListLessInd.f var
+R16079:16079 metaind <> l:199 var
+R16084:16089 Coq.Init.Datatypes <> length def
+R16091:16091 metaind <> l:199 var
+R16099:16099 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16130:16137 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 16107:16107 <> l:200
+R16123:16126 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16118:16121 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R16110:16115 Coq.Init.Datatypes <> length def
+R16117:16117 metaind <> l:200 var
+R16122:16122 metaind <> n:198 var
+R16127:16127 metaind <> ListLessInd.P var
+R16129:16129 metaind <> l:200 var
+R16138:16138 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16180:16187 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16201:16201 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 16146:16146 <> l:201
+R16162:16165 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16150:16153 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R16149:16149 metaind <> n:198 var
+R16154:16159 Coq.Init.Datatypes <> length def
+R16161:16161 metaind <> l:201 var
+R16173:16176 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16166:16166 metaind <> ListLessInd.P var
+R16169:16169 metaind <> ListLessInd.f var
+R16171:16171 metaind <> l:201 var
+R16177:16177 metaind <> ListLessInd.P var
+R16179:16179 metaind <> l:201 var
+binder 16195:16195 <> l:202
+R16198:16198 metaind <> ListLessInd.P var
+R16200:16200 metaind <> l:202 var
+R16244:16254 metaind <> listLessInd thm
+R16244:16254 metaind <> listLessInd thm
+R16442:16445 Coq.Init.Peano <> le_S constr
+R16442:16445 Coq.Init.Peano <> le_S constr
+R16501:16504 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R16489:16491 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R16492:16497 Coq.Init.Datatypes <> length def
+R16506:16508 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16509:16514 Coq.Init.Datatypes <> length def
+R16501:16504 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R16489:16491 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R16492:16497 Coq.Init.Datatypes <> length def
+R16506:16508 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16509:16514 Coq.Init.Datatypes <> length def
+R16536:16546 Coq.Arith.Lt <> le_lt_or_eq thm
+R16536:16546 Coq.Arith.Lt <> le_lt_or_eq thm
+R16615:16621 Coq.Arith.Lt <> lt_le_S thm
+R16615:16621 Coq.Arith.Lt <> lt_le_S thm
+prf 16710:16722 <> listLeInd_aux
+binder 16735:16735 <> n:203
+R16740:16740 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16791:16798 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 16748:16748 <> l:204
+R16764:16767 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16752:16755 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R16751:16751 metaind <> n:203 var
+R16756:16761 Coq.Init.Datatypes <> length def
+R16763:16763 metaind <> l:204 var
+R16780:16782 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R16768:16773 Coq.Init.Datatypes <> length def
+R16776:16776 metaind <> ListLessInd.f var
+R16778:16778 metaind <> l:204 var
+R16783:16788 Coq.Init.Datatypes <> length def
+R16790:16790 metaind <> l:204 var
+R16799:16799 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16830:16837 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 16807:16807 <> l:205
+R16823:16826 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16818:16821 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R16810:16815 Coq.Init.Datatypes <> length def
+R16817:16817 metaind <> l:205 var
+R16822:16822 metaind <> n:203 var
+R16827:16827 metaind <> ListLessInd.P var
+R16829:16829 metaind <> l:205 var
+R16838:16838 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16880:16887 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16930:16930 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 16846:16846 <> l:206
+R16862:16865 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16850:16853 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R16849:16849 metaind <> n:203 var
+R16854:16859 Coq.Init.Datatypes <> length def
+R16861:16861 metaind <> l:206 var
+R16873:16876 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R16866:16866 metaind <> ListLessInd.P var
+R16869:16869 metaind <> ListLessInd.f var
+R16871:16871 metaind <> l:206 var
+R16877:16877 metaind <> ListLessInd.P var
+R16879:16879 metaind <> l:206 var
+R16900:16902 Coq.Init.Datatypes <> nat ind
+binder 16896:16896 <> m:207
+binder 16905:16905 <> l:208
+R16911:16911 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R16920:16922 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R16912:16917 Coq.Init.Datatypes <> length def
+R16919:16919 metaind <> l:208 var
+R16923:16923 metaind <> m:207 var
+binder 16908:16908 <> g:209
+R16927:16927 metaind <> ListLessInd.P var
+R16929:16929 metaind <> l:208 var
+R16984:16991 Coq.Arith.Le <> le_trans syndef
+R16994:16999 Coq.Init.Datatypes <> length def
+R16984:16991 Coq.Arith.Le <> le_trans syndef
+R16994:16999 Coq.Init.Datatypes <> length def
+R17132:17135 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R17127:17130 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R17119:17124 Coq.Init.Datatypes <> length def
+R17137:17139 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R17140:17145 Coq.Init.Datatypes <> length def
+R17132:17135 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R17127:17130 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R17119:17124 Coq.Init.Datatypes <> length def
+R17137:17139 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R17140:17145 Coq.Init.Datatypes <> length def
+R17262:17271 Coq.Arith.Lt <> lt_le_weak syndef
+R17262:17271 Coq.Arith.Lt <> lt_le_weak syndef
+R17315:17324 Coq.Arith.Lt <> lt_n_Sm_le thm
+R17315:17324 Coq.Arith.Lt <> lt_n_Sm_le thm
+R17347:17357 Coq.Arith.Lt <> lt_le_trans syndef
+R17360:17365 Coq.Init.Datatypes <> length def
+R17368:17368 metaind <> ListLessInd.f var
+R17375:17380 Coq.Init.Datatypes <> length def
+R17386:17386 Coq.Init.Datatypes <> S constr
+R17347:17357 Coq.Arith.Lt <> lt_le_trans syndef
+R17360:17365 Coq.Init.Datatypes <> length def
+R17368:17368 metaind <> ListLessInd.f var
+R17375:17380 Coq.Init.Datatypes <> length def
+R17386:17386 Coq.Init.Datatypes <> S constr
+R17420:17429 Coq.Arith.Lt <> lt_le_weak syndef
+R17420:17429 Coq.Arith.Lt <> lt_le_weak syndef
+prf 17470:17478 <> listLeInd
+binder 17492:17492 <> n:210
+R17497:17497 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R17548:17555 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 17505:17505 <> l:211
+R17521:17524 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R17509:17512 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R17508:17508 metaind <> n:210 var
+R17513:17518 Coq.Init.Datatypes <> length def
+R17520:17520 metaind <> l:211 var
+R17537:17539 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R17525:17530 Coq.Init.Datatypes <> length def
+R17533:17533 metaind <> ListLessInd.f var
+R17535:17535 metaind <> l:211 var
+R17540:17545 Coq.Init.Datatypes <> length def
+R17547:17547 metaind <> l:211 var
+R17556:17556 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R17587:17594 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 17564:17564 <> l:212
+R17580:17583 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R17575:17578 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R17567:17572 Coq.Init.Datatypes <> length def
+R17574:17574 metaind <> l:212 var
+R17579:17579 metaind <> n:210 var
+R17584:17584 metaind <> ListLessInd.P var
+R17586:17586 metaind <> l:212 var
+R17595:17595 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R17637:17644 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R17658:17658 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 17603:17603 <> l:213
+R17619:17622 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R17607:17610 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R17606:17606 metaind <> n:210 var
+R17611:17616 Coq.Init.Datatypes <> length def
+R17618:17618 metaind <> l:213 var
+R17630:17633 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R17623:17623 metaind <> ListLessInd.P var
+R17626:17626 metaind <> ListLessInd.f var
+R17628:17628 metaind <> l:213 var
+R17634:17634 metaind <> ListLessInd.P var
+R17636:17636 metaind <> l:213 var
+binder 17652:17652 <> l:214
+R17655:17655 metaind <> ListLessInd.P var
+R17657:17657 metaind <> l:214 var
+R17700:17712 metaind <> listLeInd_aux thm
+R17726:17731 Coq.Init.Datatypes <> length def
+R17739:17745 Coq.Arith.Le <> le_refl syndef
+R17748:17753 Coq.Init.Datatypes <> length def
+R17700:17712 metaind <> listLeInd_aux thm
+R17726:17731 Coq.Init.Datatypes <> length def
+R17739:17745 Coq.Arith.Le <> le_refl syndef
+R17748:17753 Coq.Init.Datatypes <> length def
+R17771:17781 metaind ListLessInd <> sec

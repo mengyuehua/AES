@@ -1,0 +1,652 @@
+(*
+  Prove that the algorithm is correct by showing that
+  forall s, F, invF (F s) = s
+  The proofs are based on symbolic evaluation.
+  Current Status: proved for all subprocedures except mixColumn,
+  in which there are two lemmas to be proved, see below.
+  the proof has only 2 missing lemmas: mmult_assoc, mmult_unit.
+
+  Reference for Formal AES Verification
+
+  1. Eric Whitman Smith and david L. Dill, Automatic Formal Verification 
+  of Block Cipher Implementations, in Formal Methods in Computer-Aided Design, 2008, 17-20 Nov., 2008.
+  2. J. Duan etl. Functional correctness proofs of encryption algorithms,
+  in G. Sutcliffe and A. Voronkov, editors, Logic for Programming, Algorithm
+  Intelligence, and Reasoning (LPAR 2005), volumn 3855 of Lecture Notes in
+  Artificial Intelligence. Springer-Verlag, December 2005. 
+ 
+*)
+Require Import natbool.
+Require Import Bool.
+Require Import List.
+Require Import lib.
+Require Import prim.
+Require Import galois.
+Require Import aes.
+Require Import matrix4.
+Require Import multunit.
+Require Import multassoc.
+Require Import rijadd.
+Require Import rij_mul_assoc.rij_mul_assoc.
+
+
+Lemma join_split : 
+  forall  a1 a2 a3 a4 : Poly,
+   let a := a1::a2::a3::a4::nil in
+     join (split a 4) = a.
+Proof.
+  intros. unfold a. simpl. auto.
+Qed.
+
+
+Lemma split_join : 
+  forall a1 a2 a3 a4 : Poly,
+   let a := (a1::nil)::(a2::nil)::(a3::nil)::(a4::nil)::nil in
+     split (join a) 4 = a.
+Proof. intros. auto. Qed.
+
+Locate split4.
+(* Lemma split4 : forall (A :Set) (a1 a2 a3 a4 : A),
+  split (a1::a2::a3::a4::nil) 4 = 
+  (a1::nil)::(a2::nil)::(a3::nil)::(a4::nil)::nil.
+Proof. 
+  intros. auto. 
+Qed.
+ *)
+
+Lemma map4 : forall (A B:Set) (f: A->B) (a1 a2 a3 a4 : A),
+  map f (a1::a2::a3::a4::nil) = 
+  (f a1)::(f a2)::(f a3)::(f a4)::nil.
+Proof. intros. auto. Qed.
+
+
+Lemma cx_icx :  mmult cx icx =  mat_unit.
+Proof. auto. Qed.
+Lemma icx_cx :  mmult icx cx =  mat_unit.
+Proof. auto. Qed.
+
+(* 添加的，没用到 *)
+Lemma mmult_left_nil : forall x, mmult nil x = nil.
+Proof. intros. simpl. auto. Qed.
+(* 添加的,这条定理错误 *)
+Lemma mmult_right_nil : forall x, mmult x nil = nil.
+Proof. 
+  intro. induction x. auto. unfold mmult. simpl.
+Abort.
+
+(* 9.8 add *)
+Lemma rij_mul_assoc' : forall a b c : Poly,
+  length a = 8 -> length b = 8 -> length c = 8 ->
+  rij_mul (rij_mul a b) c = rij_mul (rij_mul a c) b.
+Proof. 
+  intros. rewrite rij_mul_comm;try auto. rewrite rij_mul_assoc;auto.
+  assert (rij_mul c a = rij_mul a c). { rewrite rij_mul_comm;auto. }
+  rewrite H2. auto. rewrite rij_mul_len;auto.
+Qed.
+
+
+(* 9.8 modify *)
+(* mmult icx (mmult cx (split (a1 :: a2 :: a3 :: a4 :: nil) 4)) *)
+Lemma mmult_assoc : 
+  forall (x11 x12 x13 x14 y11 y12 y13 y14
+          x21 x22 x23 x24 y21 y22 y23 y24
+          x31 x32 x33 x34 y31 y32 y33 y34
+          x41 x42 x43 x44 y41 y42 y43 y44
+          z1 z2 z3 z4 : Poly),
+  let x1 := x11::x12::x13::x14::nil in
+  let x2 := x21::x22::x23::x24::nil in
+  let x3 := x31::x32::x33::x34::nil in
+  let x4 := x41::x42::x43::x44::nil in
+       let x := x1::x2::x3::x4::nil in
+  let y1 := y11::y12::y13::y14::nil in
+  let y2 := y21::y22::y23::y24::nil in
+  let y3 := y31::y32::y33::y34::nil in
+  let y4 := y41::y42::y43::y44::nil in
+       let y := y1::y2::y3::y4::nil in
+       let z:= z1::z2::z3::z4::nil in
+  length z1=8 -> length z2=8 -> length z3=8 -> length z4 =8 ->
+  is_veclen8 x1 -> is_veclen8 x2 -> is_veclen8 x3 -> is_veclen8 x4 ->
+  is_veclen8 y1 -> is_veclen8 y2 -> is_veclen8 y3 -> is_veclen8 y4 ->
+  mmult x (mmult y (split z 4)) = (mmult (mmult x y) (split z 4)).
+Proof.
+  intros. simpl in H3,H4,H5,H6,H7,H8,H9,H10;
+  destruct H3 as [H11[H12[H13[H14 H15]]]]; destruct H4 as [H16[H17[H18[H19 H20]]]];
+  destruct H5 as [H21[H22[H23[H24 H25]]]]; destruct H6 as [H26[H27[H28[H29 H30]]]];
+  destruct H7 as [H31[H32[H33[H34 H35]]]]; destruct H8 as [H36[H37[H38[H39 H40]]]];
+  destruct H9 as [H41[H42[H43[H44 H45]]]]; destruct H10 as [H46[H47[H48[H49 H50]]]].
+
+  assert (mmult y (split z 4) = split (dot y1 z::dot y2 z::dot y3 z::dot y4 z::nil) 4).
+  apply mmult_ma_cv. rewrite H3. rewrite split4. 
+  simpl. unfold mk_list. unfold x1,x2,x3,x4. repeat (rewrite dot4).
+  repeat (rewrite gsum_non_nil); try (unfold gtimes);
+  try (unfold multassoc.is_veclen8); repeat (try split); try (apply rij_mul_len); try auto;
+  try repeat(apply rij_add_len8); try apply rij_mul_len; try auto.
+
+  rewrite gsumgtimes.gsum_nil. repeat(rewrite rij_add_rij_0_right8);try (apply rij_mul_len); auto;
+  try repeat(apply rij_add_len8); try (apply rij_mul_len); auto.
+
+  unfold y1,y2,y3,y4. unfold dot. unfold gtimes,gsum. simpl fold_left.
+  repeat(rewrite rij_add_rij_0_left8); try apply rij_mul_len; auto.
+
+  assert (forall a1 a2 a3 a4 b1 b2 b3 b4 c : Poly,
+    length a1 = 8 -> length a2 = 8 -> length a3 = 8 -> length a4 = 8 ->
+    length b1 = 8 -> length b2 = 8 -> length b3 = 8 -> length b4 = 8 -> length c = 8 ->
+    rij_mul (rij_add (rij_add (rij_add (rij_mul a1 b1) (rij_mul a2 b2)) (rij_mul a3 b3)) (rij_mul a4 b4)) c
+  = rij_add (rij_add (rij_add (rij_mul (rij_mul a1 b1) c) (rij_mul (rij_mul a2 b2) c)) (rij_mul (rij_mul a3 b3) c)) (rij_mul (rij_mul a4 b4) c)).
+  { intros. rewrite <- rij_mul_add_right; try assumption. repeat (rewrite <- rij_add_assoc). auto. }
+  repeat rewrite H4; try assumption.
+
+  assert (forall a1 a2 a3 a4 b1 b2 b3 b4 c : Poly,
+    length a1 = 8 -> length a2 = 8 -> length a3 = 8 -> length a4 = 8 ->
+    length b1 = 8 -> length b2 = 8 -> length b3 = 8 -> length b4 = 8 -> length c = 8 ->
+    rij_mul c (rij_add (rij_mul a1 b1) (rij_add (rij_mul a2 b2) (rij_add (rij_mul a3 b3) (rij_mul a4 b4))))
+  = rij_add (rij_add (rij_add (rij_mul (rij_mul a1 b1) c) (rij_mul (rij_mul a2 b2) c)) (rij_mul (rij_mul a3 b3) c)) (rij_mul (rij_mul a4 b4) c)).
+  { intros. rewrite rij_mul_add_left; try assumption. repeat (rewrite <- rij_add_assoc). 
+    rewrite rij_mul_comm.
+    assert (rij_mul c (rij_mul a2 b2) = rij_mul (rij_mul a2 b2) c). 
+    { rewrite rij_mul_comm; try auto. rewrite rij_mul_len; auto. }  rewrite H54. clear H54.
+    assert (rij_mul c (rij_mul a3 b3) = rij_mul (rij_mul a3 b3) c). 
+    { rewrite rij_mul_comm; try auto. rewrite rij_mul_len; auto. }  rewrite H54. clear H54.
+    assert (rij_mul c (rij_mul a4 b4) = rij_mul (rij_mul a4 b4) c). 
+    { rewrite rij_mul_comm; try auto. rewrite rij_mul_len; auto. }  rewrite H54. clear H54.
+    auto. auto. rewrite rij_mul_len; auto. }
+  repeat rewrite H5; try assumption. clear H3 H4 H5.
+
+  (* 现在顺序不一致，不方便直接set，先调顺序再set *)
+  rewrite rij_mul_assoc';auto;               set (d1:=rij_mul (rij_mul y11 x11) z1);
+  rewrite rij_mul_assoc' with (a:=y12);auto; set (d2:=rij_mul (rij_mul y12 x11) z2);
+  rewrite rij_mul_assoc' with (a:=y13);auto; set (d3:=rij_mul (rij_mul y13 x11) z3);
+  rewrite rij_mul_assoc' with (a:=y14);auto; set (d4:=rij_mul (rij_mul y14 x11) z4);
+  rewrite rij_mul_assoc' with (a:=y21);auto; set (d5:=rij_mul (rij_mul y21 x12) z1);
+  rewrite rij_mul_assoc' with (a:=y22);auto; set (d6:=rij_mul (rij_mul y22 x12) z2);
+  rewrite rij_mul_assoc' with (a:=y23);auto; set (d7:=rij_mul (rij_mul y23 x12) z3);
+  rewrite rij_mul_assoc' with (a:=y24);auto; set (d8:=rij_mul (rij_mul y24 x12) z4);
+  rewrite rij_mul_assoc' with (a:=y31);auto; set (d9:=rij_mul (rij_mul y31 x13) z1);
+  rewrite rij_mul_assoc' with (a:=y32);auto; set (d10:=rij_mul (rij_mul y32 x13) z2);
+  rewrite rij_mul_assoc' with (a:=y33);auto; set (d11:=rij_mul (rij_mul y33 x13) z3);
+  rewrite rij_mul_assoc' with (a:=y34);auto; set (d12:=rij_mul (rij_mul y34 x13) z4);
+  rewrite rij_mul_assoc' with (a:=y41);auto; set (d13:=rij_mul (rij_mul y41 x14) z1);
+  rewrite rij_mul_assoc' with (a:=y42);auto; set (d14:=rij_mul (rij_mul y42 x14) z2);
+  rewrite rij_mul_assoc' with (a:=y43);auto; set (d15:=rij_mul (rij_mul y43 x14) z3);
+  rewrite rij_mul_assoc' with (a:=y44);auto; set (d16:=rij_mul (rij_mul y44 x14) z4);
+  rewrite rij_mul_assoc' with (a:=y11);auto; set (d17:=rij_mul (rij_mul y11 x21) z1);
+  rewrite rij_mul_assoc' with (a:=y12);auto; set (d18:=rij_mul (rij_mul y12 x21) z2);
+  rewrite rij_mul_assoc' with (a:=y13);auto; set (d19:=rij_mul (rij_mul y13 x21) z3);
+  rewrite rij_mul_assoc' with (a:=y14);auto; set (d20:=rij_mul (rij_mul y14 x21) z4);
+  rewrite rij_mul_assoc' with (a:=y21);auto; set (d21:=rij_mul (rij_mul y21 x22) z1);
+  rewrite rij_mul_assoc' with (a:=y22);auto; set (d22:=rij_mul (rij_mul y22 x22) z2);
+  rewrite rij_mul_assoc' with (a:=y23);auto; set (d23:=rij_mul (rij_mul y23 x22) z3);
+  rewrite rij_mul_assoc' with (a:=y24);auto; set (d24:=rij_mul (rij_mul y24 x22) z4);
+  rewrite rij_mul_assoc' with (a:=y31);auto; set (d25:=rij_mul (rij_mul y31 x23) z1);
+  rewrite rij_mul_assoc' with (a:=y32);auto; set (d26:=rij_mul (rij_mul y32 x23) z2);
+  rewrite rij_mul_assoc' with (a:=y33);auto; set (d27:=rij_mul (rij_mul y33 x23) z3);
+  rewrite rij_mul_assoc' with (a:=y34);auto; set (d28:=rij_mul (rij_mul y34 x23) z4);
+  rewrite rij_mul_assoc' with (a:=y41);auto; set (d29:=rij_mul (rij_mul y41 x24) z1);
+  rewrite rij_mul_assoc' with (a:=y42);auto; set (d30:=rij_mul (rij_mul y42 x24) z2);
+  rewrite rij_mul_assoc' with (a:=y43);auto; set (d31:=rij_mul (rij_mul y43 x24) z3);
+  rewrite rij_mul_assoc' with (a:=y44);auto; set (d32:=rij_mul (rij_mul y44 x24) z4);
+  rewrite rij_mul_assoc' with (a:=y11);auto; set (d33:=rij_mul (rij_mul y11 x31) z1);
+  rewrite rij_mul_assoc' with (a:=y12);auto; set (d34:=rij_mul (rij_mul y12 x31) z2);
+  rewrite rij_mul_assoc' with (a:=y13);auto; set (d35:=rij_mul (rij_mul y13 x31) z3);
+  rewrite rij_mul_assoc' with (a:=y14);auto; set (d36:=rij_mul (rij_mul y14 x31) z4);
+  rewrite rij_mul_assoc' with (a:=y21);auto; set (d37:=rij_mul (rij_mul y21 x32) z1);
+  rewrite rij_mul_assoc' with (a:=y22);auto; set (d38:=rij_mul (rij_mul y22 x32) z2);
+  rewrite rij_mul_assoc' with (a:=y23);auto; set (d39:=rij_mul (rij_mul y23 x32) z3);
+  rewrite rij_mul_assoc' with (a:=y24);auto; set (d40:=rij_mul (rij_mul y24 x32) z4);
+  rewrite rij_mul_assoc' with (a:=y31);auto; set (d41:=rij_mul (rij_mul y31 x33) z1);
+  rewrite rij_mul_assoc' with (a:=y32);auto; set (d42:=rij_mul (rij_mul y32 x33) z2);
+  rewrite rij_mul_assoc' with (a:=y33);auto; set (d43:=rij_mul (rij_mul y33 x33) z3);
+  rewrite rij_mul_assoc' with (a:=y34);auto; set (d44:=rij_mul (rij_mul y34 x33) z4);
+  rewrite rij_mul_assoc' with (a:=y41);auto; set (d45:=rij_mul (rij_mul y41 x34) z1);
+  rewrite rij_mul_assoc' with (a:=y42);auto; set (d46:=rij_mul (rij_mul y42 x34) z2);
+  rewrite rij_mul_assoc' with (a:=y43);auto; set (d47:=rij_mul (rij_mul y43 x34) z3);
+  rewrite rij_mul_assoc' with (a:=y44);auto; set (d48:=rij_mul (rij_mul y44 x34) z4);
+  rewrite rij_mul_assoc' with (a:=y11);auto; set (d49:=rij_mul (rij_mul y11 x41) z1);
+  rewrite rij_mul_assoc' with (a:=y12);auto; set (d50:=rij_mul (rij_mul y12 x41) z2);
+  rewrite rij_mul_assoc' with (a:=y13);auto; set (d51:=rij_mul (rij_mul y13 x41) z3);
+  rewrite rij_mul_assoc' with (a:=y14);auto; set (d52:=rij_mul (rij_mul y14 x41) z4);
+  rewrite rij_mul_assoc' with (a:=y21);auto; set (d53:=rij_mul (rij_mul y21 x42) z1);
+  rewrite rij_mul_assoc' with (a:=y22);auto; set (d54:=rij_mul (rij_mul y22 x42) z2);
+  rewrite rij_mul_assoc' with (a:=y23);auto; set (d55:=rij_mul (rij_mul y23 x42) z3);
+  rewrite rij_mul_assoc' with (a:=y24);auto; set (d56:=rij_mul (rij_mul y24 x42) z4);
+  rewrite rij_mul_assoc' with (a:=y31);auto; set (d57:=rij_mul (rij_mul y31 x43) z1);
+  rewrite rij_mul_assoc' with (a:=y32);auto; set (d58:=rij_mul (rij_mul y32 x43) z2);
+  rewrite rij_mul_assoc' with (a:=y33);auto; set (d59:=rij_mul (rij_mul y33 x43) z3);
+  rewrite rij_mul_assoc' with (a:=y34);auto; set (d60:=rij_mul (rij_mul y34 x43) z4);
+  rewrite rij_mul_assoc' with (a:=y41);auto; set (d61:=rij_mul (rij_mul y41 x44) z1);
+  rewrite rij_mul_assoc' with (a:=y42);auto; set (d62:=rij_mul (rij_mul y42 x44) z2);
+  rewrite rij_mul_assoc' with (a:=y43);auto; set (d63:=rij_mul (rij_mul y43 x44) z3);
+  rewrite rij_mul_assoc' with (a:=y44);auto; set (d64:=rij_mul (rij_mul y44 x44) z4).
+
+  clear. f_equal.
+  assert (rij_add (rij_add (rij_add (rij_add d1 d2) d3) d4)
+   (rij_add (rij_add (rij_add (rij_add d5 d6) d7) d8)
+      (rij_add (rij_add (rij_add (rij_add d9 d10) d11) d12) (rij_add (rij_add (rij_add d13 d14) d15) d16)))
+  = rij_add (rij_add (rij_add (rij_add d1 d5) d9) d13)
+   (rij_add (rij_add (rij_add (rij_add d2 d6) d10) d14)
+      (rij_add (rij_add (rij_add (rij_add d3 d7) d11) d15) (rij_add (rij_add (rij_add d4 d8) d12) d16)))).
+  { repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal. }
+  rewrite H; clear H; f_equal.
+
+  assert (rij_add (rij_add (rij_add (rij_add d17 d18) d19) d20)
+   (rij_add (rij_add (rij_add (rij_add d21 d22) d23) d24)
+      (rij_add (rij_add (rij_add (rij_add d25 d26) d27) d28)
+         (rij_add (rij_add (rij_add d29 d30) d31) d32)))
+  = rij_add (rij_add (rij_add (rij_add d17 d21) d25) d29)
+   (rij_add (rij_add (rij_add (rij_add d18 d22) d26) d30)
+      (rij_add (rij_add (rij_add (rij_add d19 d23) d27) d31)
+         (rij_add (rij_add (rij_add d20 d24) d28) d32)))).
+  { repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal. }
+  rewrite H; clear H; f_equal.
+
+  assert(rij_add (rij_add (rij_add (rij_add d33 d34) d35) d36)
+   (rij_add (rij_add (rij_add (rij_add d37 d38) d39) d40)
+      (rij_add (rij_add (rij_add (rij_add d41 d42) d43) d44)
+         (rij_add (rij_add (rij_add d45 d46) d47) d48)))
+  = rij_add (rij_add (rij_add (rij_add d33 d37) d41) d45)
+   (rij_add (rij_add (rij_add (rij_add d34 d38) d42) d46)
+      (rij_add (rij_add (rij_add (rij_add d35 d39) d43) d47)
+         (rij_add (rij_add (rij_add d36 d40) d44) d48)))).
+  { repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+    rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal. }
+  rewrite H; clear H; f_equal.
+
+  repeat (rewrite <- rij_add_assoc). f_equal. f_equal. f_equal.
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc).
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+  rewrite rij_add_comm. repeat (rewrite <- rij_add_assoc). f_equal.
+Qed.
+
+
+(* 9.7 modify *)
+Lemma mmult_unit: forall a1 a2 a3 a4 : Poly,
+  let ma := a1::a2::a3::a4::nil in
+  length a1 = 8 -> length a2 = 8 -> length a3 = 8 -> length a4 = 8 ->
+  mmult mat_unit (split ma 4) = split ma 4.
+Proof.
+  intros. unfold ma. unfold mat_unit. simpl (matrix_n2p mat_unit_nat).
+  rewrite mmult_ma_cv. repeat (rewrite dot4). rewrite split4.
+  unfold gsum,gtimes. rewrite split4.
+  replace (n2p 0) with rij_0. repeat (rewrite rij_mul_rij_0_left).
+  simpl fold_left. repeat (rewrite rij_add_rij_0_left8); try (apply rij_mul_len; auto).
+  repeat (rewrite rij_add_rij_0_right8); try (apply rij_mul_len; auto). repeat f_equal.
+  replace (n2p 1) with (false :: false :: false :: false :: false :: false :: false :: true :: nil).
+  apply length8 in H; destruct H as [b1 H3]; destruct H3 as [b2 H4]; destruct H4 as [b3 H5];
+  destruct H5 as [b4 H6]; destruct H6 as [b5 H7]; destruct H7 as [b6 H8];
+  destruct H8 as [b7 H9]; destruct H9 as [b8 H10]; rewrite H10;
+  case b1; case b2; case b3; case b4; case b5; case b6; case b7; case b8; auto. auto.
+  apply length8 in H0; destruct H0 as [b1 H3]; destruct H3 as [b2 H4]; destruct H4 as [b3 H5];
+  destruct H5 as [b4 H6]; destruct H6 as [b5 H7]; destruct H7 as [b6 H8];
+  destruct H8 as [b7 H9]; destruct H9 as [b8 H10]; rewrite H10;
+  case b1; case b2; case b3; case b4; case b5; case b6; case b7; case b8; auto.
+  apply length8 in H1. destruct H1 as [b1 H3]; destruct H3 as [b2 H4]; destruct H4 as [b3 H5];
+  destruct H5 as [b4 H6]; destruct H6 as [b5 H7]; destruct H7 as [b6 H8];
+  destruct H8 as [b7 H9]; destruct H9 as [b8 H10]; rewrite H10;
+  case b1; case b2; case b3; case b4; case b5; case b6; case b7; case b8; auto.
+  apply length8 in H2; destruct H2 as [b1 H3]; destruct H3 as [b2 H4]; destruct H4 as [b3 H5];
+  destruct H5 as [b4 H6]; destruct H6 as [b5 H7]; destruct H7 as [b6 H8];
+  destruct H8 as [b7 H9]; destruct H9 as [b8 H10]; rewrite H10;
+  case b1; case b2; case b3; case b4; case b5; case b6; case b7; case b8; auto. auto.
+Qed.
+
+
+(* 9.8 modify *)
+Lemma multCol_ok : 
+ forall a1 a2 a3 a4:Poly,
+   let a := a1::a2::a3::a4::nil in
+  length a1 = 8 -> length a2 = 8 -> length a3 = 8 -> length a4 = 8 ->
+  multCol icx (multCol cx a) = a.
+Proof.
+  intros. unfold multCol. unfold a. unfold cx.
+  simpl (transpose (polyMat mat_start)).
+  unfold mk_list. rewrite mmult_ma_cv.
+  rewrite split4. rewrite split_join.
+  assert (a1::a2::a3::a4::nil = a). { auto. }
+  repeat (rewrite H3).
+  replace ((dot (n2p 2 :: n2p 3 :: n2p 1 :: n2p 1 :: nil) a :: nil)
+    :: (dot (n2p 1 :: n2p 2 :: n2p 3 :: n2p 1 :: nil) a :: nil)
+       :: (dot (n2p 1 :: n2p 1 :: n2p 2 :: n2p 3 :: nil) a :: nil)
+          :: (dot (n2p 3 :: n2p 1 :: n2p 1 :: n2p 2 :: nil) a :: nil) :: nil) 
+    with (mmult cx (split (a1 :: a2 :: a3 :: a4 :: nil) 4)).
+    - unfold cx. simpl (transpose (polyMat mat_start)). unfold mk_list. 
+      unfold icx. simpl (transpose (polyMat invmat_start)). unfold mk_list. 
+      rewrite mmult_assoc;try (unfold is_veclen8);try split;try easy.
+      replace (((n2p 14 :: n2p 11 :: n2p 13 :: n2p 9 :: nil)
+         :: (n2p 9 :: n2p 14 :: n2p 11 :: n2p 13 :: nil)
+            :: (n2p 13 :: n2p 9 :: n2p 14 :: n2p 11 :: nil)
+               :: (n2p 11 :: n2p 13 :: n2p 9 :: n2p 14 :: nil) :: nil)) with icx.
+      replace (((n2p 2 :: n2p 3 :: n2p 1 :: n2p 1 :: nil)
+         :: (n2p 1 :: n2p 2 :: n2p 3 :: n2p 1 :: nil)
+            :: (n2p 1 :: n2p 1 :: n2p 2 :: n2p 3 :: nil)
+               :: (n2p 3 :: n2p 1 :: n2p 1 :: n2p 2 :: nil) :: nil)) with cx.
+      rewrite icx_cx. rewrite mmult_unit;auto. auto. auto.
+    - unfold mmult. simpl. f_equal.
+      + unfold mk_list. unfold a. rewrite dot_comm. auto.
+      + unfold mk_list. unfold a. rewrite dot_comm. f_equal.
+        rewrite dot_comm. f_equal. rewrite dot_comm. f_equal.
+Qed.
+
+
+
+(* auxillary properties. *)
+Axiom rol_ror : forall (i:nat) s,
+  rol (ror s i) i = s.
+Axiom ror_rol : forall (i:nat) s,
+  ror (rol s i) i = s.
+Axiom sbox_invSbox : forall (s:Poly),
+  inv_sbox_sel (sbox_sel s) = s.
+Axiom transpose_ok : forall (A:Set) (s: list (list A)),
+  transpose (transpose s) = s.
+Axiom n2p_p2n : forall n, p2n (n2p n) = n.
+Axiom p2n_n2p : forall n, n2p (p2n n) = n.
+Hint Rewrite rol_ror ror_rol : roor.
+
+
+Lemma transpose_left : forall (A:Set)
+  (s: list (list A)) (a: list (list A)),
+  transpose s = a -> s = transpose a.
+Proof. 
+  intros. rewrite <- H. symmetry. apply transpose_ok. 
+Qed.
+
+
+Lemma transpose_right : forall (A:Set) 
+  (s: list (list A)) (a: list (list A)),
+  s = transpose a -> transpose s = a.
+Proof. 
+  intros. rewrite H. apply transpose_ok.
+Qed.
+
+Lemma shiftRow_correct :
+  forall a1 a2 a3 a4, let s := a1::a2::a3::a4::nil in
+    invShiftRow (shiftRow s) = s.
+Proof.
+  unfold shiftRow, invShiftRow. intros. unfold map2.
+  autorewrite with roor. auto.
+Qed.
+
+(* IHs : map (fun row : Vec => map (fun x : Poly => inv_sbox_sel x) row)
+         (map (fun row : Vec => map (fun x : Poly => sbox_sel x) row) s) = s *)
+
+Lemma byteSub_correct :
+  forall s, invByteSub (byteSub s) = s. 
+Proof.
+  intros. unfold byteSub, invByteSub. induction s.
+  simpl. auto. simpl. rewrite IHs. f_equal. induction a.
+  simpl. auto. simpl. rewrite sbox_invSbox. f_equal. assumption.
+Qed.
+
+
+(* 9.9 modify  添加了长度*)
+Lemma multCol4_ok :
+  forall  a11 a12 a13 a14 
+          a21 a22 a23 a24
+          a31 a32 a33 a34
+          a41 a42 a43 a44 : Poly,
+	  let a1 := a11::a12::a13::a14::nil in
+	  let a2 := a21::a22::a23::a24::nil in
+	  let a3 := a31::a32::a33::a34::nil in
+	  let a4 := a41::a42::a43::a44::nil in
+          let ma := a1::a2::a3::a4::nil in
+  is_veclen8 a1 -> is_veclen8 a2 -> is_veclen8 a3 -> is_veclen8 a4 ->
+   map (fun col : Vec => multCol icx col)
+     (map (fun col : Vec => multCol cx col) ma) = ma.
+Proof.
+  intros. unfold ma. simpl.
+  simpl in H,H0,H1,H2. 
+  unfold a1. rewrite multCol_ok;try easy. f_equal.
+  unfold a2. rewrite multCol_ok;try easy. f_equal.
+  unfold a3. rewrite multCol_ok;try easy. f_equal.
+  unfold a4. rewrite multCol_ok;try easy.
+Qed.
+
+
+(* 9.9 modify 添加了长度 *)
+Lemma mixColumn_correct :
+  forall a11 a12 a13 a14 
+         a21 a22 a23 a24
+         a31 a32 a33 a34
+         a41 a42 a43 a44,
+  let a1:= a11::a12::a13::a14::nil in 
+  let a2:= a21::a22::a23::a24::nil in
+  let a3:= a31::a32::a33::a34::nil in
+  let a4:= a41::a42::a43::a44::nil in
+  let s:= a1::a2::a3::a4::nil in
+  is_veclen8 a1 -> is_veclen8 a2 -> is_veclen8 a3 -> is_veclen8 a4 ->
+	   invMixColumn (mixColumn s) = s.
+Proof.
+  intros. simpl in H,H0,H1,H2;
+  destruct H  as [H11[H12[H13[H14 H15]]]]; destruct H0 as [H16[H17[H18[H19 H20]]]];
+  destruct H1 as [H21[H22[H23[H24 H25]]]]; destruct H2 as [H26[H27[H28[H29 H30]]]].
+  unfold mixColumn, invMixColumn. rewrite transpose_ok.
+  apply transpose_right. set (a := transpose s).
+  apply multCol4_ok;simpl;auto.
+Qed.
+
+
+(* invShiftRow (shiftRow s) = s   具体矩阵
+   invByteSub (byteSub s) = s
+   invMixColumn (mixColumn s) = s 具体矩阵   *)
+(* rounds不包括秘钥扩展的过程，所以不可以直接证明rounds_correct *)
+Lemma rounds_correct :
+  forall (state : Matrix) (keys : Matrix*(list Matrix)*Matrix),
+  inv_rounds (rounds state keys) keys = state.
+Proof.
+  intros. 
+  unfold rounds. unfold mk_rnds. unfold round. unfold finalRound.
+  unfold inv_rounds. unfold mk_inv_rnds. unfold inv_Round. unfold invFinalRound.
+Abort.
+
+
+(* 加密解密的输入都是Vec
+   问题：无法具体表示秘钥扩展后的矩阵，比如无法具体表示initialKey
+        但是之前的行移位和列混合是具体表示的，所以无法rewrite *)
+Lemma aes_correct : 
+   forall a11 a12 a13 a14 k11 k12 k13 k14
+          a31 a32 a33 a34 k21 k22 k23 k24
+          a21 a22 a23 a24 k31 k32 k33 k34
+          a41 a42 a43 a44 k41 k42 k43 k44: Poly,
+    let pt:= a11::a12::a13::a14::
+             a21::a22::a23::a24::
+             a31::a32::a33::a34::
+             a41::a42::a43::a44::nil in
+    let key:= k11::k12::k13::k14::
+              k21::k22::k23::k24::
+              k31::k32::k33::k34::
+              k41::k42::k43::k44::nil in
+  decrypt key (encrypt key pt) = pt.
+Proof.
+  intros. unfold encrypt,decrypt.
+  set (keys:=keySchedule key). unfold pt.
+  unfold stripe,unstripe.
+  replace (transpose (split (a11 :: a12 :: a13 :: a14 :: 
+                             a21 :: a22 :: a23 :: a24 :: 
+                             a31 :: a32 :: a33 :: a34 :: 
+                             a41 :: a42 :: a43 :: a44 :: nil) 4))
+      with ((a11 :: a21 :: a31 :: a41 ::nil)::
+            (a12 :: a22 :: a32 :: a42 ::nil)::
+            (a13 :: a23 :: a33 :: a43 ::nil)::
+            (a14 :: a24 :: a34 :: a44 ::nil)::nil).
+- unfold keys. unfold keySchedule.
+  unfold shuffle.perm. unfold shuffle.perm1. unfold shuffle.swap.
+  unfold decompose. repeat destruct decompose'. fold pt.
+  unfold keyExpansion. set (d:= split key 4).
+  simpl (Nr+1). simpl (11 * Nb - 1 - Nk + 1). simpl (Nr-1).
+  unfold kEw.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  intros unfold encrypt, decrypt.
+  set (keys:=keySchedule key). unfold stripe.
+  replace (transpose (split pt 4)) 
+    with ((a11::a21::a31::a41::nil)::
+          (a12::a22::a32::a42::nil)::
+          (a13::a23::a33::a43::nil)::
+          (a14::a24::a34::a44::nil)::nil).
+  - set (c:= ((a11 :: a21 :: a31 :: a41 :: nil)
+              :: (a12 :: a22 :: a32 :: a42 :: nil)
+                :: (a13 :: a23 :: a33 :: a43 :: nil) 
+                  :: (a14 :: a24 :: a34 :: a44 :: nil) :: nil)).
+  set (d:=rounds c keys).
+  unfold unstripe.
+  (* 问题：怎么具体表示秘钥扩展后的矩阵，比如怎么表示initialKey
+          不具体表示，不可以用split_join  *)
+assert (split (join (transpose (rounds c keys))) 4 = transpose (rounds c keys)). 
+{ unfold rounds. destruct keys. destruct p.
+set (d:=matrix_add c m0).
+unfold finalRound.
+set (e:=mk_rnds d l). admit. }
+rewrite H. rewrite transpose_ok. rewrite rounds_correct.
+unfold c. simpl. unfold pt. auto.
+- unfold pt. simpl. unfold mk_list. auto.
+Admitted.
+
+
+
+(* 
+Lemma finalround_correct : forall state roundKey, 
+    invFinalRound (finalRound state roundKey) roundKey = state.
+Proof.
+  intros. unfold finalRound,invFinalRound.
+  induction state.
+  - simpl. unfold matrix_add. unfold map2. auto.
+  - simpl. induction a.
+    -- simpl. unfold byteSub. 
+Admitted.
+
+
+(* round_correct *)
+Lemma rounds_correct : 
+  forall (state : Matrix) (key : Matrix*(list Matrix)*Matrix),
+  inv_rounds (rounds state key) key = state.
+Proof.
+  intros. unfold rounds. unfold inv_rounds.
+Admitted.
+
+
+Lemma aes_correct : forall xk (pt:Vec),
+  decrypt xk (encrypt xk pt) = pt.
+Proof.
+  intros. unfold encrypt, decrypt. unfold stripe, unstripe.
+Admitted. 
+ *)
+
+
+  

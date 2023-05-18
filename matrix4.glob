@@ -1,0 +1,649 @@
+DIGEST ee80e1c437bdaf8604da5fb9e5e958b9
+Fmatrix4
+R161:167 natbool <> <> lib
+R203:206 Coq.Bool.Bool <> <> lib
+R224:227 Coq.Lists.List <> <> lib
+R246:248 lib <> <> lib
+R282:285 prim <> <> lib
+R303:308 galois <> <> lib
+R338:340 aes <> <> lib
+R358:361 map2 <> <> lib
+R379:384 rijadd <> <> lib
+R402:411 gsumgtimes <> <> lib
+prf 537:544 <> dot_comm
+R584:587 lib <> Poly def
+binder 558:559 <> x1:1
+binder 561:562 <> x2:2
+binder 564:565 <> x3:3
+binder 567:568 <> x4:4
+binder 570:571 <> y1:5
+binder 573:574 <> y2:6
+binder 576:577 <> y3:7
+binder 579:580 <> y4:8
+R603:604 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R601:602 matrix4 <> x1:1 var
+R607:608 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R605:606 matrix4 <> x2:2 var
+R611:612 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R609:610 matrix4 <> x3:3 var
+R615:616 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R613:614 matrix4 <> x4:4 var
+R617:619 Coq.Init.Datatypes <> nil constr
+binder 598:598 <> x:9
+R637:638 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R635:636 matrix4 <> y1:5 var
+R641:642 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R639:640 matrix4 <> y2:6 var
+R645:646 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R643:644 matrix4 <> y3:7 var
+R649:650 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R647:648 matrix4 <> y4:8 var
+R651:653 Coq.Init.Datatypes <> nil constr
+binder 632:632 <> y:10
+R674:677 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R662:671 rijadd <> is_veclen8 def
+R673:673 matrix4 <> x:9 var
+R690:693 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R678:687 rijadd <> is_veclen8 def
+R689:689 matrix4 <> y:10 var
+R701:703 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R694:696 galois <> dot def
+R698:698 matrix4 <> x:9 var
+R700:700 matrix4 <> y:10 var
+R704:706 galois <> dot def
+R708:708 matrix4 <> y:10 var
+R710:710 matrix4 <> x:9 var
+R737:739 galois <> dot def
+R877:887 gsumgtimes <> gtimes_comm thm
+R877:887 gsumgtimes <> gtimes_comm thm
+R877:887 gsumgtimes <> gtimes_comm thm
+R877:887 gsumgtimes <> gtimes_comm thm
+R877:887 gsumgtimes <> gtimes_comm thm
+R877:887 gsumgtimes <> gtimes_comm thm
+R877:887 gsumgtimes <> gtimes_comm thm
+R877:887 gsumgtimes <> gtimes_comm thm
+R877:887 gsumgtimes <> gtimes_comm thm
+R877:887 gsumgtimes <> gtimes_comm thm
+R877:887 gsumgtimes <> gtimes_comm thm
+R877:887 gsumgtimes <> gtimes_comm thm
+R877:887 gsumgtimes <> gtimes_comm thm
+R877:887 gsumgtimes <> gtimes_comm thm
+R877:887 gsumgtimes <> gtimes_comm thm
+R877:887 gsumgtimes <> gtimes_comm thm
+R877:887 gsumgtimes <> gtimes_comm thm
+sec 919:925 <> Matrix4
+prf 935:940 <> split4
+R967:970 lib <> Poly def
+binder 953:954 <> b1:11
+binder 956:957 <> b2:12
+binder 959:960 <> b3:13
+binder 962:963 <> b4:14
+R1004:1008 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R975:979 prim <> split def
+R984:985 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R982:983 matrix4 <> b1:11 var
+R988:989 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R986:987 matrix4 <> b2:12 var
+R992:993 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R990:991 matrix4 <> b3:13 var
+R996:997 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R994:995 matrix4 <> b4:14 var
+R998:1000 Coq.Init.Datatypes <> nil constr
+R1009:1009 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1017:1019 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1012:1013 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1010:1011 matrix4 <> b1:11 var
+R1014:1016 Coq.Init.Datatypes <> nil constr
+R1020:1020 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1028:1030 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1023:1024 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1021:1022 matrix4 <> b2:12 var
+R1025:1027 Coq.Init.Datatypes <> nil constr
+R1031:1031 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1039:1041 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1034:1035 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1032:1033 matrix4 <> b3:13 var
+R1036:1038 Coq.Init.Datatypes <> nil constr
+R1042:1042 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1050:1052 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1045:1046 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1043:1044 matrix4 <> b4:14 var
+R1047:1049 Coq.Init.Datatypes <> nil constr
+R1053:1055 Coq.Init.Datatypes <> nil constr
+prf 1118:1128 <> mmult_ma_cv
+R1251:1254 lib <> Poly def
+binder 1142:1144 <> a11:15
+binder 1146:1148 <> a12:16
+binder 1150:1152 <> a13:17
+binder 1154:1156 <> a14:18
+binder 1169:1171 <> a21:19
+binder 1173:1175 <> a22:20
+binder 1177:1179 <> a23:21
+binder 1181:1183 <> a24:22
+binder 1195:1197 <> a31:23
+binder 1199:1201 <> a32:24
+binder 1203:1205 <> a33:25
+binder 1207:1209 <> a34:26
+binder 1221:1223 <> a41:27
+binder 1225:1227 <> a42:28
+binder 1229:1231 <> a43:29
+binder 1233:1235 <> a44:30
+binder 1237:1238 <> c1:31
+binder 1240:1241 <> c2:32
+binder 1243:1244 <> c3:33
+binder 1246:1247 <> c4:34
+R1273:1274 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1270:1272 matrix4 <> a11:15 var
+R1278:1279 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1275:1277 matrix4 <> a12:16 var
+R1283:1284 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1280:1282 matrix4 <> a13:17 var
+R1288:1289 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1285:1287 matrix4 <> a14:18 var
+R1290:1292 Coq.Init.Datatypes <> nil constr
+binder 1264:1265 <> a1:35
+R1313:1314 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1310:1312 matrix4 <> a21:19 var
+R1318:1319 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1315:1317 matrix4 <> a22:20 var
+R1323:1324 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1320:1322 matrix4 <> a23:21 var
+R1328:1329 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1325:1327 matrix4 <> a24:22 var
+R1330:1332 Coq.Init.Datatypes <> nil constr
+binder 1304:1305 <> a2:36
+R1353:1354 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1350:1352 matrix4 <> a31:23 var
+R1358:1359 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1355:1357 matrix4 <> a32:24 var
+R1363:1364 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1360:1362 matrix4 <> a33:25 var
+R1368:1369 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1365:1367 matrix4 <> a34:26 var
+R1370:1372 Coq.Init.Datatypes <> nil constr
+binder 1344:1345 <> a3:37
+R1393:1394 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1390:1392 matrix4 <> a41:27 var
+R1398:1399 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1395:1397 matrix4 <> a42:28 var
+R1403:1404 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1400:1402 matrix4 <> a43:29 var
+R1408:1409 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1405:1407 matrix4 <> a44:30 var
+R1410:1412 Coq.Init.Datatypes <> nil constr
+binder 1384:1385 <> a4:38
+R1439:1440 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1437:1438 matrix4 <> a1:35 var
+R1443:1444 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1441:1442 matrix4 <> a2:36 var
+R1447:1448 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1445:1446 matrix4 <> a3:37 var
+R1451:1452 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1449:1450 matrix4 <> a4:38 var
+R1453:1455 Coq.Init.Datatypes <> nil constr
+binder 1431:1432 <> ma:39
+R1475:1476 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1473:1474 matrix4 <> c1:31 var
+R1479:1480 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1477:1478 matrix4 <> c2:32 var
+R1483:1484 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1481:1482 matrix4 <> c3:33 var
+R1487:1488 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1485:1486 matrix4 <> c4:34 var
+R1489:1491 Coq.Init.Datatypes <> nil constr
+binder 1467:1468 <> cv:40
+R1511:1514 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1498:1507 rijadd <> is_veclen8 def
+R1509:1510 matrix4 <> a1:35 var
+R1528:1531 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1515:1524 rijadd <> is_veclen8 def
+R1526:1527 matrix4 <> a2:36 var
+R1545:1548 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1532:1541 rijadd <> is_veclen8 def
+R1543:1544 matrix4 <> a3:37 var
+R1562:1565 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1549:1558 rijadd <> is_veclen8 def
+R1560:1561 matrix4 <> a4:38 var
+R1579:1584 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1566:1575 rijadd <> is_veclen8 def
+R1577:1578 matrix4 <> cv:40 var
+R1606:1611 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1585:1589 galois <> mmult def
+R1591:1592 matrix4 <> ma:39 var
+R1595:1599 prim <> split def
+R1601:1602 matrix4 <> cv:40 var
+R1612:1616 prim <> split def
+R1619:1619 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1629:1631 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1620:1622 galois <> dot def
+R1624:1625 matrix4 <> a1:35 var
+R1627:1628 matrix4 <> cv:40 var
+R1632:1632 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1642:1644 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1633:1635 galois <> dot def
+R1637:1638 matrix4 <> a2:36 var
+R1640:1641 matrix4 <> cv:40 var
+R1645:1645 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1655:1657 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1646:1648 galois <> dot def
+R1650:1651 matrix4 <> a3:37 var
+R1653:1654 matrix4 <> cv:40 var
+R1658:1658 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1668:1670 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1659:1661 galois <> dot def
+R1663:1664 matrix4 <> a4:38 var
+R1666:1667 matrix4 <> cv:40 var
+R1671:1673 Coq.Init.Datatypes <> nil constr
+R1695:1699 galois <> mmult def
+R1716:1722 lib <> mk_list def
+R1748:1749 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1752:1753 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1756:1757 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1760:1761 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1762:1764 Coq.Init.Datatypes <> nil constr
+R1748:1749 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1752:1753 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1756:1757 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1760:1761 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1762:1764 Coq.Init.Datatypes <> nil constr
+R1783:1784 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1788:1789 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1793:1794 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1798:1799 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1800:1802 Coq.Init.Datatypes <> nil constr
+R1783:1784 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1788:1789 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1793:1794 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1798:1799 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1800:1802 Coq.Init.Datatypes <> nil constr
+R1822:1823 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1827:1828 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1832:1833 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1837:1838 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1839:1841 Coq.Init.Datatypes <> nil constr
+R1822:1823 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1827:1828 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1832:1833 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1837:1838 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1839:1841 Coq.Init.Datatypes <> nil constr
+R1861:1862 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1866:1867 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1871:1872 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1876:1877 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1878:1880 Coq.Init.Datatypes <> nil constr
+R1861:1862 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1866:1867 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1871:1872 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1876:1877 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1878:1880 Coq.Init.Datatypes <> nil constr
+R1900:1901 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1905:1906 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1910:1911 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1915:1916 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1917:1919 Coq.Init.Datatypes <> nil constr
+R1900:1901 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1905:1906 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1910:1911 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1915:1916 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1917:1919 Coq.Init.Datatypes <> nil constr
+R1949:1956 matrix4 <> dot_comm thm
+R1949:1956 matrix4 <> dot_comm thm
+R1949:1956 matrix4 <> dot_comm thm
+R1949:1956 matrix4 <> dot_comm thm
+R1949:1956 matrix4 <> dot_comm thm
+R1978:1983 matrix4 <> split4 thm
+R1978:1983 matrix4 <> split4 thm
+R1978:1983 matrix4 <> split4 thm
+R2016:2023 matrix4 <> dot_comm thm
+R2016:2023 matrix4 <> dot_comm thm
+R2016:2023 matrix4 <> dot_comm thm
+R2016:2023 matrix4 <> dot_comm thm
+R2016:2023 matrix4 <> dot_comm thm
+R2065:2072 matrix4 <> dot_comm thm
+R2065:2072 matrix4 <> dot_comm thm
+R2065:2072 matrix4 <> dot_comm thm
+R2065:2072 matrix4 <> dot_comm thm
+R2065:2072 matrix4 <> dot_comm thm
+R2114:2121 matrix4 <> dot_comm thm
+R2114:2121 matrix4 <> dot_comm thm
+R2114:2121 matrix4 <> dot_comm thm
+R2114:2121 matrix4 <> dot_comm thm
+R2114:2121 matrix4 <> dot_comm thm
+def 2151:2151 <> A
+R2156:2159 lib <> Poly def
+var 2172:2174 Matrix4 a11
+var 2176:2178 Matrix4 a12
+var 2180:2182 Matrix4 a13
+var 2184:2186 Matrix4 a14
+var 2199:2201 Matrix4 a21
+var 2203:2205 Matrix4 a22
+var 2207:2209 Matrix4 a23
+var 2211:2213 Matrix4 a24
+var 2225:2227 Matrix4 a31
+var 2229:2231 Matrix4 a32
+var 2233:2235 Matrix4 a33
+var 2237:2239 Matrix4 a34
+var 2251:2253 Matrix4 a41
+var 2255:2257 Matrix4 a42
+var 2259:2261 Matrix4 a43
+var 2263:2265 Matrix4 a44
+R2269:2269 matrix4 <> A def
+def 2284:2285 <> a1
+R2293:2294 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2290:2292 matrix4 <> Matrix4.a11 var
+R2298:2299 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2295:2297 matrix4 <> Matrix4.a12 var
+R2303:2304 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2300:2302 matrix4 <> Matrix4.a13 var
+R2308:2309 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2305:2307 matrix4 <> Matrix4.a14 var
+R2310:2312 Coq.Init.Datatypes <> nil constr
+def 2326:2327 <> a2
+R2335:2336 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2332:2334 matrix4 <> Matrix4.a21 var
+R2340:2341 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2337:2339 matrix4 <> Matrix4.a22 var
+R2345:2346 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2342:2344 matrix4 <> Matrix4.a23 var
+R2350:2351 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2347:2349 matrix4 <> Matrix4.a24 var
+R2352:2354 Coq.Init.Datatypes <> nil constr
+def 2368:2369 <> a3
+R2377:2378 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2374:2376 matrix4 <> Matrix4.a31 var
+R2382:2383 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2379:2381 matrix4 <> Matrix4.a32 var
+R2387:2388 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2384:2386 matrix4 <> Matrix4.a33 var
+R2392:2393 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2389:2391 matrix4 <> Matrix4.a34 var
+R2394:2396 Coq.Init.Datatypes <> nil constr
+def 2410:2411 <> a4
+R2419:2420 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2416:2418 matrix4 <> Matrix4.a41 var
+R2424:2425 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2421:2423 matrix4 <> Matrix4.a42 var
+R2429:2430 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2426:2428 matrix4 <> Matrix4.a43 var
+R2434:2435 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2431:2433 matrix4 <> Matrix4.a44 var
+R2436:2438 Coq.Init.Datatypes <> nil constr
+var 2452:2453 Matrix4 c1
+var 2455:2456 Matrix4 c2
+var 2458:2459 Matrix4 c3
+var 2461:2462 Matrix4 c4
+R2466:2466 matrix4 <> A def
+def 2480:2480 <> c
+R2485:2485 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2493:2495 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2488:2489 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2486:2487 matrix4 <> Matrix4.c1 var
+R2490:2492 Coq.Init.Datatypes <> nil constr
+R2496:2496 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2504:2506 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2499:2500 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2497:2498 matrix4 <> Matrix4.c2 var
+R2501:2503 Coq.Init.Datatypes <> nil constr
+R2507:2507 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2515:2517 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2510:2511 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2508:2509 matrix4 <> Matrix4.c3 var
+R2512:2514 Coq.Init.Datatypes <> nil constr
+R2518:2518 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2526:2528 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2521:2522 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2519:2520 matrix4 <> Matrix4.c4 var
+R2523:2525 Coq.Init.Datatypes <> nil constr
+R2529:2531 Coq.Init.Datatypes <> nil constr
+def 2546:2547 <> cv
+R2555:2556 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2553:2554 matrix4 <> Matrix4.c1 var
+R2559:2560 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2557:2558 matrix4 <> Matrix4.c2 var
+R2563:2564 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2561:2562 matrix4 <> Matrix4.c3 var
+R2567:2568 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2565:2566 matrix4 <> Matrix4.c4 var
+R2569:2571 Coq.Init.Datatypes <> nil constr
+def 2698:2699 <> ma
+R2706:2707 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2704:2705 matrix4 <> a1 def
+R2710:2711 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2708:2709 matrix4 <> a2 def
+R2714:2715 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2712:2713 matrix4 <> a3 def
+R2718:2719 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2716:2717 matrix4 <> a4 def
+R2720:2722 Coq.Init.Datatypes <> nil constr
+prf 2732:2736 <> cv_eq
+R2740:2740 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R2768:2771 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R2743:2746 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2741:2742 matrix4 <> Matrix4.c1 var
+R2749:2752 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2747:2748 matrix4 <> Matrix4.c2 var
+R2755:2758 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2753:2754 matrix4 <> Matrix4.c3 var
+R2761:2764 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2759:2760 matrix4 <> Matrix4.c4 var
+R2765:2767 Coq.Init.Datatypes <> nil constr
+R2772:2773 matrix4 <> cv def
+prf 2803:2810 <> mmult_cv
+R2830:2833 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2817:2826 rijadd <> is_veclen8 def
+R2828:2829 matrix4 <> a1 def
+R2847:2850 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2834:2843 rijadd <> is_veclen8 def
+R2845:2846 matrix4 <> a2 def
+R2864:2867 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2851:2860 rijadd <> is_veclen8 def
+R2862:2863 matrix4 <> a3 def
+R2881:2884 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2868:2877 rijadd <> is_veclen8 def
+R2879:2880 matrix4 <> a4 def
+R2898:2904 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2885:2894 rijadd <> is_veclen8 def
+R2896:2897 matrix4 <> cv def
+R2926:2932 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R2905:2909 galois <> mmult def
+R2911:2912 matrix4 <> ma def
+R2915:2919 prim <> split def
+R2921:2922 matrix4 <> cv def
+R2933:2937 prim <> split def
+R2940:2940 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2950:2952 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2941:2943 galois <> dot def
+R2945:2946 matrix4 <> a1 def
+R2948:2949 matrix4 <> cv def
+R2953:2953 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2963:2965 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2954:2956 galois <> dot def
+R2958:2959 matrix4 <> a2 def
+R2961:2962 matrix4 <> cv def
+R2966:2966 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2976:2978 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2967:2969 galois <> dot def
+R2971:2972 matrix4 <> a3 def
+R2974:2975 matrix4 <> cv def
+R2979:2979 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2989:2991 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2980:2982 galois <> dot def
+R2984:2985 matrix4 <> a4 def
+R2987:2988 matrix4 <> cv def
+R2992:2994 Coq.Init.Datatypes <> nil constr
+R3026:3030 galois <> mmult def
+R3041:3046 matrix4 <> split4 thm
+R3041:3046 matrix4 <> split4 thm
+R3041:3046 matrix4 <> split4 thm
+R3056:3057 matrix4 <> ma def
+R3074:3080 lib <> mk_list def
+R3092:3093 matrix4 <> cv def
+R3106:3107 matrix4 <> a1 def
+R3118:3125 matrix4 <> dot_comm thm
+R3118:3125 matrix4 <> dot_comm thm
+R3118:3125 matrix4 <> dot_comm thm
+R3118:3125 matrix4 <> dot_comm thm
+R3118:3125 matrix4 <> dot_comm thm
+R3155:3156 matrix4 <> a2 def
+R3167:3174 matrix4 <> dot_comm thm
+R3167:3174 matrix4 <> dot_comm thm
+R3167:3174 matrix4 <> dot_comm thm
+R3167:3174 matrix4 <> dot_comm thm
+R3167:3174 matrix4 <> dot_comm thm
+R3204:3205 matrix4 <> a3 def
+R3216:3223 matrix4 <> dot_comm thm
+R3216:3223 matrix4 <> dot_comm thm
+R3216:3223 matrix4 <> dot_comm thm
+R3216:3223 matrix4 <> dot_comm thm
+R3216:3223 matrix4 <> dot_comm thm
+R3253:3254 matrix4 <> a4 def
+R3265:3272 matrix4 <> dot_comm thm
+R3265:3272 matrix4 <> dot_comm thm
+R3265:3272 matrix4 <> dot_comm thm
+R3265:3272 matrix4 <> dot_comm thm
+R3265:3272 matrix4 <> dot_comm thm
+prf 3361:3369 <> mmult_vec
+R3388:3391 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3375:3384 rijadd <> is_veclen8 def
+R3386:3387 matrix4 <> a1 def
+R3405:3408 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3392:3401 rijadd <> is_veclen8 def
+R3403:3404 matrix4 <> a2 def
+R3422:3425 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3409:3418 rijadd <> is_veclen8 def
+R3420:3421 matrix4 <> a3 def
+R3439:3442 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3426:3435 rijadd <> is_veclen8 def
+R3437:3438 matrix4 <> a4 def
+R3456:3461 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3443:3452 rijadd <> is_veclen8 def
+R3454:3455 matrix4 <> cv def
+R3462:3468 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R3471:3472 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 3469:3470 <> d1:61
+R3473:3479 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R3482:3483 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 3480:3481 <> d2:62
+R3484:3490 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R3493:3494 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 3491:3492 <> d3:63
+R3495:3501 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R3504:3511 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 3502:3503 <> d4:64
+R3522:3524 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R3512:3516 galois <> mmult def
+R3518:3519 matrix4 <> ma def
+R3521:3521 matrix4 <> c def
+R3527:3528 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3525:3526 matrix4 <> d1:61 var
+R3531:3532 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3529:3530 matrix4 <> d2:62 var
+R3535:3536 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3533:3534 matrix4 <> d3:63 var
+R3539:3540 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3537:3538 matrix4 <> d4:64 var
+R3541:3543 Coq.Init.Datatypes <> nil constr
+R3562:3562 matrix4 <> c def
+R3575:3575 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3585:3587 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3576:3578 galois <> dot def
+R3580:3581 matrix4 <> a1 def
+R3583:3584 matrix4 <> cv def
+R3588:3590 Coq.Init.Datatypes <> nil constr
+R3575:3575 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3585:3587 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3576:3578 galois <> dot def
+R3580:3581 matrix4 <> a1 def
+R3583:3584 matrix4 <> cv def
+R3588:3590 Coq.Init.Datatypes <> nil constr
+R3604:3604 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3614:3616 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3605:3607 galois <> dot def
+R3609:3610 matrix4 <> a2 def
+R3612:3613 matrix4 <> cv def
+R3617:3619 Coq.Init.Datatypes <> nil constr
+R3604:3604 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3614:3616 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3605:3607 galois <> dot def
+R3609:3610 matrix4 <> a2 def
+R3612:3613 matrix4 <> cv def
+R3617:3619 Coq.Init.Datatypes <> nil constr
+R3633:3633 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3643:3645 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3634:3636 galois <> dot def
+R3638:3639 matrix4 <> a3 def
+R3641:3642 matrix4 <> cv def
+R3646:3648 Coq.Init.Datatypes <> nil constr
+R3633:3633 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3643:3645 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3634:3636 galois <> dot def
+R3638:3639 matrix4 <> a3 def
+R3641:3642 matrix4 <> cv def
+R3646:3648 Coq.Init.Datatypes <> nil constr
+R3662:3662 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3672:3674 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3663:3665 galois <> dot def
+R3667:3668 matrix4 <> a4 def
+R3670:3671 matrix4 <> cv def
+R3675:3677 Coq.Init.Datatypes <> nil constr
+R3662:3662 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3672:3674 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3663:3665 galois <> dot def
+R3667:3668 matrix4 <> a4 def
+R3670:3671 matrix4 <> cv def
+R3675:3677 Coq.Init.Datatypes <> nil constr
+R3693:3693 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3703:3707 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3696:3699 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3694:3695 matrix4 <> Matrix4.c1 var
+R3700:3702 Coq.Init.Datatypes <> nil constr
+R3708:3708 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3718:3722 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3711:3714 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3709:3710 matrix4 <> Matrix4.c2 var
+R3715:3717 Coq.Init.Datatypes <> nil constr
+R3723:3723 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3733:3737 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3726:3729 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3724:3725 matrix4 <> Matrix4.c3 var
+R3730:3732 Coq.Init.Datatypes <> nil constr
+R3738:3738 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3748:3752 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3741:3744 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3739:3740 matrix4 <> Matrix4.c4 var
+R3745:3747 Coq.Init.Datatypes <> nil constr
+R3753:3755 Coq.Init.Datatypes <> nil constr
+R3765:3769 prim <> split def
+R3771:3772 matrix4 <> cv def
+R3693:3693 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3703:3707 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3696:3699 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3694:3695 matrix4 <> Matrix4.c1 var
+R3700:3702 Coq.Init.Datatypes <> nil constr
+R3708:3708 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3718:3722 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3711:3714 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3709:3710 matrix4 <> Matrix4.c2 var
+R3715:3717 Coq.Init.Datatypes <> nil constr
+R3723:3723 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3733:3737 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3726:3729 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3724:3725 matrix4 <> Matrix4.c3 var
+R3730:3732 Coq.Init.Datatypes <> nil constr
+R3738:3738 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3748:3752 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3741:3744 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3739:3740 matrix4 <> Matrix4.c4 var
+R3745:3747 Coq.Init.Datatypes <> nil constr
+R3753:3755 Coq.Init.Datatypes <> nil constr
+R3765:3769 prim <> split def
+R3771:3772 matrix4 <> cv def
+R3812:3819 matrix4 <> mmult_cv thm
+R3812:3819 matrix4 <> mmult_cv thm
+R3812:3819 matrix4 <> mmult_cv thm
+R3812:3819 matrix4 <> mmult_cv thm
+R3812:3819 matrix4 <> mmult_cv thm
+R3812:3819 matrix4 <> mmult_cv thm
+R3812:3819 matrix4 <> mmult_cv thm
+R3812:3819 matrix4 <> mmult_cv thm
+R3848:3854 matrix4 Matrix4 <> sec

@@ -1,0 +1,372 @@
+DIGEST f4a70be3995241b7dadfa5cb640e40ed
+Frij_mul_add_distr.simple
+R48:50 Coq.micromega.Lia <> <> lib
+R68:76 Coq.setoid_ring.ArithRing <> <> lib
+R94:98 Coq.omega.Omega <> <> lib
+R116:119 Coq.Lists.List <> <> lib
+R137:138 Coq.Arith.Le <> <> lib
+R156:157 Coq.Arith.Lt <> <> lib
+R246:254 Coq.Init.Logic <> False_ind scheme
+sec 305:319 <> SimpleLengthDef
+var 332:332 SimpleLengthDef A
+R364:367 Coq.Init.Datatypes <> list ind
+R369:369 rij_mul_add_distr.simple <> SimpleLengthDef.A var
+def 384:389 <> len_eq
+binder 391:392 <> la:2
+binder 394:395 <> lb:3
+R409:411 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R400:405 Coq.Init.Datatypes <> length def
+R407:408 rij_mul_add_distr.simple <> la:2 var
+R412:417 Coq.Init.Datatypes <> length def
+R419:420 rij_mul_add_distr.simple <> lb:3 var
+def 434:440 <> len_Seq
+binder 442:443 <> la:4
+binder 445:446 <> lb:5
+R460:462 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R451:456 Coq.Init.Datatypes <> length def
+R458:459 rij_mul_add_distr.simple <> la:4 var
+R463:463 Coq.Init.Datatypes <> S constr
+R466:471 Coq.Init.Datatypes <> length def
+R473:474 rij_mul_add_distr.simple <> lb:5 var
+def 488:497 <> even_listp
+R504:507 Coq.Init.Datatypes <> list ind
+R509:509 rij_mul_add_distr.simple <> SimpleLengthDef.A var
+binder 500:500 <> l:6
+R530:530 rij_mul_add_distr.simple <> l:6 var
+R543:545 Coq.Init.Datatypes <> nil constr
+R550:553 Coq.Init.Logic <> True ind
+R562:563 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R565:566 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R573:582 rij_mul_add_distr.simple <> even_listp:7 def
+R598:602 Coq.Init.Logic <> False ind
+def 623:631 <> rev_curry
+R637:638 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R636:636 rij_mul_add_distr.simple <> SimpleLengthDef.A var
+R640:641 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R639:639 rij_mul_add_distr.simple <> SimpleLengthDef.A var
+R642:642 rij_mul_add_distr.simple <> SimpleLengthDef.A var
+binder 634:634 <> f:9
+R647:647 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R651:653 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R649:649 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R648:648 rij_mul_add_distr.simple <> SimpleLengthDef.A var
+R650:650 rij_mul_add_distr.simple <> SimpleLengthDef.A var
+R654:654 rij_mul_add_distr.simple <> SimpleLengthDef.A var
+R669:669 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R668:668 rij_mul_add_distr.simple <> SimpleLengthDef.A var
+R670:670 rij_mul_add_distr.simple <> SimpleLengthDef.A var
+binder 666:666 <> x:10
+R676:676 rij_mul_add_distr.simple <> f:9 var
+R687:689 Coq.Init.Datatypes <> snd def
+R691:691 rij_mul_add_distr.simple <> x:10 var
+R679:681 Coq.Init.Datatypes <> fst def
+R683:683 rij_mul_add_distr.simple <> x:10 var
+def 753:768 <> flatten_pairlist
+R774:777 Coq.Init.Datatypes <> list ind
+R781:781 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R780:780 rij_mul_add_distr.simple <> SimpleLengthDef.A var
+R782:782 rij_mul_add_distr.simple <> SimpleLengthDef.A var
+binder 771:771 <> l:11
+R789:792 Coq.Init.Datatypes <> list ind
+R794:794 rij_mul_add_distr.simple <> SimpleLengthDef.A var
+R801:810 Coq.Lists.List <> fold_right def
+R866:866 rij_mul_add_distr.simple <> l:11 var
+R862:864 Coq.Init.Datatypes <> nil constr
+R821:821 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R820:820 rij_mul_add_distr.simple <> SimpleLengthDef.A var
+R822:822 rij_mul_add_distr.simple <> SimpleLengthDef.A var
+binder 818:818 <> x:12
+R829:832 Coq.Init.Datatypes <> list ind
+R834:834 rij_mul_add_distr.simple <> SimpleLengthDef.A var
+binder 826:827 <> l':13
+R840:840 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R846:848 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R841:843 Coq.Init.Datatypes <> fst def
+R845:845 rij_mul_add_distr.simple <> x:12 var
+R849:849 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R855:857 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R850:852 Coq.Init.Datatypes <> snd def
+R854:854 rij_mul_add_distr.simple <> x:12 var
+R858:859 rij_mul_add_distr.simple <> l':13 var
+R874:888 rij_mul_add_distr.simple SimpleLengthDef <> sec
+sec 906:914 <> SimpleNat
+prf 924:934 <> one_neq_two
+binder 945:945 <> n:14
+R951:954 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R949:949 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R950:950 rij_mul_add_distr.simple <> n:14 var
+R956:959 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R961:961 Coq.Init.Peano <> ::nat_scope:x_'*'_x not
+R962:962 rij_mul_add_distr.simple <> n:14 var
+prf 997:1005 <> even_succ
+R1019:1021 Coq.Init.Datatypes <> nat ind
+binder 1017:1017 <> n:15
+R1034:1036 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1026:1029 Coq.Init.Peano <> ::nat_scope:x_'*'_x not
+R1033:1033 Coq.Init.Peano <> ::nat_scope:x_'*'_x not
+R1030:1030 Coq.Init.Datatypes <> S constr
+R1032:1032 rij_mul_add_distr.simple <> n:15 var
+R1037:1037 Coq.Init.Datatypes <> S constr
+R1040:1040 Coq.Init.Datatypes <> S constr
+R1044:1046 Coq.Init.Peano <> ::nat_scope:x_'*'_x not
+R1047:1047 rij_mul_add_distr.simple <> n:15 var
+prf 1085:1093 <> succ_add1
+R1107:1109 Coq.Init.Datatypes <> nat ind
+binder 1105:1105 <> n:16
+R1116:1118 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1114:1114 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R1113:1113 rij_mul_add_distr.simple <> n:16 var
+R1119:1119 Coq.Init.Datatypes <> S constr
+R1121:1121 rij_mul_add_distr.simple <> n:16 var
+prf 1192:1200 <> nat_split
+R1214:1216 Coq.Init.Datatypes <> nat ind
+binder 1212:1212 <> n:17
+R1220:1226 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R1234:1237 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R1231:1233 Coq.Init.Datatypes <> nat ind
+binder 1227:1227 <> k:18
+R1247:1250 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R1239:1241 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1238:1238 rij_mul_add_distr.simple <> n:17 var
+R1243:1245 Coq.Init.Peano <> ::nat_scope:x_'*'_x not
+R1246:1246 rij_mul_add_distr.simple <> k:18 var
+R1252:1254 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1251:1251 rij_mul_add_distr.simple <> n:17 var
+R1260:1262 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R1256:1258 Coq.Init.Peano <> ::nat_scope:x_'*'_x not
+R1259:1259 rij_mul_add_distr.simple <> k:18 var
+R1539:1539 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R1539:1539 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R1578:1586 rij_mul_add_distr.simple SimpleNat <> sec
+sec 1606:1615 <> SimpleList
+var 1628:1628 SimpleList A
+R1655:1658 Coq.Init.Datatypes <> list ind
+R1660:1660 rij_mul_add_distr.simple <> SimpleList.A var
+R1680:1682 Coq.Init.Datatypes <> nat ind
+prf 1692:1701 <> length_nil
+binder 1712:1712 <> l:20
+R1727:1730 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1723:1725 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1715:1720 Coq.Init.Datatypes <> length def
+R1722:1722 rij_mul_add_distr.simple <> l:20 var
+R1732:1734 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1731:1731 rij_mul_add_distr.simple <> l:20 var
+R1735:1737 Coq.Init.Datatypes <> nil constr
+R1883:1886 Coq.Init.Datatypes <> list ind
+R1888:1888 rij_mul_add_distr.simple <> SimpleList.A var
+prf 1898:1905 <> length_S
+binder 1916:1916 <> l:21
+binder 1918:1918 <> n:22
+R1937:1940 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1931:1933 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1923:1928 Coq.Init.Datatypes <> length def
+R1930:1930 rij_mul_add_distr.simple <> l:21 var
+R1934:1934 Coq.Init.Datatypes <> S constr
+R1936:1936 rij_mul_add_distr.simple <> n:22 var
+R1941:1947 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R1949:1951 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R1972:1972 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 1948:1948 <> a:23
+R1952:1958 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R1961:1962 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 1959:1960 <> tl:24
+R1964:1966 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R1963:1963 rij_mul_add_distr.simple <> l:21 var
+R1968:1969 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1967:1967 rij_mul_add_distr.simple <> a:23 var
+R1970:1971 rij_mul_add_distr.simple <> tl:24 var
+prf 2098:2106 <> length_SS
+binder 2117:2117 <> l:25
+binder 2119:2119 <> n:26
+R2142:2148 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2132:2134 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R2124:2129 Coq.Init.Datatypes <> length def
+R2131:2131 rij_mul_add_distr.simple <> l:25 var
+R2135:2135 Coq.Init.Datatypes <> S constr
+R2138:2138 Coq.Init.Datatypes <> S constr
+R2140:2140 rij_mul_add_distr.simple <> n:26 var
+R2149:2155 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R2157:2159 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R2195:2195 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 2156:2156 <> a:27
+R2160:2166 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R2168:2170 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R2194:2194 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 2167:2167 <> b:28
+R2171:2177 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R2180:2181 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 2178:2179 <> tl:29
+R2183:2185 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R2182:2182 rij_mul_add_distr.simple <> l:25 var
+R2187:2188 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2186:2186 rij_mul_add_distr.simple <> a:27 var
+R2190:2191 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2189:2189 rij_mul_add_distr.simple <> b:28 var
+R2192:2193 rij_mul_add_distr.simple <> tl:29 var
+prf 2372:2383 <> length_S_nil
+binder 2394:2394 <> x:30
+binder 2396:2396 <> l:31
+R2418:2421 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2414:2416 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R2401:2406 Coq.Init.Datatypes <> length def
+R2410:2411 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2409:2409 rij_mul_add_distr.simple <> x:30 var
+R2412:2412 rij_mul_add_distr.simple <> l:31 var
+R2423:2425 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R2422:2422 rij_mul_add_distr.simple <> l:31 var
+R2426:2428 Coq.Init.Datatypes <> nil constr
+R2521:2530 rij_mul_add_distr.simple SimpleList <> sec
+sec 2550:2555 <> EqList
+var 2568:2568 EqList A
+R2596:2599 Coq.Init.Datatypes <> list ind
+R2601:2601 rij_mul_add_distr.simple <> EqList.A var
+def 2616:2620 <> eq_hd
+R2631:2634 Coq.Init.Datatypes <> list ind
+R2636:2636 rij_mul_add_distr.simple <> EqList.A var
+binder 2623:2624 <> l1:33
+binder 2626:2627 <> l2:34
+R2653:2654 rij_mul_add_distr.simple <> l2:34 var
+R2650:2651 rij_mul_add_distr.simple <> l1:33 var
+R2666:2667 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2674:2675 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2683:2685 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R2699:2703 Coq.Init.Logic <> False ind
+def 2724:2729 <> eq_2nd
+R2740:2743 Coq.Init.Datatypes <> list ind
+R2745:2745 rij_mul_add_distr.simple <> EqList.A var
+binder 2732:2733 <> l1:37
+binder 2735:2736 <> l2:38
+R2754:2758 rij_mul_add_distr.simple <> eq_hd def
+R2761:2764 Coq.Lists.List <> tail syndef
+R2766:2767 rij_mul_add_distr.simple <> l1:37 var
+R2770:2773 Coq.Lists.List <> tail syndef
+R2775:2776 rij_mul_add_distr.simple <> l2:38 var
+def 2792:2799 <> eq_tail2
+R2810:2813 Coq.Init.Datatypes <> list ind
+R2815:2815 rij_mul_add_distr.simple <> EqList.A var
+binder 2802:2803 <> l1:39
+binder 2805:2806 <> l2:40
+R2837:2839 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R2823:2826 Coq.Lists.List <> tail syndef
+R2829:2832 Coq.Lists.List <> tail syndef
+R2834:2835 rij_mul_add_distr.simple <> l1:39 var
+R2840:2843 Coq.Lists.List <> tail syndef
+R2846:2849 Coq.Lists.List <> tail syndef
+R2851:2852 rij_mul_add_distr.simple <> l2:40 var
+prf 2863:2871 <> eq_hd_red
+R2891:2894 Coq.Init.Datatypes <> list ind
+R2896:2896 rij_mul_add_distr.simple <> EqList.A var
+binder 2883:2884 <> l1:41
+binder 2886:2887 <> l2:42
+R2906:2906 rij_mul_add_distr.simple <> EqList.A var
+binder 2900:2900 <> a:43
+binder 2902:2902 <> b:44
+R2933:2936 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R2940:2940 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R2912:2916 rij_mul_add_distr.simple <> eq_hd def
+R2920:2921 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2919:2919 rij_mul_add_distr.simple <> a:43 var
+R2922:2923 rij_mul_add_distr.simple <> l1:41 var
+R2928:2929 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2927:2927 rij_mul_add_distr.simple <> b:44 var
+R2930:2931 rij_mul_add_distr.simple <> l2:42 var
+R2938:2938 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R2937:2937 rij_mul_add_distr.simple <> a:43 var
+R2939:2939 rij_mul_add_distr.simple <> b:44 var
+prf 3004:3011 <> list_eq2
+R3031:3034 Coq.Init.Datatypes <> list ind
+R3036:3036 rij_mul_add_distr.simple <> EqList.A var
+binder 3023:3024 <> l1:45
+binder 3026:3027 <> l2:46
+R3053:3056 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3042:3046 rij_mul_add_distr.simple <> eq_hd def
+R3048:3049 rij_mul_add_distr.simple <> l1:45 var
+R3051:3052 rij_mul_add_distr.simple <> l2:46 var
+R3074:3077 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3064:3066 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R3057:3060 Coq.Lists.List <> tail syndef
+R3062:3063 rij_mul_add_distr.simple <> l1:45 var
+R3067:3070 Coq.Lists.List <> tail syndef
+R3072:3073 rij_mul_add_distr.simple <> l2:46 var
+R3080:3080 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R3078:3079 rij_mul_add_distr.simple <> l1:45 var
+R3081:3082 rij_mul_add_distr.simple <> l2:46 var
+R3101:3105 rij_mul_add_distr.simple <> eq_hd def
+prf 3277:3284 <> list_eq3
+R3304:3307 Coq.Init.Datatypes <> list ind
+R3309:3309 rij_mul_add_distr.simple <> EqList.A var
+binder 3296:3297 <> l1:47
+binder 3299:3300 <> l2:48
+R3327:3330 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3316:3320 rij_mul_add_distr.simple <> eq_hd def
+R3322:3323 rij_mul_add_distr.simple <> l1:47 var
+R3325:3326 rij_mul_add_distr.simple <> l2:48 var
+R3343:3346 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3331:3336 rij_mul_add_distr.simple <> eq_2nd def
+R3338:3339 rij_mul_add_distr.simple <> l1:47 var
+R3341:3342 rij_mul_add_distr.simple <> l2:48 var
+R3361:3364 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3347:3354 rij_mul_add_distr.simple <> eq_tail2 def
+R3356:3357 rij_mul_add_distr.simple <> l1:47 var
+R3359:3360 rij_mul_add_distr.simple <> l2:48 var
+R3367:3367 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R3365:3366 rij_mul_add_distr.simple <> l1:47 var
+R3368:3369 rij_mul_add_distr.simple <> l2:48 var
+R3388:3393 rij_mul_add_distr.simple <> eq_2nd def
+R3410:3417 rij_mul_add_distr.simple <> list_eq2 thm
+R3410:3417 rij_mul_add_distr.simple <> list_eq2 thm
+R3440:3447 rij_mul_add_distr.simple <> list_eq2 thm
+R3440:3447 rij_mul_add_distr.simple <> list_eq2 thm
+R3472:3477 rij_mul_add_distr.simple EqList <> sec
+sec 3493:3500 <> LessThan
+prf 3510:3518 <> absurd_le
+R3536:3538 Coq.Init.Datatypes <> nat ind
+binder 3530:3530 <> m:49
+binder 3532:3532 <> n:50
+R3546:3549 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3543:3544 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R3542:3542 rij_mul_add_distr.simple <> n:50 var
+R3545:3545 rij_mul_add_distr.simple <> m:49 var
+R3553:3556 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3551:3551 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R3550:3550 rij_mul_add_distr.simple <> m:49 var
+R3552:3552 rij_mul_add_distr.simple <> n:50 var
+R3557:3561 Coq.Init.Logic <> False ind
+R3592:3592 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R3592:3592 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R3606:3616 Coq.Arith.Lt <> le_lt_trans syndef
+R3606:3616 Coq.Arith.Lt <> le_lt_trans syndef
+R3647:3655 Coq.Arith.Lt <> lt_irrefl syndef
+R3647:3655 Coq.Arith.Lt <> lt_irrefl syndef
+prf 3685:3698 <> lt_le_trans_le
+R3718:3720 Coq.Init.Datatypes <> nat ind
+binder 3710:3710 <> m:51
+binder 3712:3712 <> n:52
+binder 3714:3714 <> q:53
+R3729:3732 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3727:3727 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R3726:3726 rij_mul_add_distr.simple <> m:51 var
+R3728:3728 rij_mul_add_distr.simple <> n:52 var
+R3737:3740 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3734:3735 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R3733:3733 rij_mul_add_distr.simple <> n:52 var
+R3736:3736 rij_mul_add_distr.simple <> q:53 var
+R3742:3743 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R3741:3741 rij_mul_add_distr.simple <> m:51 var
+R3744:3744 rij_mul_add_distr.simple <> q:53 var
+R3770:3779 Coq.Arith.Lt <> lt_le_weak syndef
+R3770:3779 Coq.Arith.Lt <> lt_le_weak syndef
+R3791:3801 Coq.Arith.Lt <> lt_le_trans syndef
+R3791:3801 Coq.Arith.Lt <> lt_le_trans syndef
+prf 3835:3839 <> lt_gt
+R3857:3859 Coq.Init.Datatypes <> nat ind
+binder 3851:3851 <> m:54
+binder 3853:3853 <> n:55
+R3866:3869 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R3864:3864 Coq.Init.Peano <> ::nat_scope:x_'<'_x not
+R3863:3863 rij_mul_add_distr.simple <> n:55 var
+R3865:3865 rij_mul_add_distr.simple <> m:54 var
+R3871:3871 Coq.Init.Peano <> ::nat_scope:x_'>'_x not
+R3870:3870 rij_mul_add_distr.simple <> m:54 var
+R3872:3872 rij_mul_add_distr.simple <> n:55 var
+R3898:3905 rij_mul_add_distr.simple LessThan <> sec
