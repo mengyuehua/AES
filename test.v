@@ -121,17 +121,15 @@ End hexlist_binlist.
 
 
 
-
-
-(* cases from fips-197 Appendix B *)
-Definition plaintext := hexlist_to_bin8list
-  ["32"; "43"; "f6"; "a8"; "88"; "5a"; "30"; "8d"; "31"; "31"; "98"; "a2"; "e0"; "37"; "07"; "34"].
-Definition key := hexlist_to_bin8list 
+(* case comes from fips-197 Appendix B *)
+Definition key :=
   ["2b"; "7e"; "15"; "16"; "28"; "ae"; "d2"; "a6"; "ab"; "f7"; "15"; "88"; "09"; "cf"; "4f"; "3c"].
+Definition plaintext :=
+  ["32"; "43"; "f6"; "a8"; "88"; "5a"; "30"; "8d"; "31"; "31"; "98"; "a2"; "e0"; "37"; "07"; "34"].
 
 (* to matrix *)
-Definition plaintext' := stripe plaintext.
-Definition key' := stripe key.
+Definition plaintext' := stripe (hexlist_to_bin8list plaintext).
+Definition key' := stripe (hexlist_to_bin8list key).
 
 (* AddRoundKet, correct *)
 Definition matrix_add_1 := matrix_add plaintext' key'.
@@ -148,7 +146,7 @@ Compute (binlist_to_hexlist (prim.join mixColumn_1)).
 
 
 (* keyExpension, correct *)
-Definition keys := keyExpansion_split key.
+Definition keys := keyExpansion_split (hexlist_to_bin8list key).
 Definition keys_matrix := keyExpansion_split_matrix keys.
 (* key0, correct *)
 Definition key0 := prim.lth 0 keys_matrix.
@@ -162,22 +160,28 @@ Compute binlist_to_hexlist (prim.join key2).
 
 
 (* encrypt, correct *)
-Definition encrypt_test := encrypt key plaintext.
-Compute binlist_to_hexlist encrypt_test.
+Definition encrypt_test (key plaintext : list string) : list string :=
+  binlist_to_hexlist (encrypt (hexlist_to_bin8list key) (hexlist_to_bin8list plaintext)).
+Compute encrypt_test key plaintext.
+
+(* decrypt, correct *)
+Definition decrypt_test (key ciphertext : list string) : list string :=
+  binlist_to_hexlist (decrypt (hexlist_to_bin8list key) (hexlist_to_bin8list ciphertext)).
 
 (* encrypt and decrypt, correct *)
-Definition encrypt_decrypt_test := aes_main key plaintext.
-Compute binlist_to_hexlist encrypt_decrypt_test.
+Definition encrypt_decrypt_test (key plaintext : list string) : list string :=
+  binlist_to_hexlist (aes_main (hexlist_to_bin8list key) (hexlist_to_bin8list plaintext)).
+Compute encrypt_decrypt_test key plaintext.
 
 
 Require Import Extraction.
 Extraction Language OCaml.
+Require Import ExtrOcamlString.
+(* Require Import ExtrOcamlNativeString. *)
 Extract Inductive bool => "bool" [ "true" "false" ].
 Extract Inductive list => "list" [ "[]" "(::)" ].
-
-Require Import ExtrOcamlString.
-Recursive Extraction encrypt_test encrypt_decrypt_test.
-
+Recursive Extraction key plaintext binlist_to_hexlist encrypt_test decrypt_test encrypt_decrypt_test.
+Extraction "test.ml" key plaintext binlist_to_hexlist encrypt_test decrypt_test encrypt_decrypt_test.
 
 
 

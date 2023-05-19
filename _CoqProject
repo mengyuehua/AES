@@ -6,15 +6,16 @@
 -R ./ ""
 
 # ====== Source file ====================
-multassoc.v
+test.v
 aes.v
 correct.v
 galois.v
 gsumgtimes.v
 lib.v
 map2.v
-matrix.v
+matrix4.v
 metaind.v
+multassoc.v
 multunit.v
 natbool.v
 pairsort.v
@@ -22,7 +23,6 @@ prim.v
 rijadd.v
 simple.v
 tacdef.v
-test.v
 wiki_sbox.v
 rij_mul_add_distr/rij_mul_add_distr0.v
 rij_mul_add_distr/rij_mul_add_distr1.v

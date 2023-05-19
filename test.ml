@@ -98,11 +98,6 @@ let modulo x y = match y with
 | O -> y
 | S y' -> sub y' (snd (divmod x y' O y'))
 
-(** val bool_dec : bool -> bool -> sumbool **)
-
-let bool_dec b1 b2 =
-  if b1 then if b2 then Left else Right else if b2 then Right else Left
-
 (** val eqb : bool -> bool -> bool **)
 
 let eqb b1 b2 =
@@ -138,52 +133,18 @@ let rec fold_left f l a0 =
   | [] -> a0
   | b::t -> fold_left f t (f a0 b)
 
-type ascii =
-| Ascii of bool * bool * bool * bool * bool * bool * bool * bool
-
-(** val ascii_dec : ascii -> ascii -> sumbool **)
-
-let ascii_dec a b =
-  let Ascii (x, x0, x1, x2, x3, x4, x5, x6) = a in
-  let Ascii (b8, b9, b10, b11, b12, b13, b14, b15) = b in
-  (match bool_dec x b8 with
-   | Left ->
-     (match bool_dec x0 b9 with
-      | Left ->
-        (match bool_dec x1 b10 with
-         | Left ->
-           (match bool_dec x2 b11 with
-            | Left ->
-              (match bool_dec x3 b12 with
-               | Left ->
-                 (match bool_dec x4 b13 with
-                  | Left ->
-                    (match bool_dec x5 b14 with
-                     | Left -> bool_dec x6 b15
-                     | Right -> Right)
-                  | Right -> Right)
-               | Right -> Right)
-            | Right -> Right)
-         | Right -> Right)
-      | Right -> Right)
-   | Right -> Right)
-
-type string =
-| EmptyString
-| String of ascii * string
-
-(** val append : string -> string -> string **)
+(** val append : char list -> char list -> char list **)
 
 let rec append s1 s2 =
   match s1 with
-  | EmptyString -> s2
-  | String (c, s1') -> String (c, (append s1' s2))
+  | [] -> s2
+  | c::s1' -> c::(append s1' s2)
 
-(** val length0 : string -> nat **)
+(** val length0 : char list -> nat **)
 
 let rec length0 = function
-| EmptyString -> O
-| String (_, s') -> S (length0 s')
+| [] -> O
+| _::s' -> S (length0 s')
 
 (** val bool_to_nat : bool -> nat **)
 
@@ -1044,103 +1005,64 @@ let decrypt key0 pt =
 let aes_main key0 pt =
   decrypt key0 (encrypt key0 pt)
 
-(** val nat_to_hex_digit : nat -> string **)
+(** val nat_to_hex_digit : nat -> char list **)
 
 let nat_to_hex_digit = function
-| O ->
-  String ((Ascii (false, false, false, false, true, true, false, false)),
-    EmptyString)
+| O -> '0'::[]
 | S n0 ->
   (match n0 with
-   | O ->
-     String ((Ascii (true, false, false, false, true, true, false, false)),
-       EmptyString)
+   | O -> '1'::[]
    | S n1 ->
      (match n1 with
-      | O ->
-        String ((Ascii (false, true, false, false, true, true, false,
-          false)), EmptyString)
+      | O -> '2'::[]
       | S n2 ->
         (match n2 with
-         | O ->
-           String ((Ascii (true, true, false, false, true, true, false,
-             false)), EmptyString)
+         | O -> '3'::[]
          | S n3 ->
            (match n3 with
-            | O ->
-              String ((Ascii (false, false, true, false, true, true, false,
-                false)), EmptyString)
+            | O -> '4'::[]
             | S n4 ->
               (match n4 with
-               | O ->
-                 String ((Ascii (true, false, true, false, true, true, false,
-                   false)), EmptyString)
+               | O -> '5'::[]
                | S n5 ->
                  (match n5 with
-                  | O ->
-                    String ((Ascii (false, true, true, false, true, true,
-                      false, false)), EmptyString)
+                  | O -> '6'::[]
                   | S n6 ->
                     (match n6 with
-                     | O ->
-                       String ((Ascii (true, true, true, false, true, true,
-                         false, false)), EmptyString)
+                     | O -> '7'::[]
                      | S n7 ->
                        (match n7 with
-                        | O ->
-                          String ((Ascii (false, false, false, true, true,
-                            true, false, false)), EmptyString)
+                        | O -> '8'::[]
                         | S n8 ->
                           (match n8 with
-                           | O ->
-                             String ((Ascii (true, false, false, true, true,
-                               true, false, false)), EmptyString)
+                           | O -> '9'::[]
                            | S n9 ->
                              (match n9 with
-                              | O ->
-                                String ((Ascii (true, false, false, false,
-                                  false, true, true, false)), EmptyString)
+                              | O -> 'a'::[]
                               | S n10 ->
                                 (match n10 with
-                                 | O ->
-                                   String ((Ascii (false, true, false, false,
-                                     false, true, true, false)), EmptyString)
+                                 | O -> 'b'::[]
                                  | S n11 ->
                                    (match n11 with
-                                    | O ->
-                                      String ((Ascii (true, true, false,
-                                        false, false, true, true, false)),
-                                        EmptyString)
+                                    | O -> 'c'::[]
                                     | S n12 ->
                                       (match n12 with
-                                       | O ->
-                                         String ((Ascii (false, false, true,
-                                           false, false, true, true, false)),
-                                           EmptyString)
+                                       | O -> 'd'::[]
                                        | S n13 ->
                                          (match n13 with
-                                          | O ->
-                                            String ((Ascii (true, false,
-                                              true, false, false, true, true,
-                                              false)), EmptyString)
+                                          | O -> 'e'::[]
                                           | S n14 ->
                                             (match n14 with
-                                             | O ->
-                                               String ((Ascii (false, true,
-                                                 true, false, false, true,
-                                                 true, false)), EmptyString)
-                                             | S _ ->
-                                               String ((Ascii (true, true,
-                                                 true, true, true, true,
-                                                 false, false)), EmptyString))))))))))))))))
+                                             | O -> 'f'::[]
+                                             | S _ -> '?'::[])))))))))))))))
 
-(** val nat_to_hex_aux : nat -> nat -> string **)
+(** val nat_to_hex_aux : nat -> nat -> char list **)
 
 let rec nat_to_hex_aux n acc =
   match n with
   | O ->
     (match acc with
-     | O -> EmptyString
+     | O -> []
      | S acc' ->
        append
          (nat_to_hex_aux
@@ -1164,17 +1086,17 @@ let rec nat_to_hex_aux n acc =
            (modulo n (S (S (S (S (S (S (S (S (S (S (S (S (S (S (S (S
              O)))))))))))))))))))
 
-(** val nat_to_hex : nat -> string **)
+(** val nat_to_hex : nat -> char list **)
 
 let nat_to_hex n =
   nat_to_hex_aux n (S (S O))
 
-(** val bin8_to_hex : bool list -> string **)
+(** val bin8_to_hex : bool list -> char list **)
 
 let bin8_to_hex b =
   nat_to_hex (p2n b)
 
-(** val binlist_to_hexlist : bool list list -> string list **)
+(** val binlist_to_hexlist : bool list list -> char list list **)
 
 let rec binlist_to_hexlist = function
 | [] -> []
@@ -1218,86 +1140,68 @@ let rec hex_to_nat = function
 | He -> S (S (S (S (S (S (S (S (S (S (S (S (S (S O)))))))))))))
 | Hf -> S (S (S (S (S (S (S (S (S (S (S (S (S (S (S O))))))))))))))
 
-(** val hex_char_to_hex : ascii -> hex option **)
+
+let (=) x y = 
+  if x=y then Left else Right
+
+
+(** val hex_char_to_hex : char -> hex option **)
 
 let hex_char_to_hex ch =
-  match ascii_dec ch (Ascii (false, false, false, false, true, true, false,
-          false)) with
+  match (=) ch '0' with
   | Left -> Some H0
   | Right ->
-    (match ascii_dec ch (Ascii (true, false, false, false, true, true, false,
-             false)) with
+    (match (=) ch '1' with
      | Left -> Some H1
      | Right ->
-       (match ascii_dec ch (Ascii (false, true, false, false, true, true,
-                false, false)) with
+       (match (=) ch '2' with
         | Left -> Some H2
         | Right ->
-          (match ascii_dec ch (Ascii (true, true, false, false, true, true,
-                   false, false)) with
+          (match (=) ch '3' with
            | Left -> Some H3
            | Right ->
-             (match ascii_dec ch (Ascii (false, false, true, false, true,
-                      true, false, false)) with
+             (match (=) ch '4' with
               | Left -> Some H4
               | Right ->
-                (match ascii_dec ch (Ascii (true, false, true, false, true,
-                         true, false, false)) with
+                (match (=) ch '5' with
                  | Left -> Some H5
                  | Right ->
-                   (match ascii_dec ch (Ascii (false, true, true, false,
-                            true, true, false, false)) with
+                   (match (=) ch '6' with
                     | Left -> Some H6
                     | Right ->
-                      (match ascii_dec ch (Ascii (true, true, true, false,
-                               true, true, false, false)) with
+                      (match (=) ch '7' with
                        | Left -> Some H7
                        | Right ->
-                         (match ascii_dec ch (Ascii (false, false, false,
-                                  true, true, true, false, false)) with
+                         (match (=) ch '8' with
                           | Left -> Some H8
                           | Right ->
-                            (match ascii_dec ch (Ascii (true, false, false,
-                                     true, true, true, false, false)) with
+                            (match (=) ch '9' with
                              | Left -> Some H9
                              | Right ->
-                               (match ascii_dec ch (Ascii (true, false,
-                                        false, false, false, true, true,
-                                        false)) with
+                               (match (=) ch 'a' with
                                 | Left -> Some Ha
                                 | Right ->
-                                  (match ascii_dec ch (Ascii (false, true,
-                                           false, false, false, true, true,
-                                           false)) with
+                                  (match (=) ch 'b' with
                                    | Left -> Some Hb
                                    | Right ->
-                                     (match ascii_dec ch (Ascii (true, true,
-                                              false, false, false, true,
-                                              true, false)) with
+                                     (match (=) ch 'c' with
                                       | Left -> Some Hc
                                       | Right ->
-                                        (match ascii_dec ch (Ascii (false,
-                                                 false, true, false, false,
-                                                 true, true, false)) with
+                                        (match (=) ch 'd' with
                                          | Left -> Some Hd
                                          | Right ->
-                                           (match ascii_dec ch (Ascii (true,
-                                                    false, true, false,
-                                                    false, true, true, false)) with
+                                           (match (=) ch 'e' with
                                             | Left -> Some He
                                             | Right ->
-                                              (match ascii_dec ch (Ascii
-                                                       (false, true, true,
-                                                       false, false, true,
-                                                       true, false)) with
+                                              (match (=) ch 'f' with
                                                | Left -> Some Hf
                                                | Right -> None)))))))))))))))
 
-(** val hex_string_to_nat : string -> nat option **)
+(** val hex_string_to_nat : char list -> nat option **)
 
 let rec hex_string_to_nat = function
-| EmptyString -> Some O
-| String (c, cs) ->
+| [] -> Some O
+| c::cs ->
   (match hex_char_to_hex c with
    | Some hc ->
      (match hex_string_to_nat cs with
@@ -1310,109 +1214,102 @@ let rec hex_string_to_nat = function
       | None -> None)
    | None -> None)
 
-(** val hex2nat : string -> nat **)
+(** val hex2nat : char list -> nat **)
 
 let hex2nat s =
   match hex_string_to_nat s with
   | Some a -> a
   | None -> O
 
-(** val hexlist_to_bin8list : string list -> bool list list **)
+(** val hexlist_to_bin8list : char list list -> bool list list **)
 
 let rec hexlist_to_bin8list = function
 | [] -> []
 | sh::st -> (n2p (hex2nat sh))::(hexlist_to_bin8list st)
 
-(** val plaintext : bool list list **)
+(** val plaintext : char list list **)
 
 let plaintext =
-  hexlist_to_bin8list ((String ((Ascii (true, true, false, false, true, true,
-    false, false)), (String ((Ascii (false, true, false, false, true, true,
-    false, false)), EmptyString))))::((String ((Ascii (false, false, true,
-    false, true, true, false, false)), (String ((Ascii (true, true, false,
-    false, true, true, false, false)), EmptyString))))::((String ((Ascii
-    (false, true, true, false, false, true, true, false)), (String ((Ascii
-    (false, true, true, false, true, true, false, false)),
-    EmptyString))))::((String ((Ascii (true, false, false, false, false,
-    true, true, false)), (String ((Ascii (false, false, false, true, true,
-    true, false, false)), EmptyString))))::((String ((Ascii (false, false,
-    false, true, true, true, false, false)), (String ((Ascii (false, false,
-    false, true, true, true, false, false)), EmptyString))))::((String
-    ((Ascii (true, false, true, false, true, true, false, false)), (String
-    ((Ascii (true, false, false, false, false, true, true, false)),
-    EmptyString))))::((String ((Ascii (true, true, false, false, true, true,
-    false, false)), (String ((Ascii (false, false, false, false, true, true,
-    false, false)), EmptyString))))::((String ((Ascii (false, false, false,
-    true, true, true, false, false)), (String ((Ascii (false, false, true,
-    false, false, true, true, false)), EmptyString))))::((String ((Ascii
-    (true, true, false, false, true, true, false, false)), (String ((Ascii
-    (true, false, false, false, true, true, false, false)),
-    EmptyString))))::((String ((Ascii (true, true, false, false, true, true,
-    false, false)), (String ((Ascii (true, false, false, false, true, true,
-    false, false)), EmptyString))))::((String ((Ascii (true, false, false,
-    true, true, true, false, false)), (String ((Ascii (false, false, false,
-    true, true, true, false, false)), EmptyString))))::((String ((Ascii
-    (true, false, false, false, false, true, true, false)), (String ((Ascii
-    (false, true, false, false, true, true, false, false)),
-    EmptyString))))::((String ((Ascii (true, false, true, false, false, true,
-    true, false)), (String ((Ascii (false, false, false, false, true, true,
-    false, false)), EmptyString))))::((String ((Ascii (true, true, false,
-    false, true, true, false, false)), (String ((Ascii (true, true, true,
-    false, true, true, false, false)), EmptyString))))::((String ((Ascii
-    (false, false, false, false, true, true, false, false)), (String ((Ascii
-    (true, true, true, false, true, true, false, false)),
-    EmptyString))))::((String ((Ascii (true, true, false, false, true, true,
-    false, false)), (String ((Ascii (false, false, true, false, true, true,
-    false, false)), EmptyString))))::[]))))))))))))))))
+  ('3'::('2'::[]))::(('4'::('3'::[]))::(('f'::('6'::[]))::(('a'::('8'::[]))::(('8'::('8'::[]))::(('5'::('a'::[]))::(('3'::('0'::[]))::(('8'::('d'::[]))::(('3'::('1'::[]))::(('3'::('1'::[]))::(('9'::('8'::[]))::(('a'::('2'::[]))::(('e'::('0'::[]))::(('3'::('7'::[]))::(('0'::('7'::[]))::(('3'::('4'::[]))::[])))))))))))))))
 
-(** val key : bool list list **)
+(** val key : char list list **)
 
 let key =
-  hexlist_to_bin8list ((String ((Ascii (false, true, false, false, true,
-    true, false, false)), (String ((Ascii (false, true, false, false, false,
-    true, true, false)), EmptyString))))::((String ((Ascii (true, true, true,
-    false, true, true, false, false)), (String ((Ascii (true, false, true,
-    false, false, true, true, false)), EmptyString))))::((String ((Ascii
-    (true, false, false, false, true, true, false, false)), (String ((Ascii
-    (true, false, true, false, true, true, false, false)),
-    EmptyString))))::((String ((Ascii (true, false, false, false, true, true,
-    false, false)), (String ((Ascii (false, true, true, false, true, true,
-    false, false)), EmptyString))))::((String ((Ascii (false, true, false,
-    false, true, true, false, false)), (String ((Ascii (false, false, false,
-    true, true, true, false, false)), EmptyString))))::((String ((Ascii
-    (true, false, false, false, false, true, true, false)), (String ((Ascii
-    (true, false, true, false, false, true, true, false)),
-    EmptyString))))::((String ((Ascii (false, false, true, false, false,
-    true, true, false)), (String ((Ascii (false, true, false, false, true,
-    true, false, false)), EmptyString))))::((String ((Ascii (true, false,
-    false, false, false, true, true, false)), (String ((Ascii (false, true,
-    true, false, true, true, false, false)), EmptyString))))::((String
-    ((Ascii (true, false, false, false, false, true, true, false)), (String
-    ((Ascii (false, true, false, false, false, true, true, false)),
-    EmptyString))))::((String ((Ascii (false, true, true, false, false, true,
-    true, false)), (String ((Ascii (true, true, true, false, true, true,
-    false, false)), EmptyString))))::((String ((Ascii (true, false, false,
-    false, true, true, false, false)), (String ((Ascii (true, false, true,
-    false, true, true, false, false)), EmptyString))))::((String ((Ascii
-    (false, false, false, true, true, true, false, false)), (String ((Ascii
-    (false, false, false, true, true, true, false, false)),
-    EmptyString))))::((String ((Ascii (false, false, false, false, true,
-    true, false, false)), (String ((Ascii (true, false, false, true, true,
-    true, false, false)), EmptyString))))::((String ((Ascii (true, true,
-    false, false, false, true, true, false)), (String ((Ascii (false, true,
-    true, false, false, true, true, false)), EmptyString))))::((String
-    ((Ascii (false, false, true, false, true, true, false, false)), (String
-    ((Ascii (false, true, true, false, false, true, true, false)),
-    EmptyString))))::((String ((Ascii (true, true, false, false, true, true,
-    false, false)), (String ((Ascii (true, true, false, false, false, true,
-    true, false)), EmptyString))))::[]))))))))))))))))
+  ('2'::('b'::[]))::(('7'::('e'::[]))::(('1'::('5'::[]))::(('1'::('6'::[]))::(('2'::('8'::[]))::(('a'::('e'::[]))::(('d'::('2'::[]))::(('a'::('6'::[]))::(('a'::('b'::[]))::(('f'::('7'::[]))::(('1'::('5'::[]))::(('8'::('8'::[]))::(('0'::('9'::[]))::(('c'::('f'::[]))::(('4'::('f'::[]))::(('3'::('c'::[]))::[])))))))))))))))
 
-(** val encrypt_test : vec **)
+(** val encrypt_test : char list list -> char list list -> char list list **)
 
-let encrypt_test =
-  encrypt key plaintext
+let encrypt_test key0 plaintext0 =
+  binlist_to_hexlist
+    (encrypt (hexlist_to_bin8list key0) (hexlist_to_bin8list plaintext0))
 
-(** val encrypt_decrypt_test : vec **)
+(** val decrypt_test : char list list -> char list list -> char list list **)
 
-let encrypt_decrypt_test =
-  aes_main key plaintext
+let decrypt_test key0 ciphertext =
+  binlist_to_hexlist
+    (decrypt (hexlist_to_bin8list key0) (hexlist_to_bin8list ciphertext))
+
+(** val encrypt_decrypt_test :
+    char list list -> char list list -> char list list **)
+
+let encrypt_decrypt_test key0 plaintext0 =
+  binlist_to_hexlist
+    (aes_main (hexlist_to_bin8list key0) (hexlist_to_bin8list plaintext0))
+
+	
+open List
+
+let read_and_process_file filename =
+  let lines =
+    try
+      let ic = open_in filename in  
+      let rec read_lines acc =      
+        try
+          let line = input_line ic in
+          read_lines (line :: acc)  
+        with End_of_file -> List.rev acc    
+      in
+      let lines = read_lines [] in
+      close_in ic;
+      lines (*?*)
+    with Sys_error s -> failwith s   
+  in
+  if List.length lines < 2 then
+    failwith "File must contain at least two lines"
+  else
+    List.map (fun line ->
+      let parts = String.split_on_char ',' line in   
+      List.map (fun part ->
+        let chars = String.to_seq part in
+        List.of_seq chars
+      ) parts  
+    ) lines
+
+
+let run_function function_name filename =
+  let key_and_plaintext = read_and_process_file filename in
+  let key = List.nth key_and_plaintext 0 in   
+  let plaintext = List.nth key_and_plaintext 1 in
+  match function_name with
+  | "encrypt_test" -> 
+    let ciphertext = encrypt_test key plaintext in 
+    let ciphertext_str = String.concat "," (List.map 
+		(fun (chars: char list) -> String.concat "" (List.map (String.make 1) chars)) 
+			ciphertext) in  
+    Printf.printf "ciphertext: %s\n" ciphertext_str
+  | "decrypt_test" ->
+    let plaintext = decrypt_test key plaintext in
+    let plaintext_str = String.concat "," (List.map 
+		(fun (chars: char list) -> String.concat "" (List.map (String.make 1) chars)) 
+			plaintext) in 
+    Printf.printf "plaintext: %s\n" plaintext_str
+  | _ -> Printf.printf "Unknown function: %s\n" function_name
+  
+  
+let () =
+  if Array.length Sys.argv < 3 then
+    Printf.printf "Usage: %s function_name filename\n" Sys.argv.(0)
+  else
+    let function_name = Sys.argv.(1) in
+    let filename = Sys.argv.(2) in
+    run_function function_name filename
