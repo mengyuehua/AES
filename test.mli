@@ -3,16 +3,15 @@ val negb : bool -> bool
 type nat = O | S of nat
 type 'a option = Some of 'a | None
 type ('a, 'b) prod = Pair of 'a * 'b
-val fst : ('a, 'b) prod -> 'a
-val snd : ('a, 'b) prod -> 'b
+val fst : 'a * 'b -> 'a
+val snd : 'a * 'b -> 'b
 val length : 'a list -> nat
 val app : 'a list -> 'a list -> 'a list
-type sumbool = Left | Right
 val add : nat -> nat -> nat
 val mul : nat -> nat -> nat
 val sub : nat -> nat -> nat
 val pow : nat -> nat -> nat
-val divmod : nat -> nat -> nat -> nat -> (nat, nat) prod
+val divmod : nat -> nat -> nat -> nat -> nat * nat
 val div : nat -> nat -> nat
 val modulo : nat -> nat -> nat
 val eqb : bool -> bool -> bool
@@ -86,8 +85,8 @@ val rij_irreducible : bool list
 val rij_m' : nat -> bool list -> bool list -> bool list -> bool list
 val rij_mul : bool list -> bool list -> bool list
 val gtimes : bool list -> bool list -> bool list
-val decompose' : 'a list -> nat -> 'a list -> ('a list, 'a list) prod
-val decompose : 'a list -> nat -> ('a list, 'a list) prod
+val decompose' : 'a list -> nat -> 'a list -> 'a list * 'a list
+val decompose : 'a list -> nat -> 'a list * 'a list
 val split' : 'a list -> nat -> nat -> 'a list list -> 'a list list
 val split : 'a list -> nat -> 'a list list
 val join : 'a list list -> 'a list
@@ -134,8 +133,7 @@ val keyExpansion_split : bool list list -> bool list list list list
 val keyExpansion_split_matrix : 'a list list list -> 'a list list list
 val keySchedule :
   bool list list ->
-  ((bool list list list, bool list list list list) prod, bool list list list)
-  prod
+  (bool list list list * bool list list list list) * bool list list list
 val mk_cols' : nat -> 'a list -> 'a list list -> 'a list list
 val mk_cols : 'a list -> 'a list list
 val polyMat : 'a list -> 'a list list
@@ -161,8 +159,8 @@ val mk_rnds :
   bool list list list -> bool list list list list -> bool list list list
 val rounds :
   bool list list list ->
-  ((bool list list list, bool list list list list) prod, bool list list list)
-  prod -> bool list list list
+  (bool list list list * bool list list list list) * bool list list list ->
+  bool list list list
 val inv_Round :
   bool list list list -> bool list list list -> bool list list list
 val invFinalRound :
@@ -171,8 +169,8 @@ val mk_inv_rnds :
   bool list list list -> bool list list list list -> bool list list list
 val inv_rounds :
   bool list list list ->
-  ((bool list list list, bool list list list list) prod, bool list list list)
-  prod -> bool list list list
+  (bool list list list * bool list list list list) * bool list list list ->
+  bool list list list
 val encrypt : bool list list -> bool list list -> bool list list
 val decrypt : bool list list -> bool list list -> bool list list
 val aes_main : bool list list -> bool list list -> bool list list
@@ -199,14 +197,21 @@ type hex =
   | He
   | Hf
 val hex_to_nat : hex -> nat
-val ( = ) : 'a -> 'a -> sumbool
 val hex_char_to_hex : char -> hex option
 val hex_string_to_nat : char list -> nat option
 val hex2nat : char list -> nat
 val hexlist_to_bin8list : char list list -> bool list list
-val plaintext : char list list
 val key : char list list
+val plaintext : char list list
+val liststring_to_Matrix : char list list -> bool list list list
+val matrix_to_liststring : bool list list list -> char list list
+val addRoundKey_test : char list list -> char list list -> char list list
+val subBytes_test : char list list -> char list list
+val shiftRows_test : char list list -> char list list
+val mixColumns_test : char list list -> char list list
+val keyExpansion_test : char list list -> nat -> char list list
 val encrypt_test : char list list -> char list list -> char list list
 val decrypt_test : char list list -> char list list -> char list list
 val encrypt_decrypt_test : char list list -> char list list -> char list list
 val read_and_process_file : string -> char list list list
+val run_function : string -> string -> unit

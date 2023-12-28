@@ -21,15 +21,15 @@ type 'a option =
 type ('a, 'b) prod =
 | Pair of 'a * 'b
 
-(** val fst : ('a1, 'a2) prod -> 'a1 **)
+(** val fst : ('a1 * 'a2) -> 'a1 **)
 
 let fst = function
-| Pair (x, _) -> x
+| (x, _) -> x
 
-(** val snd : ('a1, 'a2) prod -> 'a2 **)
+(** val snd : ('a1 * 'a2) -> 'a2 **)
 
 let snd = function
-| Pair (_, y) -> y
+| (_, y) -> y
 
 (** val length : 'a1 list -> nat **)
 
@@ -43,10 +43,6 @@ let rec app l m =
   match l with
   | [] -> m
   | a::l1 -> a::(app l1 m)
-
-type sumbool =
-| Left
-| Right
 
 (** val add : nat -> nat -> nat **)
 
@@ -77,11 +73,11 @@ let rec pow n = function
 | O -> S O
 | S m0 -> mul n (pow n m0)
 
-(** val divmod : nat -> nat -> nat -> nat -> (nat, nat) prod **)
+(** val divmod : nat -> nat -> nat -> nat -> nat * nat **)
 
 let rec divmod x y q u =
   match x with
-  | O -> Pair (q, u)
+  | O -> (q, u)
   | S x' -> (match u with
              | O -> divmod x' y (S q) y
              | S u' -> divmod x' y q u')
@@ -94,8 +90,8 @@ let div x y = match y with
 
 (** val modulo : nat -> nat -> nat **)
 
-let modulo x y = match y with
-| O -> y
+let modulo x = function
+| O -> x
 | S y' -> sub y' (snd (divmod x y' O y'))
 
 (** val eqb : bool -> bool -> bool **)
@@ -206,7 +202,7 @@ let less a b =
 (** val nateq : nat -> nat -> bool **)
 
 let nateq a b =
-  if less_than a b then less_than b a else false
+  (&&) (less_than a b) (less_than b a)
 
 (** val is_zero : nat -> bool **)
 
@@ -519,18 +515,17 @@ let rij_mul a b =
 let gtimes =
   rij_mul
 
-(** val decompose' :
-    'a1 list -> nat -> 'a1 list -> ('a1 list, 'a1 list) prod **)
+(** val decompose' : 'a1 list -> nat -> 'a1 list -> 'a1 list * 'a1 list **)
 
 let rec decompose' xs m r =
   match m with
-  | O -> Pair ((rev r), xs)
+  | O -> ((rev r), xs)
   | S m' ->
     (match xs with
-     | [] -> Pair ((rev r), xs)
+     | [] -> ((rev r), xs)
      | hd::tl -> decompose' tl m' (hd::r))
 
-(** val decompose : 'a1 list -> nat -> ('a1 list, 'a1 list) prod **)
+(** val decompose : 'a1 list -> nat -> 'a1 list * 'a1 list **)
 
 let decompose xs m =
   decompose' xs m []
@@ -540,8 +535,7 @@ let decompose xs m =
 let rec split' xs n m r =
   match n with
   | O -> r
-  | S n' ->
-    let Pair (r1, r2) = decompose xs m in split' r2 n' m (back_cons r r1)
+  | S n' -> let (r1, r2) = decompose xs m in split' r2 n' m (back_cons r r1)
 
 (** val split : 'a1 list -> nat -> 'a1 list list **)
 
@@ -607,7 +601,7 @@ let parity xs =
 (** val dotBit : poly -> poly -> bool **)
 
 let dotBit a b =
-  parity (map2 (fun b1 b2 -> if b1 then b2 else false) a b)
+  parity (map2 (&&) a b)
 
 (** val mmultBit : vec -> vec -> vec **)
 
@@ -785,9 +779,8 @@ let nextWord i old prev =
   let prev' =
     if is_zero (mod0 n nk)
     then vec_add (subByte (rotate_left prev)) (rcon (div0 n nk))
-    else if if less (S (S (S (S (S (S O)))))) nk
-            then nateq (mod0 n nk) (S (S (S (S O))))
-            else false
+    else if (&&) (less (S (S (S (S (S (S O)))))) nk)
+              (nateq (mod0 n nk) (S (S (S (S O)))))
          then subByte prev
          else prev
   in
@@ -829,13 +822,12 @@ let rec keyExpansion_split_matrix = function
 | [] -> []
 | k::ks -> (stripe (join k))::(keyExpansion_split_matrix ks)
 
-(** val keySchedule : vec -> ((matrix, matrix list) prod, matrix) prod **)
+(** val keySchedule : vec -> (matrix * matrix list) * matrix **)
 
 let keySchedule key0 =
   let w = keyExpansion_split key0 in
   let rKeys = keyExpansion_split_matrix w in
-  Pair ((Pair ((lth O rKeys), (range (S O) (sub nr (S O)) rKeys))),
-  (lth nr rKeys))
+  (((lth O rKeys), (range (S O) (sub nr (S O)) rKeys)), (lth nr rKeys))
 
 (** val mk_cols' : nat -> vec -> matrix -> matrix **)
 
@@ -950,12 +942,11 @@ let rec mk_rnds state = function
 | [] -> state
 | key0::tl -> mk_rnds (round state key0) tl
 
-(** val rounds :
-    matrix -> ((matrix, matrix list) prod, matrix) prod -> matrix **)
+(** val rounds : matrix -> ((matrix * matrix list) * matrix) -> matrix **)
 
 let rounds state = function
-| Pair (p, finalKey) ->
-  let Pair (initialKey, rndKeys) = p in
+| (p, finalKey) ->
+  let (initialKey, rndKeys) = p in
   let istate = matrix_add state initialKey in
   let last_rnd = mk_rnds istate rndKeys in finalRound last_rnd finalKey
 
@@ -978,12 +969,11 @@ let rec mk_inv_rnds state = function
 | [] -> state
 | key0::tl -> mk_inv_rnds (inv_Round state key0) tl
 
-(** val inv_rounds :
-    matrix -> ((matrix, matrix list) prod, matrix) prod -> matrix **)
+(** val inv_rounds : matrix -> ((matrix * matrix list) * matrix) -> matrix **)
 
 let inv_rounds state = function
-| Pair (p, finalKey) ->
-  let Pair (initialKey, rndKeys) = p in
+| (p, finalKey) ->
+  let (initialKey, rndKeys) = p in
   let istate = matrix_add state finalKey in
   let last_rnd = mk_inv_rnds istate (rev rndKeys) in
   invFinalRound last_rnd initialKey
@@ -1140,62 +1130,50 @@ let rec hex_to_nat = function
 | He -> S (S (S (S (S (S (S (S (S (S (S (S (S (S O)))))))))))))
 | Hf -> S (S (S (S (S (S (S (S (S (S (S (S (S (S (S O))))))))))))))
 
-
-let (=) x y = 
-  if x=y then Left else Right
-
-
 (** val hex_char_to_hex : char -> hex option **)
 
 let hex_char_to_hex ch =
-  match (=) ch '0' with
-  | Left -> Some H0
-  | Right ->
-    (match (=) ch '1' with
-     | Left -> Some H1
-     | Right ->
-       (match (=) ch '2' with
-        | Left -> Some H2
-        | Right ->
-          (match (=) ch '3' with
-           | Left -> Some H3
-           | Right ->
-             (match (=) ch '4' with
-              | Left -> Some H4
-              | Right ->
-                (match (=) ch '5' with
-                 | Left -> Some H5
-                 | Right ->
-                   (match (=) ch '6' with
-                    | Left -> Some H6
-                    | Right ->
-                      (match (=) ch '7' with
-                       | Left -> Some H7
-                       | Right ->
-                         (match (=) ch '8' with
-                          | Left -> Some H8
-                          | Right ->
-                            (match (=) ch '9' with
-                             | Left -> Some H9
-                             | Right ->
-                               (match (=) ch 'a' with
-                                | Left -> Some Ha
-                                | Right ->
-                                  (match (=) ch 'b' with
-                                   | Left -> Some Hb
-                                   | Right ->
-                                     (match (=) ch 'c' with
-                                      | Left -> Some Hc
-                                      | Right ->
-                                        (match (=) ch 'd' with
-                                         | Left -> Some Hd
-                                         | Right ->
-                                           (match (=) ch 'e' with
-                                            | Left -> Some He
-                                            | Right ->
-                                              (match (=) ch 'f' with
-                                               | Left -> Some Hf
-                                               | Right -> None)))))))))))))))
+  if (=) ch '0'
+  then Some H0
+  else if (=) ch '1'
+       then Some H1
+       else if (=) ch '2'
+            then Some H2
+            else if (=) ch '3'
+                 then Some H3
+                 else if (=) ch '4'
+                      then Some H4
+                      else if (=) ch '5'
+                           then Some H5
+                           else if (=) ch '6'
+                                then Some H6
+                                else if (=) ch '7'
+                                     then Some H7
+                                     else if (=) ch '8'
+                                          then Some H8
+                                          else if (=) ch '9'
+                                               then Some H9
+                                               else if (=) ch 'a'
+                                                    then Some Ha
+                                                    else if (=) ch 'b'
+                                                         then Some Hb
+                                                         else if (=) ch 'c'
+                                                              then Some Hc
+                                                              else if 
+                                                                    (=) ch 'd'
+                                                                   then 
+                                                                    Some Hd
+                                                                   else 
+                                                                    if 
+                                                                    (=) ch 'e'
+                                                                    then 
+                                                                    Some He
+                                                                    else 
+                                                                    if 
+                                                                    (=) ch 'f'
+                                                                    then 
+                                                                    Some Hf
+                                                                    else None
 
 (** val hex_string_to_nat : char list -> nat option **)
 
@@ -1227,37 +1205,90 @@ let rec hexlist_to_bin8list = function
 | [] -> []
 | sh::st -> (n2p (hex2nat sh))::(hexlist_to_bin8list st)
 
-(** val plaintext : char list list **)
-
-let plaintext =
-  ('3'::('2'::[]))::(('4'::('3'::[]))::(('f'::('6'::[]))::(('a'::('8'::[]))::(('8'::('8'::[]))::(('5'::('a'::[]))::(('3'::('0'::[]))::(('8'::('d'::[]))::(('3'::('1'::[]))::(('3'::('1'::[]))::(('9'::('8'::[]))::(('a'::('2'::[]))::(('e'::('0'::[]))::(('3'::('7'::[]))::(('0'::('7'::[]))::(('3'::('4'::[]))::[])))))))))))))))
-
 (** val key : char list list **)
 
 let key =
   ('2'::('b'::[]))::(('7'::('e'::[]))::(('1'::('5'::[]))::(('1'::('6'::[]))::(('2'::('8'::[]))::(('a'::('e'::[]))::(('d'::('2'::[]))::(('a'::('6'::[]))::(('a'::('b'::[]))::(('f'::('7'::[]))::(('1'::('5'::[]))::(('8'::('8'::[]))::(('0'::('9'::[]))::(('c'::('f'::[]))::(('4'::('f'::[]))::(('3'::('c'::[]))::[])))))))))))))))
 
+(** val plaintext : char list list **)
+
+let plaintext =
+  ('3'::('2'::[]))::(('4'::('3'::[]))::(('f'::('6'::[]))::(('a'::('8'::[]))::(('8'::('8'::[]))::(('5'::('a'::[]))::(('3'::('0'::[]))::(('8'::('d'::[]))::(('3'::('1'::[]))::(('3'::('1'::[]))::(('9'::('8'::[]))::(('a'::('2'::[]))::(('e'::('0'::[]))::(('3'::('7'::[]))::(('0'::('7'::[]))::(('3'::('4'::[]))::[])))))))))))))))
+
+(** val liststring_to_Matrix : char list list -> matrix **)
+
+let liststring_to_Matrix a =
+  stripe (hexlist_to_bin8list a)
+
+(** val matrix_to_liststring : matrix -> char list list **)
+
+let matrix_to_liststring a =
+  binlist_to_hexlist (unstripe a)
+
+(** val addRoundKey_test :
+    char list list -> char list list -> char list list **)
+
+let addRoundKey_test plaintext0 key0 =
+  let plaintext' = liststring_to_Matrix plaintext0 in
+  let key' = liststring_to_Matrix key0 in
+  matrix_to_liststring (matrix_add plaintext' key')
+
+(** val subBytes_test : char list list -> char list list **)
+
+let subBytes_test a =
+  let a' = liststring_to_Matrix a in matrix_to_liststring (byteSub a')
+
+(** val shiftRows_test : char list list -> char list list **)
+
+let shiftRows_test a =
+  let a' = liststring_to_Matrix a in matrix_to_liststring (shiftRow a')
+
+(** val mixColumns_test : char list list -> char list list **)
+
+let mixColumns_test a =
+  let a' = liststring_to_Matrix a in matrix_to_liststring (mixColumn a')
+
+(** val keyExpansion_test : char list list -> nat -> char list list **)
+
+let keyExpansion_test key0 n =
+  let key_Vec = hexlist_to_bin8list key0 in
+  let keys = keyExpansion_split key_Vec in
+  let keys_arrange = keyExpansion_split_matrix keys in
+  matrix_to_liststring (lth n keys_arrange)
+
 (** val encrypt_test : char list list -> char list list -> char list list **)
 
 let encrypt_test key0 plaintext0 =
-  binlist_to_hexlist
-    (encrypt (hexlist_to_bin8list key0) (hexlist_to_bin8list plaintext0))
+  let key' = hexlist_to_bin8list key0 in
+  let plaintext' = hexlist_to_bin8list plaintext0 in
+  binlist_to_hexlist (encrypt key' plaintext')
 
 (** val decrypt_test : char list list -> char list list -> char list list **)
 
 let decrypt_test key0 ciphertext =
-  binlist_to_hexlist
-    (decrypt (hexlist_to_bin8list key0) (hexlist_to_bin8list ciphertext))
+  let key' = hexlist_to_bin8list key0 in
+  let ciphertext' = hexlist_to_bin8list ciphertext in
+  binlist_to_hexlist (decrypt key' ciphertext')
 
 (** val encrypt_decrypt_test :
     char list list -> char list list -> char list list **)
 
 let encrypt_decrypt_test key0 plaintext0 =
-  binlist_to_hexlist
-    (aes_main (hexlist_to_bin8list key0) (hexlist_to_bin8list plaintext0))
+  let key' = hexlist_to_bin8list key0 in
+  let plaintext' = hexlist_to_bin8list plaintext0 in
+  binlist_to_hexlist (aes_main key' plaintext')
 
-	
+  
+  
+
+
+
+
+
+
+
 open List
+
 
 let read_and_process_file filename =
   let lines =
@@ -1271,12 +1302,12 @@ let read_and_process_file filename =
       in
       let lines = read_lines [] in
       close_in ic;
-      lines (*?*)
+      lines
     with Sys_error s -> failwith s   
   in
-  if List.length lines < 2 then
+  (*if List.length lines < 2 then
     failwith "File must contain at least two lines"
-  else
+  else*)
     List.map (fun line ->
       let parts = String.split_on_char ',' line in   
       List.map (fun part ->
@@ -1285,26 +1316,91 @@ let read_and_process_file filename =
       ) parts  
     ) lines
 
+(* list char -> nat *)
+let rec int_to_nat n =
+  if n < 0 then
+    O (* 如果是负数，返回 Z 表示 0 *)
+  else if n = 0 then
+    O (* 如果是 0，返回 Z 表示 0 *)
+  else
+    S (int_to_nat (n - 1)) (* 对于正整数 n，返回 S (int_to_nat (n - 1)) *)
+	
+let rec nat_to_int n =
+  match n with
+  | O -> 0
+  | S m -> 1 + nat_to_int m
+	
+
+		
+let char_list_to_nat lst =
+	match lst with
+	|[] -> failwith "need a netual number"
+    | _ :: [] -> let param2 = List.nth lst 0 in
+		         let first_char = List.nth param2 0 in
+		         int_to_nat (int_of_string (String.make 1 first_char))
+    | _ -> failwith "error"
+
+
+
+(*	
+let run_function function_name filename =
+	let param1_and_param2 = read_and_process_file filename in
+	let param1 = List.nth param1_and_param2 0 in     (* param1 : chat list list *)
+	let param2 = List.nth param1_and_param2 1 in
+	let result = nat_to_int(char_list_to_nat param2) in
+		Printf.printf "Example: %d\n" result
+*)
+
 
 let run_function function_name filename =
-  let key_and_plaintext = read_and_process_file filename in
-  let key = List.nth key_and_plaintext 0 in   
-  let plaintext = List.nth key_and_plaintext 1 in
+  let param1_and_param2 = read_and_process_file filename in
+  let param1 = List.nth param1_and_param2 0 in     (* param1 : chat list list *)
+  let param2 = List.nth param1_and_param2 1 in
   match function_name with
   | "encrypt_test" -> 
-    let ciphertext = encrypt_test key plaintext in 
+    let ciphertext = encrypt_test param1 param2 in 
     let ciphertext_str = String.concat "," (List.map 
 		(fun (chars: char list) -> String.concat "" (List.map (String.make 1) chars)) 
 			ciphertext) in  
     Printf.printf "ciphertext: %s\n" ciphertext_str
   | "decrypt_test" ->
-    let plaintext = decrypt_test key plaintext in
+    let plaintext = decrypt_test param1 param2 in
     let plaintext_str = String.concat "," (List.map 
 		(fun (chars: char list) -> String.concat "" (List.map (String.make 1) chars)) 
 			plaintext) in 
     Printf.printf "plaintext: %s\n" plaintext_str
+  | "addRoundKey_test" -> 
+    let result = addRoundKey_test param1 param2 in 
+    let ciphertext_str = String.concat "," (List.map 
+		(fun (chars: char list) -> String.concat "" (List.map (String.make 1) chars)) 
+			result) in  
+    Printf.printf "After AddRoundKey, the result is: %s\n" ciphertext_str
+  | "subBytes_test" -> 
+    let result = subBytes_test param1 in 
+    let ciphertext_str = String.concat "," (List.map 
+		(fun (chars: char list) -> String.concat "" (List.map (String.make 1) chars)) 
+			result) in  
+    Printf.printf "After SubBytes, the result is: %s\n" ciphertext_str
+  | "shiftRows_test" -> 
+    let result = shiftRows_test param1 in 
+    let ciphertext_str = String.concat "," (List.map 
+		(fun (chars: char list) -> String.concat "" (List.map (String.make 1) chars)) 
+			result) in  
+    Printf.printf "After ShiftRows, the result is: %s\n" ciphertext_str
+  | "mixColumns_test" -> 
+    let result = mixColumns_test param1 in 
+    let ciphertext_str = String.concat "," (List.map 
+		(fun (chars: char list) -> String.concat "" (List.map (String.make 1) chars)) 
+			result) in  
+    Printf.printf "After MixColumns, the result is: %s\n" ciphertext_str
+  | "keyExpansion_test" -> 
+    let result = keyExpansion_test param1 (char_list_to_nat param2) in 
+    let ciphertext_str = String.concat "," (List.map 
+		(fun (chars: char list) -> String.concat "" (List.map (String.make 1) chars)) 
+			result) in  
+    Printf.printf "After KeyExpansion, the result is: %s\n" ciphertext_str
   | _ -> Printf.printf "Unknown function: %s\n" function_name
-  
+ 
   
 let () =
   if Array.length Sys.argv < 3 then

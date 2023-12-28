@@ -127,61 +127,93 @@ Definition key :=
 Definition plaintext :=
   ["32"; "43"; "f6"; "a8"; "88"; "5a"; "30"; "8d"; "31"; "31"; "98"; "a2"; "e0"; "37"; "07"; "34"].
 
-(* to matrix *)
-Definition plaintext' := stripe (hexlist_to_bin8list plaintext).
-Definition key' := stripe (hexlist_to_bin8list key).
 
-(* AddRoundKet, correct *)
-Definition matrix_add_1 := matrix_add plaintext' key'.
-Compute (binlist_to_hexlist (prim.join matrix_add_1)).
-(* SubBytes, correct *)
-Definition byteSub_1 :=byteSub matrix_add_1.
-Compute (binlist_to_hexlist (prim.join byteSub_1)).
-(* ShiftRows, correct*)
-Definition shiftRow_1 :=shiftRow byteSub_1.
-Compute (binlist_to_hexlist (prim.join shiftRow_1)).
-(* MixColumns, correct *)
-Definition mixColumn_1 :=mixColumn shiftRow_1.
-Compute (binlist_to_hexlist (prim.join mixColumn_1)).
+(* function test *)
+(* ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————*)
+Definition liststring_to_Matrix (a : list string) : Matrix :=
+   stripe (hexlist_to_bin8list a).
+Definition Matrix_to_liststring (a : Matrix) : list string :=
+   binlist_to_hexlist (unstripe a).
 
+(* 1. AddRoundKey *)
+Definition addRoundKey_test (plaintext key : list string) : list string := 
+  let plaintext' := liststring_to_Matrix plaintext in
+  let key' := liststring_to_Matrix key in
+     Matrix_to_liststring (matrix_add plaintext' key').
+Compute addRoundKey_test plaintext key.
+(* ["19"; "3d"; "e3"; "be"; "a0"; "f4"; "e2"; "2b"; "9a"; "c6"; "8d"; "2a"; "e9"; "f8"; "48"; "08"] *)
 
-(* keyExpension, correct *)
-Definition keys := keyExpansion_split (hexlist_to_bin8list key).
-Definition keys_matrix := keyExpansion_split_matrix keys.
-(* key0, correct *)
-Definition key0 := prim.lth 0 keys_matrix.
-Compute binlist_to_hexlist (prim.join key0).
-(* key1, correct *)
-Definition key1 := prim.lth 1 keys_matrix.
-Compute binlist_to_hexlist (prim.join key1).
-(* key2, correct *)
-Definition key2 := prim.lth 2 keys_matrix.
-Compute binlist_to_hexlist (prim.join key2).
+(* 2. SubBytes *)
+Definition subBytes_test (a : list string) : list string := 
+  let a' := liststring_to_Matrix a in
+    Matrix_to_liststring (byteSub a').
+Compute subBytes_test 
+  ["19"; "3d"; "e3"; "be"; "a0"; "f4"; "e2"; "2b"; "9a"; "c6"; "8d"; "2a"; "e9"; "f8"; "48"; "08"].
+(* ["d4"; "27"; "11"; "ae"; "e0"; "bf"; "98"; "f1"; "b8"; "b4"; "5d"; "e5"; "1e"; "41"; "52"; "30"] *)
 
+(*3. ShiftRows *)
+Definition shiftRows_test (a : list string) : list string := 
+  let a' := liststring_to_Matrix a in
+    Matrix_to_liststring (shiftRow a').
+Compute shiftRows_test 
+  ["d4"; "27"; "11"; "ae"; "e0"; "bf"; "98"; "f1"; "b8"; "b4"; "5d"; "e5"; "1e"; "41"; "52"; "30"].
+(* ["d4"; "bf"; "5d"; "30"; "e0"; "b4"; "52"; "ae"; "b8"; "41"; "11"; "f1"; "1e"; "27"; "98"; "e5"] *)
 
-(* encrypt, correct *)
+(* 4. MixColumns *)
+Definition mixColumns_test (a : list string) : list string := 
+  let a' := liststring_to_Matrix a in
+    Matrix_to_liststring (mixColumn a').
+Compute mixColumns_test
+  ["d4"; "bf"; "5d"; "30"; "e0"; "b4"; "52"; "ae"; "b8"; "41"; "11"; "f1"; "1e"; "27"; "98"; "e5"].
+(* ["04"; "66"; "81"; "e5"; "e0"; "cb"; "19"; "9a"; "48"; "f8"; "d3"; "7a"; "28"; "06"; "26"; "4c"] *)
+
+(* 5. keyExpansion *)
+Definition keyExpansion_test (key : list string) (n : nat) : list string :=
+  let key_Vec := hexlist_to_bin8list key in
+  let keys := keyExpansion_split key_Vec in
+  let keys_arrange := keyExpansion_split_matrix keys in
+    Matrix_to_liststring (prim.lth n keys_arrange).
+Compute keyExpansion_test key 0.
+Compute keyExpansion_test key 1.
+(* ["2b"; "7e"; "15"; "16"; "28"; "ae"; "d2"; "a6"; "ab"; "f7"; "15"; "88"; "09"; "cf"; "4f"; "3c"]
+   ["a0"; "fa"; "fe"; "17"; "88"; "54"; "2c"; "b1"; "23"; "a3"; "39"; "39"; "2a"; "6c"; "76"; "05"]  *)
+
+(* 6. encrypt *)
 Definition encrypt_test (key plaintext : list string) : list string :=
-  binlist_to_hexlist (encrypt (hexlist_to_bin8list key) (hexlist_to_bin8list plaintext)).
+  let key' := hexlist_to_bin8list key in
+  let plaintext' := hexlist_to_bin8list plaintext in
+    binlist_to_hexlist (encrypt key' plaintext').
 Compute encrypt_test key plaintext.
+(* ["39"; "25"; "84"; "1d"; "02"; "dc"; "09"; "fb"; "dc"; "11"; "85"; "97"; "19"; "6a"; "0b"; "32"] *)
 
-(* decrypt, correct *)
+(* 7. decrypt *)
 Definition decrypt_test (key ciphertext : list string) : list string :=
-  binlist_to_hexlist (decrypt (hexlist_to_bin8list key) (hexlist_to_bin8list ciphertext)).
+  let key' := hexlist_to_bin8list key in
+  let ciphertext' := hexlist_to_bin8list ciphertext in
+    binlist_to_hexlist (decrypt key' ciphertext').
+Definition ciphertext :=
+  ["39"; "25"; "84"; "1d"; "02"; "dc"; "09"; "fb"; "dc"; "11"; "85"; "97"; "19"; "6a"; "0b"; "32"].
+Compute decrypt_test key ciphertext.
+(* ["32"; "43"; "f6"; "a8"; "88"; "5a"; "30"; "8d"; "31"; "31"; "98"; "a2"; "e0"; "37"; "07"; "34"] *)
 
-(* encrypt and decrypt, correct *)
+(* 8. encrypt and decrypt *)
 Definition encrypt_decrypt_test (key plaintext : list string) : list string :=
-  binlist_to_hexlist (aes_main (hexlist_to_bin8list key) (hexlist_to_bin8list plaintext)).
+  let key' := hexlist_to_bin8list key in
+  let plaintext' := hexlist_to_bin8list plaintext in
+    binlist_to_hexlist (aes_main key' plaintext').
 Compute encrypt_decrypt_test key plaintext.
+(* ["32"; "43"; "f6"; "a8"; "88"; "5a"; "30"; "8d"; "31"; "31"; "98"; "a2"; "e0"; "37"; "07"; "34"] *)
+
+(*——————————————————————————————————————————————————————————————————————————————————————————————————————————————————*)
 
 
 Require Import Extraction.
 Extraction Language OCaml.
 Require Import ExtrOcamlString.
-(* Require Import ExtrOcamlNativeString. *)
 Extract Inductive bool => "bool" [ "true" "false" ].
 Extract Inductive list => "list" [ "[]" "(::)" ].
-Recursive Extraction key plaintext binlist_to_hexlist encrypt_test decrypt_test encrypt_decrypt_test.
-Extraction "test.ml" key plaintext binlist_to_hexlist encrypt_test decrypt_test encrypt_decrypt_test.
+Recursive Extraction key plaintext binlist_to_hexlist encrypt_test decrypt_test encrypt_decrypt_test AddRoundKey_test SubBytes_test ShiftRows_test MixColumns_test keyExpansion_test.
+Extraction "test.ml" key plaintext binlist_to_hexlist encrypt_test decrypt_test encrypt_decrypt_test AddRoundKey_test SubBytes_test ShiftRows_test MixColumns_test keyExpansion_test.
 
 
 
